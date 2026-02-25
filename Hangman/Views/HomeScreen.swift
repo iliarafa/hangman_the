@@ -35,7 +35,7 @@ struct HomeScreen: View {
             Image("PlayButton")
                 .resizable()
                 .scaledToFit()
-                .frame(width: 200, height: 200)
+                .frame(width: 260, height: 260)
         }
     }
 
