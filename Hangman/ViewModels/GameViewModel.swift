@@ -53,6 +53,24 @@ final class GameViewModel {
         }
     }
 
+    func guessWord(_ word: String) {
+        guard game.status == .playing else { return }
+        let isCorrect = game.guessWord(word)
+        if isCorrect {
+            game.status = .won
+            scoreManager.recordWin()
+            soundManager.play(.correct)
+            soundManager.play(.win)
+        } else {
+            soundManager.play(.wrong)
+            if game.isLost {
+                game.status = .lost
+                scoreManager.recordLoss()
+                soundManager.play(.lose)
+            }
+        }
+    }
+
     func letterState(_ letter: Character) -> LetterState {
         guard game.guessedLetters.contains(letter) else { return .unused }
         return game.targetWord.uppercased().contains(letter) ? .correct : .wrong

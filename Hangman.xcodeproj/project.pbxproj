@@ -19,6 +19,7 @@
 		A10000010 /* KeyboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000010 /* KeyboardView.swift */; };
 		A10000011 /* LetterButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000011 /* LetterButton.swift */; };
 		A10000012 /* WordDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000012 /* WordDisplay.swift */; };
+		A10000080 /* SolveWordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000080 /* SolveWordView.swift */; };
 		A10000013 /* WordService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000013 /* WordService.swift */; };
 		A10000014 /* SoundManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000014 /* SoundManager.swift */; };
 		A10000015 /* ScoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000015 /* ScoreManager.swift */; };
@@ -51,6 +52,7 @@
 		A20000010 /* KeyboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardView.swift; sourceTree = "<group>"; };
 		A20000011 /* LetterButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LetterButton.swift; sourceTree = "<group>"; };
 		A20000012 /* WordDisplay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordDisplay.swift; sourceTree = "<group>"; };
+		A20000080 /* SolveWordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SolveWordView.swift; sourceTree = "<group>"; };
 		A20000013 /* WordService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordService.swift; sourceTree = "<group>"; };
 		A20000014 /* SoundManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundManager.swift; sourceTree = "<group>"; };
 		A20000015 /* ScoreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreManager.swift; sourceTree = "<group>"; };
@@ -152,6 +154,7 @@
 				A20000012 /* WordDisplay.swift */,
 				A20000018 /* ConfettiView.swift */,
 				A20000028 /* ASCIIHangman.swift */,
+				A20000080 /* SolveWordView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -264,6 +267,7 @@
 				A10000010 /* KeyboardView.swift in Sources */,
 				A10000011 /* LetterButton.swift in Sources */,
 				A10000012 /* WordDisplay.swift in Sources */,
+				A10000080 /* SolveWordView.swift in Sources */,
 				A10000013 /* WordService.swift in Sources */,
 				A10000014 /* SoundManager.swift in Sources */,
 				A10000015 /* ScoreManager.swift in Sources */,

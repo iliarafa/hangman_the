@@ -67,10 +67,17 @@ struct GameScreen: View {
     }
 
     private var keyboardArea: some View {
-        KeyboardView(
-            letterState: { viewModel.letterState($0) },
-            onTap: { viewModel.guess(letter: $0) }
-        )
+        VStack(spacing: 12) {
+            KeyboardView(
+                letterState: { viewModel.letterState($0) },
+                onTap: { viewModel.guess(letter: $0) }
+            )
+
+            SolveWordView(
+                wordLength: viewModel.targetWord.count,
+                onSubmit: { viewModel.guessWord($0) }
+            )
+        }
         .disabled(viewModel.gameStatus != .playing || viewModel.isLoading)
     }
 
