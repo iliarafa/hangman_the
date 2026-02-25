@@ -58,18 +58,22 @@ struct ASCIITitleBox: View {
     var body: some View {
         let innerWidth = max(charWidth, text.count + 4)
         let bar = String(repeating: "\u{2550}", count: innerWidth)
-        let padding = innerWidth - text.count
-        let leftPad = padding / 2
-        let rightPad = padding - leftPad
-        let paddedText = String(repeating: " ", count: leftPad) + text + String(repeating: " ", count: rightPad)
+        let emptyFill = String(repeating: " ", count: innerWidth)
 
         VStack(spacing: 0) {
             Text("\u{2554}" + bar + "\u{2557}")
-            Text("\u{2551}" + paddedText + "\u{2551}")
+            Text("\u{2551}" + emptyFill + "\u{2551}")
             Text("\u{255A}" + bar + "\u{255D}")
         }
         .font(.system(size: 16, weight: .bold, design: .monospaced))
         .foregroundStyle(.primary)
+        .overlay {
+            Text(text)
+                .font(.system(size: 24, weight: .bold, design: .monospaced))
+                .foregroundStyle(.primary)
+                .minimumScaleFactor(0.5)
+                .lineLimit(1)
+        }
     }
 }
 
