@@ -47,11 +47,7 @@ struct VSWordEntryScreen: View {
             .font(.system(size: 18, design: .monospaced))
             .textInputAutocapitalization(.never)
             .autocorrectionDisabled()
-            .padding()
-            .overlay(
-                RoundedRectangle(cornerRadius: 8)
-                    .stroke(.primary.opacity(0.3), lineWidth: 1)
-            )
+            .asciiTextField()
             .padding(.horizontal, 20)
             .onChange(of: word) { _, _ in
                 errorMessage = ""
@@ -59,7 +55,7 @@ struct VSWordEntryScreen: View {
     }
 
     private var errorLabel: some View {
-        Text(errorMessage)
+        Text("! " + errorMessage)
             .font(.system(size: 14, design: .monospaced))
             .foregroundStyle(.red)
     }
@@ -73,13 +69,8 @@ struct VSWordEntryScreen: View {
             }
         } label: {
             Text("READY")
-                .font(.system(size: 24, weight: .bold, design: .monospaced))
-                .foregroundStyle(.background)
-                .frame(maxWidth: .infinity)
-                .padding(.vertical, 18)
-                .background(.primary, in: RoundedRectangle(cornerRadius: 8))
+                .asciiBracket(.primary, fontSize: 24)
         }
-        .padding(.horizontal, 20)
     }
 
     private var validationMessage: String {

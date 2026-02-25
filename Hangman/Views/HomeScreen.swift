@@ -18,10 +18,7 @@ struct HomeScreen: View {
     }
 
     private var titleSection: some View {
-        VStack(spacing: 8) {
-            Text("HANGMAN (THE)")
-                .font(.system(size: 48, weight: .black, design: .monospaced))
-        }
+        ASCIITitleBox("HANGMAN (THE)", charWidth: 26)
     }
 
     private var playButton: some View {
@@ -32,10 +29,8 @@ struct HomeScreen: View {
                 soundManager: soundManager
             )
         } label: {
-            Image("PlayButton")
-                .resizable()
-                .scaledToFit()
-                .frame(width: 260, height: 260)
+            Text("PLAY")
+                .asciiBracket(.primary, fontSize: 24)
         }
     }
 
@@ -44,9 +39,7 @@ struct HomeScreen: View {
             StatsScreen(scoreManager: scoreManager)
         } label: {
             Text("Statistics")
-                .font(.system(size: 16, design: .monospaced))
-                .foregroundStyle(.secondary)
-                .underline()
+                .asciiBracket(.secondary, fontSize: 16)
         }
         .padding(.bottom, 8)
     }

@@ -11,6 +11,8 @@ struct VSCountdownScreen: View {
         VStack(spacing: 40) {
             Spacer()
 
+            ASCIIDivider()
+
             Text("Pass the device to")
                 .font(.system(size: 16, design: .monospaced))
                 .foregroundStyle(.secondary)
@@ -21,6 +23,8 @@ struct VSCountdownScreen: View {
             Text("\(countdown)")
                 .font(.system(size: 96, weight: .black, design: .monospaced))
                 .contentTransition(.numericText())
+
+            ASCIIDivider()
 
             Spacer()
         }

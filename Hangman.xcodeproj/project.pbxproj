@@ -37,6 +37,7 @@
 		A10000027 /* VSFinalScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000027 /* VSFinalScreen.swift */; };
 		A10000028 /* ASCIIHangman.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000028 /* ASCIIHangman.swift */; };
 		A10000029 /* ModeSelectionScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000029 /* ModeSelectionScreen.swift */; };
+		A10000030 /* ASCIIStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000030 /* ASCIIStyles.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -70,6 +71,7 @@
 		A20000027 /* VSFinalScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VSFinalScreen.swift; sourceTree = "<group>"; };
 		A20000028 /* ASCIIHangman.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ASCIIHangman.swift; sourceTree = "<group>"; };
 		A20000029 /* ModeSelectionScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModeSelectionScreen.swift; sourceTree = "<group>"; };
+		A20000030 /* ASCIIStyles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ASCIIStyles.swift; sourceTree = "<group>"; };
 		A30000001 /* Hangman.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Hangman.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -155,6 +157,7 @@
 				A20000018 /* ConfettiView.swift */,
 				A20000028 /* ASCIIHangman.swift */,
 				A20000080 /* SolveWordView.swift */,
+				A20000030 /* ASCIIStyles.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -283,6 +286,7 @@
 				A10000027 /* VSFinalScreen.swift in Sources */,
 				A10000028 /* ASCIIHangman.swift in Sources */,
 				A10000029 /* ModeSelectionScreen.swift in Sources */,
+				A10000030 /* ASCIIStyles.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

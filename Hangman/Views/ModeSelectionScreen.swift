@@ -11,8 +11,7 @@ struct ModeSelectionScreen: View {
         VStack(spacing: 32) {
             Spacer()
 
-            Text("SELECT MODE")
-                .font(.system(size: 32, weight: .black, design: .monospaced))
+            ASCIITitleBox("SELECT MODE", charWidth: 22)
 
             Spacer()
 
@@ -26,28 +25,15 @@ struct ModeSelectionScreen: View {
                 )
             } label: {
                 Text("ARCADE")
-                    .font(.system(size: 24, weight: .bold, design: .monospaced))
-                    .foregroundStyle(.background)
-                    .frame(maxWidth: .infinity)
-                    .padding(.vertical, 18)
-                    .background(.primary, in: RoundedRectangle(cornerRadius: 8))
+                    .asciiBracket(.primary, fontSize: 24)
             }
-            .padding(.horizontal, 20)
 
             Button {
                 showVSMode = true
             } label: {
                 Text("VS MODE")
-                    .font(.system(size: 24, weight: .bold, design: .monospaced))
-                    .foregroundStyle(.primary)
-                    .frame(maxWidth: .infinity)
-                    .padding(.vertical, 18)
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 8)
-                            .stroke(.primary, lineWidth: 2)
-                    )
+                    .asciiBracket(.secondary, fontSize: 24)
             }
-            .padding(.horizontal, 20)
             .fullScreenCover(isPresented: $showVSMode) {
                 VSModeView(soundManager: soundManager)
             }

@@ -19,11 +19,13 @@ struct VSFinalScreen: View {
     private var resultSection: some View {
         VStack(spacing: 12) {
             if let winner = viewModel.session.winnerName {
-                Text("\(winner) WINS")
-                    .font(.system(size: 34, weight: .black, design: .monospaced))
+                Text(ASCIIArt.trophy)
+                    .font(.system(size: 12, design: .monospaced))
+                    .multilineTextAlignment(.center)
+
+                ASCIITitleBox("\(winner) WINS", charWidth: 24)
             } else {
-                Text("IT'S A TIE")
-                    .font(.system(size: 34, weight: .black, design: .monospaced))
+                ASCIITitleBox("IT'S A TIE", charWidth: 24)
             }
 
             Text("\(viewModel.session.round - 1) rounds played")
@@ -55,8 +57,9 @@ struct VSFinalScreen: View {
     private func playerFinalScore(name: String, score: Int, isWinner: Bool) -> some View {
         VStack(spacing: 8) {
             if isWinner {
-                Text("*")
-                    .font(.system(size: 24, weight: .bold, design: .monospaced))
+                Text(">>>")
+                    .font(.system(size: 16, weight: .bold, design: .monospaced))
+                    .foregroundStyle(.secondary)
             }
 
             Text("\(score)")
@@ -72,12 +75,7 @@ struct VSFinalScreen: View {
     private var homeButton: some View {
         Button(action: onHome) {
             Text("HOME")
-                .font(.system(size: 24, weight: .bold, design: .monospaced))
-                .foregroundStyle(.background)
-                .frame(maxWidth: .infinity)
-                .padding(.vertical, 18)
-                .background(.primary, in: RoundedRectangle(cornerRadius: 8))
+                .asciiBracket(.primary, fontSize: 24)
         }
-        .padding(.horizontal, 20)
     }
 }

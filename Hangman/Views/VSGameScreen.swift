@@ -22,19 +22,23 @@ struct VSGameScreen: View {
     }
 
     private var header: some View {
-        HStack {
-            VStack(alignment: .leading, spacing: 2) {
-                Text(viewModel.session.guesserName)
+        VStack(spacing: 8) {
+            HStack {
+                VStack(alignment: .leading, spacing: 2) {
+                    Text(viewModel.session.guesserName)
+                        .font(.system(size: 18, weight: .bold, design: .monospaced))
+                    Text("Round \(viewModel.session.round)")
+                        .font(.system(size: 12, design: .monospaced))
+                        .foregroundStyle(.secondary)
+                }
+
+                Spacer()
+
+                Text("\(viewModel.wrongGuessCount)/6")
                     .font(.system(size: 18, weight: .bold, design: .monospaced))
-                Text("Round \(viewModel.session.round)")
-                    .font(.system(size: 12, design: .monospaced))
-                    .foregroundStyle(.secondary)
             }
 
-            Spacer()
-
-            Text("\(viewModel.wrongGuessCount)/6")
-                .font(.system(size: 18, weight: .bold, design: .monospaced))
+            ASCIIDivider()
         }
         .padding(.top, 8)
     }
@@ -71,9 +75,17 @@ struct VSGameScreen: View {
     private var gameResult: some View {
         VStack(spacing: 16) {
             if viewModel.gameStatus == .won {
+                Text(ASCIIArt.trophy)
+                    .font(.system(size: 12, design: .monospaced))
+                    .multilineTextAlignment(.center)
+
                 Text("\(viewModel.session.guesserName) WON")
                     .font(.system(size: 32, weight: .black, design: .monospaced))
             } else {
+                Text(ASCIIArt.skull)
+                    .font(.system(size: 12, design: .monospaced))
+                    .multilineTextAlignment(.center)
+
                 Text("\(viewModel.session.guesserName) LOST")
                     .font(.system(size: 32, weight: .black, design: .monospaced))
                 Text("The word was \(viewModel.targetWord)")
@@ -86,11 +98,7 @@ struct VSGameScreen: View {
                 onContinue()
             } label: {
                 Text("CONTINUE")
-                    .font(.system(size: 18, weight: .bold, design: .monospaced))
-                    .foregroundStyle(.background)
-                    .padding(.horizontal, 32)
-                    .padding(.vertical, 14)
-                    .background(.primary, in: RoundedRectangle(cornerRadius: 8))
+                    .asciiBracket(.primary)
             }
         }
         .padding(.vertical, 16)

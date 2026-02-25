@@ -18,8 +18,7 @@ struct VSRoundResultScreen: View {
 
     private var scoreboard: some View {
         VStack(spacing: 24) {
-            Text("SCOREBOARD")
-                .font(.system(size: 28, weight: .black, design: .monospaced))
+            ASCIITitleBox("SCOREBOARD", charWidth: 22)
 
             HStack(spacing: 32) {
                 playerScore(
@@ -56,24 +55,16 @@ struct VSRoundResultScreen: View {
     }
 
     private var actionButtons: some View {
-        VStack(spacing: 12) {
+        VStack(spacing: 16) {
             Button(action: onNextRound) {
                 Text("NEXT ROUND")
-                    .font(.system(size: 20, weight: .bold, design: .monospaced))
-                    .foregroundStyle(.background)
-                    .frame(maxWidth: .infinity)
-                    .padding(.vertical, 16)
-                    .background(.primary, in: RoundedRectangle(cornerRadius: 8))
+                    .asciiBracket(.primary, fontSize: 20)
             }
 
             Button(action: onEndGame) {
                 Text("End Game")
-                    .font(.system(size: 16, design: .monospaced))
-                    .foregroundStyle(.secondary)
-                    .underline()
-                    .padding(.vertical, 12)
+                    .asciiBracket(.secondary, fontSize: 16)
             }
         }
-        .padding(.horizontal, 20)
     }
 }

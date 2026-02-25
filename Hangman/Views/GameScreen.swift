@@ -25,22 +25,26 @@ struct GameScreen: View {
     }
 
     private var header: some View {
-        HStack {
-            Button(action: { dismiss() }) {
-                Image(systemName: "chevron.left")
+        VStack(spacing: 8) {
+            HStack {
+                Button(action: { dismiss() }) {
+                    Text("<<")
+                        .font(.system(size: 18, weight: .bold, design: .monospaced))
+                        .foregroundStyle(.primary)
+                }
+
+                Spacer()
+
+                Text("\(viewModel.wrongGuessCount)/6")
                     .font(.system(size: 18, weight: .bold, design: .monospaced))
-                    .foregroundStyle(.primary)
+
+                Spacer()
+
+                Text("\(viewModel.scores.currentStreak)")
+                    .font(.system(size: 18, weight: .bold, design: .monospaced))
             }
 
-            Spacer()
-
-            Text("\(viewModel.wrongGuessCount)/6")
-                .font(.system(size: 18, weight: .bold, design: .monospaced))
-
-            Spacer()
-
-            Text("\(viewModel.scores.currentStreak)")
-                .font(.system(size: 18, weight: .bold, design: .monospaced))
+            ASCIIDivider()
         }
         .padding(.top, 8)
     }
@@ -84,12 +88,20 @@ struct GameScreen: View {
     private var gameResult: some View {
         VStack(spacing: 16) {
             if viewModel.gameStatus == .won {
+                Text(ASCIIArt.trophy)
+                    .font(.system(size: 12, design: .monospaced))
+                    .multilineTextAlignment(.center)
+
                 Text("YOU WON")
                     .font(.system(size: 32, weight: .black, design: .monospaced))
                 Text("Streak: \(viewModel.scores.currentStreak)")
                     .font(.system(size: 16, design: .monospaced))
                     .foregroundStyle(.secondary)
             } else {
+                Text(ASCIIArt.skull)
+                    .font(.system(size: 12, design: .monospaced))
+                    .multilineTextAlignment(.center)
+
                 Text("GAME OVER")
                     .font(.system(size: 32, weight: .black, design: .monospaced))
                 Text("The word was \(viewModel.targetWord)")
@@ -103,11 +115,7 @@ struct GameScreen: View {
                 }
             }) {
                 Text("PLAY AGAIN")
-                    .font(.system(size: 18, weight: .bold, design: .monospaced))
-                    .foregroundStyle(.background)
-                    .padding(.horizontal, 32)
-                    .padding(.vertical, 14)
-                    .background(.primary, in: RoundedRectangle(cornerRadius: 8))
+                    .asciiBracket(.primary)
             }
         }
         .padding(.vertical, 16)

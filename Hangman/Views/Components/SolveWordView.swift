@@ -11,14 +11,23 @@ struct SolveWordView: View {
     var body: some View {
         if isSolving {
             HStack(spacing: 8) {
-                TextField("\(wordLength) letters", text: $text)
-                    .font(.system(size: 16, weight: .bold, design: .monospaced))
-                    .textInputAutocapitalization(.characters)
-                    .autocorrectionDisabled()
-                    .focused($isFocused)
-                    .padding(.horizontal, 12)
-                    .padding(.vertical, 10)
-                    .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 8))
+                HStack(spacing: 0) {
+                    Text("> ")
+                        .font(.system(size: 16, weight: .bold, design: .monospaced))
+                        .foregroundStyle(.secondary)
+                    TextField("\(wordLength) letters", text: $text)
+                        .font(.system(size: 16, weight: .bold, design: .monospaced))
+                        .textInputAutocapitalization(.characters)
+                        .autocorrectionDisabled()
+                        .focused($isFocused)
+                }
+                .padding(.horizontal, 12)
+                .padding(.vertical, 10)
+                .overlay(alignment: .bottom) {
+                    Rectangle()
+                        .fill(Color.secondary.opacity(0.3))
+                        .frame(height: 1)
+                }
 
                 Button {
                     let trimmed = text.trimmingCharacters(in: .whitespacesAndNewlines)
@@ -27,19 +36,19 @@ struct SolveWordView: View {
                     text = ""
                     isSolving = false
                 } label: {
-                    Image(systemName: "return")
+                    Text(">")
                         .font(.system(size: 16, weight: .bold, design: .monospaced))
                         .foregroundStyle(.background)
                         .padding(10)
-                        .background(.primary, in: RoundedRectangle(cornerRadius: 8))
+                        .background(.primary)
                 }
 
                 Button {
                     text = ""
                     isSolving = false
                 } label: {
-                    Image(systemName: "xmark")
-                        .font(.system(size: 14, weight: .bold, design: .monospaced))
+                    Text("x")
+                        .font(.system(size: 16, weight: .bold, design: .monospaced))
                         .foregroundStyle(.secondary)
                         .padding(10)
                 }
@@ -50,11 +59,7 @@ struct SolveWordView: View {
                 isSolving = true
             } label: {
                 Text("SOLVE")
-                    .font(.system(size: 16, weight: .bold, design: .monospaced))
-                    .foregroundStyle(.primary)
-                    .padding(.horizontal, 24)
-                    .padding(.vertical, 10)
-                    .overlay(RoundedRectangle(cornerRadius: 8).stroke(.primary, lineWidth: 1.5))
+                    .asciiBracket(.secondary, fontSize: 16)
             }
         }
     }

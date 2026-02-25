@@ -23,8 +23,7 @@ struct VSNameEntryScreen: View {
 
     private var titleSection: some View {
         VStack(spacing: 8) {
-            Text("VS MODE")
-                .font(.system(size: 42, weight: .black, design: .monospaced))
+            ASCIITitleBox("VS MODE", charWidth: 20)
 
             Text("Enter player names")
                 .font(.system(size: 14, design: .monospaced))
@@ -45,11 +44,7 @@ struct VSNameEntryScreen: View {
             .font(.system(size: 18, design: .monospaced))
             .textInputAutocapitalization(.words)
             .autocorrectionDisabled()
-            .padding()
-            .overlay(
-                RoundedRectangle(cornerRadius: 8)
-                    .stroke(.primary.opacity(0.3), lineWidth: 1)
-            )
+            .asciiTextField()
     }
 
     private var canStart: Bool {
@@ -67,17 +62,10 @@ struct VSNameEntryScreen: View {
             onStart(vm)
         } label: {
             Text("START")
-                .font(.system(size: 24, weight: .bold, design: .monospaced))
-                .foregroundStyle(.background)
-                .frame(maxWidth: .infinity)
-                .padding(.vertical, 18)
-                .background(
-                    canStart ? Color.primary : Color.primary.opacity(0.3),
-                    in: RoundedRectangle(cornerRadius: 8)
-                )
+                .asciiBracket(.primary, fontSize: 24)
+                .opacity(canStart ? 1 : 0.3)
         }
         .disabled(!canStart)
-        .padding(.horizontal, 20)
     }
 
     private var backButton: some View {
@@ -85,9 +73,7 @@ struct VSNameEntryScreen: View {
             dismiss()
         } label: {
             Text("Back")
-                .font(.system(size: 16, design: .monospaced))
-                .foregroundStyle(.secondary)
-                .underline()
+                .asciiBracket(.secondary, fontSize: 16)
         }
         .padding(.bottom, 8)
     }

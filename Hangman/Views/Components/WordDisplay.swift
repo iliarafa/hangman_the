@@ -23,19 +23,18 @@ struct WordDisplay: View {
         let isRevealed = char != nil
         let isRevealedOnLose = char == nil && revealChar != nil
 
-        VStack(spacing: 2) {
+        VStack(spacing: 0) {
             Text(displayChar.map { String($0) } ?? " ")
                 .font(.system(size: 28, weight: .bold, design: .monospaced))
                 .foregroundStyle(.primary)
                 .opacity(isRevealedOnLose ? 0.4 : (displayChar != nil ? 1 : 0))
                 .animation(.easeIn(duration: 0.2), value: isRevealed)
 
-            Rectangle()
-                .fill(Color.primary)
-                .frame(height: 2)
-                .frame(width: 28)
+            Text("_")
+                .font(.system(size: 28, weight: .bold, design: .monospaced))
+                .foregroundStyle(.primary)
         }
-        .frame(width: 32, height: 44)
+        .frame(width: 32, height: 48)
     }
 
     private func revealCharAt(_ index: Int) -> Character? {
