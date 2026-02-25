@@ -7,35 +7,35 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		A10000001 /* HangmanApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000001; };
-		A10000002 /* GameState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000002; };
-		A10000003 /* ScoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000003; };
-		A10000004 /* GameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000004; };
-		A10000005 /* HomeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000005; };
-		A10000006 /* GameScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000006; };
-		A10000007 /* StatsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000007; };
-		A10000008 /* HangmanFigure.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000008; };
-		A10000009 /* BodyParts.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000009; };
-		A10000010 /* KeyboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000010; };
-		A10000011 /* LetterButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000011; };
-		A10000012 /* WordDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000012; };
-		A10000013 /* WordService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000013; };
-		A10000014 /* SoundManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000014; };
-		A10000015 /* ScoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000015; };
-		A10000016 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A20000016; };
-		A10000017 /* fallback_words.txt in Resources */ = {isa = PBXBuildFile; fileRef = A20000017; };
-		A10000018 /* ConfettiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000018; };
-		A10000019 /* VSSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000019; };
-		A10000020 /* VSGameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000020; };
-		A10000021 /* VSModeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000021; };
-		A10000022 /* VSNameEntryScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000022; };
-		A10000023 /* VSWordEntryScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000023; };
-		A10000024 /* VSCountdownScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000024; };
-		A10000025 /* VSGameScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000025; };
-		A10000026 /* VSRoundResultScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000026; };
-		A10000027 /* VSFinalScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000027; };
-		A10000028 /* ASCIIHangman.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000028; };
-		A10000029 /* ModeSelectionScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000029; };
+		A10000001 /* HangmanApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000001 /* HangmanApp.swift */; };
+		A10000002 /* GameState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000002 /* GameState.swift */; };
+		A10000003 /* ScoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000003 /* ScoreData.swift */; };
+		A10000004 /* GameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000004 /* GameViewModel.swift */; };
+		A10000005 /* HomeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000005 /* HomeScreen.swift */; };
+		A10000006 /* GameScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000006 /* GameScreen.swift */; };
+		A10000007 /* StatsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000007 /* StatsScreen.swift */; };
+		A10000008 /* HangmanFigure.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000008 /* HangmanFigure.swift */; };
+		A10000009 /* BodyParts.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000009 /* BodyParts.swift */; };
+		A10000010 /* KeyboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000010 /* KeyboardView.swift */; };
+		A10000011 /* LetterButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000011 /* LetterButton.swift */; };
+		A10000012 /* WordDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000012 /* WordDisplay.swift */; };
+		A10000013 /* WordService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000013 /* WordService.swift */; };
+		A10000014 /* SoundManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000014 /* SoundManager.swift */; };
+		A10000015 /* ScoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000015 /* ScoreManager.swift */; };
+		A10000016 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A20000016 /* Assets.xcassets */; };
+		A10000017 /* fallback_words.txt in Resources */ = {isa = PBXBuildFile; fileRef = A20000017 /* fallback_words.txt */; };
+		A10000018 /* ConfettiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000018 /* ConfettiView.swift */; };
+		A10000019 /* VSSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000019 /* VSSession.swift */; };
+		A10000020 /* VSGameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000020 /* VSGameViewModel.swift */; };
+		A10000021 /* VSModeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000021 /* VSModeView.swift */; };
+		A10000022 /* VSNameEntryScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000022 /* VSNameEntryScreen.swift */; };
+		A10000023 /* VSWordEntryScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000023 /* VSWordEntryScreen.swift */; };
+		A10000024 /* VSCountdownScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000024 /* VSCountdownScreen.swift */; };
+		A10000025 /* VSGameScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000025 /* VSGameScreen.swift */; };
+		A10000026 /* VSRoundResultScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000026 /* VSRoundResultScreen.swift */; };
+		A10000027 /* VSFinalScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000027 /* VSFinalScreen.swift */; };
+		A10000028 /* ASCIIHangman.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000028 /* ASCIIHangman.swift */; };
+		A10000029 /* ModeSelectionScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000029 /* ModeSelectionScreen.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -409,7 +409,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 3DLV25C9VK;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = "HANGMAN (THE)";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -436,7 +436,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 3DLV25C9VK;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = "HANGMAN (THE)";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -478,7 +478,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
 	};
 	rootObject = A90000001 /* Project object */;
 }
