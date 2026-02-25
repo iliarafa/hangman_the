@@ -1,3 +1,4 @@
+import AudioToolbox
 import AVFoundation
 import SwiftUI
 
@@ -6,6 +7,15 @@ enum SoundEffect: String, CaseIterable {
     case wrong
     case win
     case lose
+
+    var systemSoundID: SystemSoundID {
+        switch self {
+        case .correct: return 1057
+        case .wrong: return 1073
+        case .win: return 1025
+        case .lose: return 1006
+        }
+    }
 }
 
 @Observable
@@ -32,8 +42,11 @@ final class SoundManager {
     }
 
     func play(_ effect: SoundEffect) {
-        guard let player = players[effect] else { return }
-        player.currentTime = 0
-        player.play()
+        if let player = players[effect] {
+            player.currentTime = 0
+            player.play()
+        } else {
+            AudioServicesPlaySystemSound(effect.systemSoundID)
+        }
     }
 }
