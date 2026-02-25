@@ -5,15 +5,30 @@ struct ModeSelectionScreen: View {
     let wordService: WordService
     let soundManager: SoundManager
 
+    @Environment(\.dismiss) private var dismiss
     @State private var showVSMode = false
 
     var body: some View {
         VStack(spacing: 32) {
+            HStack {
+                Button {
+                    UIView.setAnimationsEnabled(false)
+                    dismiss()
+                    DispatchQueue.main.async {
+                        UIView.setAnimationsEnabled(true)
+                    }
+                } label: {
+                    Text("< BACK")
+                        .font(.system(size: 16, design: .monospaced))
+                        .foregroundStyle(.secondary)
+                }
+                .buttonStyle(.plain)
+                Spacer()
+            }
+
             Spacer()
 
             ASCIITitleBox("SELECT MODE", charWidth: 22)
-
-            Spacer()
 
             NavigationLink {
                 GameScreen(
@@ -39,7 +54,9 @@ struct ModeSelectionScreen: View {
             }
 
             Spacer()
+            Spacer()
         }
         .padding()
+        .navigationBarHidden(true)
     }
 }

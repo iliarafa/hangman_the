@@ -17,13 +17,21 @@ struct ASCIIBracketButton: ViewModifier {
     }
 
     func body(content: Content) -> some View {
-        HStack(spacing: 0) {
-            Text("[  ")
-            content
-            Text("  ]")
-        }
-        .font(.system(size: fontSize, weight: style == .primary ? .bold : .regular, design: .monospaced))
-        .foregroundStyle(style == .primary ? .primary : .secondary)
+        content
+            .fixedSize()
+            .padding(.horizontal, fontSize * 1.2)
+            .overlay(alignment: .leading) {
+                Text("[")
+                    .font(.system(size: fontSize, weight: style == .primary ? .bold : .regular, design: .monospaced))
+                    .foregroundStyle(style == .primary ? .primary : .secondary)
+            }
+            .overlay(alignment: .trailing) {
+                Text("]")
+                    .font(.system(size: fontSize, weight: style == .primary ? .bold : .regular, design: .monospaced))
+                    .foregroundStyle(style == .primary ? .primary : .secondary)
+            }
+            .font(.system(size: fontSize, weight: style == .primary ? .bold : .regular, design: .monospaced))
+            .foregroundStyle(style == .primary ? .primary : .secondary)
     }
 }
 
@@ -63,6 +71,61 @@ struct ASCIITitleBox: View {
 }
 
 // MARK: - ASCII Text Field
+
+struct ASCIITextField: View {
+    let placeholder: String
+    @Binding var text: String
+    var slotCount: Int = 12
+    @FocusState private var isFocused: Bool
+
+    var body: some View {
+        HStack(spacing: 0) {
+            Text("> ")
+                .font(.system(size: 18, weight: .bold, design: .monospaced))
+                .foregroundStyle(.secondary)
+
+            HStack(spacing: 4) {
+                let chars = Array(text)
+                ForEach(0..<slotCount, id: \.self) { i in
+                    VStack(spacing: -10) {
+                        let placeholderChars = Array(placeholder)
+                        if i < chars.count {
+                            Text(String(chars[i]))
+                                .font(.system(size: 18, weight: .bold, design: .monospaced))
+                                .foregroundStyle(.primary)
+                        } else if text.isEmpty && i < placeholderChars.count {
+                            Text(String(placeholderChars[i]))
+                                .font(.system(size: 18, weight: .bold, design: .monospaced))
+                                .foregroundStyle(.secondary.opacity(0.5))
+                        } else {
+                            Text(" ")
+                                .font(.system(size: 18, weight: .bold, design: .monospaced))
+                        }
+                        Text("_")
+                            .font(.system(size: 18, design: .monospaced))
+                            .foregroundStyle(i < chars.count ? .primary : .secondary)
+                    }
+                }
+            }
+        }
+        .fixedSize()
+        .contentShape(Rectangle())
+        .onTapGesture { isFocused = true }
+        .padding(.vertical, 12)
+        .background {
+            TextField("", text: $text)
+                .focused($isFocused)
+                .autocorrectionDisabled()
+                .textInputAutocapitalization(.words)
+                .opacity(0)
+                .onChange(of: text) {
+                    if text.count > slotCount {
+                        text = String(text.prefix(slotCount))
+                    }
+                }
+        }
+    }
+}
 
 struct ASCIITextFieldStyle: ViewModifier {
     func body(content: Content) -> some View {

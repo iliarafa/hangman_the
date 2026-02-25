@@ -36,15 +36,10 @@ struct VSNameEntryScreen: View {
             nameField(placeholder: "Player 1", text: $player1Name)
             nameField(placeholder: "Player 2", text: $player2Name)
         }
-        .padding(.horizontal, 20)
     }
 
     private func nameField(placeholder: String, text: Binding<String>) -> some View {
-        TextField(placeholder, text: text)
-            .font(.system(size: 18, design: .monospaced))
-            .textInputAutocapitalization(.words)
-            .autocorrectionDisabled()
-            .asciiTextField()
+        ASCIITextField(placeholder: placeholder, text: text, slotCount: 12)
     }
 
     private var canStart: Bool {

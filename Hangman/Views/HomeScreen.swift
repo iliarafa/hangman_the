@@ -5,6 +5,8 @@ struct HomeScreen: View {
     let wordService: WordService
     let soundManager: SoundManager
 
+    @State private var showModeSelection = false
+
     var body: some View {
         VStack(spacing: 32) {
             Spacer()
@@ -15,6 +17,13 @@ struct HomeScreen: View {
             navLinks
         }
         .padding()
+        .navigationDestination(isPresented: $showModeSelection) {
+            ModeSelectionScreen(
+                scoreManager: scoreManager,
+                wordService: wordService,
+                soundManager: soundManager
+            )
+        }
     }
 
     private var titleSection: some View {
@@ -22,12 +31,12 @@ struct HomeScreen: View {
     }
 
     private var playButton: some View {
-        NavigationLink {
-            ModeSelectionScreen(
-                scoreManager: scoreManager,
-                wordService: wordService,
-                soundManager: soundManager
-            )
+        Button {
+            UIView.setAnimationsEnabled(false)
+            showModeSelection = true
+            DispatchQueue.main.async {
+                UIView.setAnimationsEnabled(true)
+            }
         } label: {
             Text("PLAY")
                 .asciiBracket(.primary, fontSize: 24)
