@@ -5,16 +5,12 @@ struct HomeScreen: View {
     let wordService: WordService
     let soundManager: SoundManager
 
-    @State private var showVSMode = false
-
     var body: some View {
         VStack(spacing: 32) {
             Spacer()
             titleSection
             Spacer()
             playButton
-            vsButton
-            quickStats
             Spacer()
             navLinks
         }
@@ -30,62 +26,17 @@ struct HomeScreen: View {
 
     private var playButton: some View {
         NavigationLink {
-            GameScreen(
-                viewModel: GameViewModel(
-                    wordService: wordService,
-                    soundManager: soundManager,
-                    scoreManager: scoreManager
-                )
+            ModeSelectionScreen(
+                scoreManager: scoreManager,
+                wordService: wordService,
+                soundManager: soundManager
             )
         } label: {
-            Text("PLAY")
-                .font(.system(size: 24, weight: .bold, design: .monospaced))
-                .foregroundStyle(.background)
-                .frame(maxWidth: .infinity)
-                .padding(.vertical, 18)
-                .background(.primary, in: RoundedRectangle(cornerRadius: 8))
+            Image("PlayButton")
+                .resizable()
+                .scaledToFit()
+                .frame(width: 200, height: 200)
         }
-        .padding(.horizontal, 20)
-    }
-
-    private var vsButton: some View {
-        Button {
-            showVSMode = true
-        } label: {
-            Text("VS MODE")
-                .font(.system(size: 24, weight: .bold, design: .monospaced))
-                .foregroundStyle(.primary)
-                .frame(maxWidth: .infinity)
-                .padding(.vertical, 18)
-                .overlay(
-                    RoundedRectangle(cornerRadius: 8)
-                        .stroke(.primary, lineWidth: 2)
-                )
-        }
-        .padding(.horizontal, 20)
-        .fullScreenCover(isPresented: $showVSMode) {
-            VSModeView(soundManager: soundManager)
-        }
-    }
-
-    private var quickStats: some View {
-        let scores = scoreManager.scores
-        return HStack(spacing: 24) {
-            statBadge(value: "\(scores.wins)", label: "Wins")
-            statBadge(value: "\(scores.currentStreak)", label: "Streak")
-            statBadge(value: "\(scores.totalGames)", label: "Played")
-        }
-    }
-
-    private func statBadge(value: String, label: String) -> some View {
-        VStack(spacing: 4) {
-            Text(value)
-                .font(.system(size: 28, weight: .bold, design: .monospaced))
-            Text(label)
-                .font(.system(size: 12, design: .monospaced))
-                .foregroundStyle(.secondary)
-        }
-        .frame(width: 70)
     }
 
     private var navLinks: some View {
