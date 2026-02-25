@@ -20,3 +20,6 @@ Pods/
 
 # Worktrees
 .worktrees/
+
+# Secrets
+ssh.txt
