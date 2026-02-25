@@ -31,6 +31,11 @@ struct VSSession {
             case .player1: player1Score += 1
             case .player2: player2Score += 1
             }
+        } else {
+            switch currentSetter {
+            case .player1: player1Score += 1
+            case .player2: player2Score += 1
+            }
         }
         currentSetter = currentSetter == .player1 ? .player2 : .player1
         round += 1

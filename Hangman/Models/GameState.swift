@@ -9,6 +9,7 @@ enum GameStatus: Equatable {
 struct GameState {
     var targetWord: String = ""
     var guessedLetters: Set<Character> = []
+    var wrongWordGuesses: [String] = []
     var status: GameStatus = .playing
 
     var maxWrongGuesses: Int { 6 }
@@ -18,7 +19,7 @@ struct GameState {
     }
 
     var wrongGuessCount: Int {
-        wrongGuesses.count
+        wrongGuesses.count + wrongWordGuesses.count
     }
 
     var correctGuesses: Set<Character> {
@@ -37,5 +38,22 @@ struct GameState {
 
     var isLost: Bool {
         wrongGuessCount >= maxWrongGuesses
+    }
+
+    mutating func guessWord(_ word: String) -> Bool {
+        let cleaned = word.uppercased().trimmingCharacters(in: .whitespacesAndNewlines)
+        guard !cleaned.isEmpty, status == .playing else { return false }
+
+        if cleaned == targetWord.uppercased() {
+            for char in targetWord.uppercased() {
+                guessedLetters.insert(char)
+            }
+            return true
+        } else {
+            if !wrongWordGuesses.contains(cleaned) {
+                wrongWordGuesses.append(cleaned)
+            }
+            return false
+        }
     }
 }

@@ -53,6 +53,20 @@ final class VSGameViewModel {
         }
     }
 
+    func guessWord(_ word: String) {
+        guard game.status == .playing else { return }
+        let isCorrect = game.guessWord(word)
+        if isCorrect {
+            game.status = .won
+            soundManager.play(.correct)
+            soundManager.play(.win)
+        } else {
+            game.status = .lost
+            soundManager.play(.wrong)
+            soundManager.play(.lose)
+        }
+    }
+
     func endRound() {
         session.endRound(guesserWon: game.status == .won)
     }
