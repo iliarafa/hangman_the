@@ -27,11 +27,18 @@ struct GameScreen: View {
     private var header: some View {
         VStack(spacing: 8) {
             HStack {
-                Button(action: { dismiss() }) {
-                    Text("<<")
-                        .font(.system(size: 18, weight: .bold, design: .monospaced))
-                        .foregroundStyle(.primary)
+                Button {
+                    UIView.setAnimationsEnabled(false)
+                    dismiss()
+                    DispatchQueue.main.async {
+                        UIView.setAnimationsEnabled(true)
+                    }
+                } label: {
+                    Text("< BACK")
+                        .font(.system(size: 16, design: .monospaced))
+                        .foregroundStyle(.secondary)
                 }
+                .buttonStyle(.plain)
 
                 Spacer()
 

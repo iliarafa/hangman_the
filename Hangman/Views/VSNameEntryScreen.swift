@@ -10,12 +10,28 @@ struct VSNameEntryScreen: View {
 
     var body: some View {
         VStack(spacing: 32) {
+            HStack {
+                Button {
+                    UIView.setAnimationsEnabled(false)
+                    dismiss()
+                    DispatchQueue.main.async {
+                        UIView.setAnimationsEnabled(true)
+                    }
+                } label: {
+                    Text("< BACK")
+                        .font(.system(size: 16, design: .monospaced))
+                        .foregroundStyle(.secondary)
+                }
+                .buttonStyle(.plain)
+                Spacer()
+            }
+
             Spacer()
             titleSection
             nameFields
             startButton
             Spacer()
-            backButton
+            Spacer()
         }
         .padding()
         .navigationBarBackButtonHidden(true)
@@ -58,18 +74,10 @@ struct VSNameEntryScreen: View {
         } label: {
             Text("START")
                 .asciiBracket(.primary, fontSize: 24)
+                .foregroundStyle(Color(red: 0.0, green: 0.5, blue: 0.0))
                 .opacity(canStart ? 1 : 0.3)
         }
         .disabled(!canStart)
     }
 
-    private var backButton: some View {
-        Button {
-            dismiss()
-        } label: {
-            Text("Back")
-                .asciiBracket(.secondary, fontSize: 16)
-        }
-        .padding(.bottom, 8)
-    }
 }
