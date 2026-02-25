@@ -48,32 +48,17 @@ struct ASCIIDivider: View {
 
 struct ASCIITitleBox: View {
     let text: String
-    let charWidth: Int
 
     init(_ text: String, charWidth: Int = 30) {
         self.text = text
-        self.charWidth = charWidth
     }
 
     var body: some View {
-        let innerWidth = max(charWidth, text.count + 4)
-        let bar = String(repeating: "\u{2550}", count: innerWidth)
-        let emptyFill = String(repeating: " ", count: innerWidth)
-
-        VStack(spacing: 0) {
-            Text("\u{2554}" + bar + "\u{2557}")
-            Text("\u{2551}" + emptyFill + "\u{2551}")
-            Text("\u{255A}" + bar + "\u{255D}")
-        }
-        .font(.system(size: 16, weight: .bold, design: .monospaced))
-        .foregroundStyle(.primary)
-        .overlay {
-            Text(text)
-                .font(.system(size: 24, weight: .bold, design: .monospaced))
-                .foregroundStyle(.primary)
-                .minimumScaleFactor(0.5)
-                .lineLimit(1)
-        }
+        Text(text)
+            .font(.system(size: 32, weight: .bold, design: .monospaced))
+            .foregroundStyle(.primary)
+            .minimumScaleFactor(0.5)
+            .lineLimit(1)
     }
 }
 
