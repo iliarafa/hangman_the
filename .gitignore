@@ -17,3 +17,6 @@ Packages/
 
 # CocoaPods
 Pods/
+
+# Worktrees
+.worktrees/
