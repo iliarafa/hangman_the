@@ -1,4 +1,4 @@
-# Hangman
+# HANGMAN (THE)
 
 A minimalist Hangman word game for iPhone. Guess letters to save the figure before it's too late. Features Arcade mode with random words, VS Mode for local two-player challenges, animated hangman figure, sound effects, confetti celebrations, and detailed win/streak/game statistics. Built with SwiftUI.
 

@@ -19,7 +19,7 @@ struct HomeScreen: View {
 
     private var titleSection: some View {
         VStack(spacing: 8) {
-            Text("HANGMAN")
+            Text("HANGMAN (THE)")
                 .font(.system(size: 48, weight: .black, design: .monospaced))
         }
     }
