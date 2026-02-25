@@ -15,7 +15,7 @@ struct HangmanApp: App {
                     soundManager: soundManager
                 )
             }
-            .tint(.purple)
+            .tint(.primary)
         }
     }
 }

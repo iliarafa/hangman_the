@@ -1,8 +1,8 @@
 import SwiftUI
 
-struct GameScreen: View {
-    @Bindable var viewModel: GameViewModel
-    @Environment(\.dismiss) private var dismiss
+struct VSGameScreen: View {
+    @Bindable var viewModel: VSGameViewModel
+    let onContinue: () -> Void
 
     var body: some View {
         VStack(spacing: 16) {
@@ -10,7 +10,7 @@ struct GameScreen: View {
             hangmanArea
             wordArea
 
-            if viewModel.gameStatus == .playing || viewModel.isLoading {
+            if viewModel.gameStatus == .playing {
                 keyboardArea
             } else {
                 gameResult
@@ -19,27 +19,21 @@ struct GameScreen: View {
         .padding(.horizontal)
         .padding(.bottom, 8)
         .navigationBarBackButtonHidden(true)
-        .task {
-            await viewModel.startNewGame()
-        }
     }
 
     private var header: some View {
         HStack {
-            Button(action: { dismiss() }) {
-                Image(systemName: "chevron.left")
+            VStack(alignment: .leading, spacing: 2) {
+                Text(viewModel.session.guesserName)
                     .font(.system(size: 18, weight: .bold, design: .monospaced))
-                    .foregroundStyle(.primary)
+                Text("Round \(viewModel.session.round)")
+                    .font(.system(size: 12, design: .monospaced))
+                    .foregroundStyle(.secondary)
             }
 
             Spacer()
 
             Text("\(viewModel.wrongGuessCount)/6")
-                .font(.system(size: 18, weight: .bold, design: .monospaced))
-
-            Spacer()
-
-            Text("\(viewModel.scores.currentStreak)")
                 .font(.system(size: 18, weight: .bold, design: .monospaced))
         }
         .padding(.top, 8)
@@ -52,17 +46,10 @@ struct GameScreen: View {
     }
 
     private var wordArea: some View {
-        Group {
-            if viewModel.isLoading {
-                ProgressView()
-                    .frame(height: 44)
-            } else {
-                WordDisplay(
-                    displayWord: viewModel.displayWord,
-                    revealWord: viewModel.gameStatus == .lost ? viewModel.targetWord : nil
-                )
-            }
-        }
+        WordDisplay(
+            displayWord: viewModel.displayWord,
+            revealWord: viewModel.gameStatus == .lost ? viewModel.targetWord : nil
+        )
         .padding(.vertical, 8)
     }
 
@@ -71,31 +58,27 @@ struct GameScreen: View {
             letterState: { viewModel.letterState($0) },
             onTap: { viewModel.guess(letter: $0) }
         )
-        .disabled(viewModel.gameStatus != .playing || viewModel.isLoading)
+        .disabled(viewModel.gameStatus != .playing)
     }
 
     private var gameResult: some View {
         VStack(spacing: 16) {
             if viewModel.gameStatus == .won {
-                Text("YOU WON")
+                Text("\(viewModel.session.guesserName) WON")
                     .font(.system(size: 32, weight: .black, design: .monospaced))
-                Text("Streak: \(viewModel.scores.currentStreak)")
-                    .font(.system(size: 16, design: .monospaced))
-                    .foregroundStyle(.secondary)
             } else {
-                Text("GAME OVER")
+                Text("\(viewModel.session.guesserName) LOST")
                     .font(.system(size: 32, weight: .black, design: .monospaced))
                 Text("The word was \(viewModel.targetWord)")
                     .font(.system(size: 16, design: .monospaced))
                     .foregroundStyle(.secondary)
             }
 
-            Button(action: {
-                Task {
-                    await viewModel.startNewGame()
-                }
-            }) {
-                Text("PLAY AGAIN")
+            Button {
+                viewModel.endRound()
+                onContinue()
+            } label: {
+                Text("CONTINUE")
                     .font(.system(size: 18, weight: .bold, design: .monospaced))
                     .foregroundStyle(.background)
                     .padding(.horizontal, 32)

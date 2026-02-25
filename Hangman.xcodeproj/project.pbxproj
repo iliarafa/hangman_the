@@ -25,6 +25,16 @@
 		A10000016 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A20000016; };
 		A10000017 /* fallback_words.txt in Resources */ = {isa = PBXBuildFile; fileRef = A20000017; };
 		A10000018 /* ConfettiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000018; };
+		A10000019 /* VSSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000019; };
+		A10000020 /* VSGameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000020; };
+		A10000021 /* VSModeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000021; };
+		A10000022 /* VSNameEntryScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000022; };
+		A10000023 /* VSWordEntryScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000023; };
+		A10000024 /* VSCountdownScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000024; };
+		A10000025 /* VSGameScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000025; };
+		A10000026 /* VSRoundResultScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000026; };
+		A10000027 /* VSFinalScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000027; };
+		A10000028 /* ASCIIHangman.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000028; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +56,16 @@
 		A20000016 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A20000017 /* fallback_words.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = fallback_words.txt; sourceTree = "<group>"; };
 		A20000018 /* ConfettiView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfettiView.swift; sourceTree = "<group>"; };
+		A20000019 /* VSSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VSSession.swift; sourceTree = "<group>"; };
+		A20000020 /* VSGameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VSGameViewModel.swift; sourceTree = "<group>"; };
+		A20000021 /* VSModeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VSModeView.swift; sourceTree = "<group>"; };
+		A20000022 /* VSNameEntryScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VSNameEntryScreen.swift; sourceTree = "<group>"; };
+		A20000023 /* VSWordEntryScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VSWordEntryScreen.swift; sourceTree = "<group>"; };
+		A20000024 /* VSCountdownScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VSCountdownScreen.swift; sourceTree = "<group>"; };
+		A20000025 /* VSGameScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VSGameScreen.swift; sourceTree = "<group>"; };
+		A20000026 /* VSRoundResultScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VSRoundResultScreen.swift; sourceTree = "<group>"; };
+		A20000027 /* VSFinalScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VSFinalScreen.swift; sourceTree = "<group>"; };
+		A20000028 /* ASCIIHangman.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ASCIIHangman.swift; sourceTree = "<group>"; };
 		A30000001 /* Hangman.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Hangman.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -87,6 +107,7 @@
 			children = (
 				A20000002 /* GameState.swift */,
 				A20000003 /* ScoreData.swift */,
+				A20000019 /* VSSession.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -95,6 +116,7 @@
 			isa = PBXGroup;
 			children = (
 				A20000004 /* GameViewModel.swift */,
+				A20000020 /* VSGameViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -105,6 +127,13 @@
 				A20000005 /* HomeScreen.swift */,
 				A20000006 /* GameScreen.swift */,
 				A20000007 /* StatsScreen.swift */,
+				A20000021 /* VSModeView.swift */,
+				A20000022 /* VSNameEntryScreen.swift */,
+				A20000023 /* VSWordEntryScreen.swift */,
+				A20000024 /* VSCountdownScreen.swift */,
+				A20000025 /* VSGameScreen.swift */,
+				A20000026 /* VSRoundResultScreen.swift */,
+				A20000027 /* VSFinalScreen.swift */,
 				A50000006 /* Components */,
 			);
 			path = Views;
@@ -119,6 +148,7 @@
 				A20000011 /* LetterButton.swift */,
 				A20000012 /* WordDisplay.swift */,
 				A20000018 /* ConfettiView.swift */,
+				A20000028 /* ASCIIHangman.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -235,6 +265,16 @@
 				A10000014 /* SoundManager.swift in Sources */,
 				A10000015 /* ScoreManager.swift in Sources */,
 				A10000018 /* ConfettiView.swift in Sources */,
+				A10000019 /* VSSession.swift in Sources */,
+				A10000020 /* VSGameViewModel.swift in Sources */,
+				A10000021 /* VSModeView.swift in Sources */,
+				A10000022 /* VSNameEntryScreen.swift in Sources */,
+				A10000023 /* VSWordEntryScreen.swift in Sources */,
+				A10000024 /* VSCountdownScreen.swift in Sources */,
+				A10000025 /* VSGameScreen.swift in Sources */,
+				A10000026 /* VSRoundResultScreen.swift in Sources */,
+				A10000027 /* VSFinalScreen.swift in Sources */,
+				A10000028 /* ASCIIHangman.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
