@@ -19,8 +19,8 @@ struct VSNameEntryScreen: View {
                     }
                 } label: {
                     Text("< BACK")
-                        .font(.system(size: 16, design: .monospaced))
-                        .foregroundStyle(.secondary)
+                        .font(AppTheme.font(size: 18))
+                        .secondaryStyle()
                 }
                 .buttonStyle(.plain)
                 Spacer()
@@ -42,8 +42,8 @@ struct VSNameEntryScreen: View {
             ASCIITitleBox("VS MODE", charWidth: 20)
 
             Text("Enter player names")
-                .font(.system(size: 14, design: .monospaced))
-                .foregroundStyle(.secondary)
+                .font(AppTheme.font(size: 16))
+                .secondaryStyle()
         }
     }
 

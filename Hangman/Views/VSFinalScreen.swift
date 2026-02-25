@@ -20,7 +20,8 @@ struct VSFinalScreen: View {
         VStack(spacing: 12) {
             if let winner = viewModel.session.winnerName {
                 Text(ASCIIArt.trophy)
-                    .font(.system(size: 12, design: .monospaced))
+                    .font(AppTheme.font(size: 14))
+                    .secondaryStyle()
                     .multilineTextAlignment(.center)
 
                 ASCIITitleBox("\(winner) WINS", charWidth: 24)
@@ -29,8 +30,8 @@ struct VSFinalScreen: View {
             }
 
             Text("\(viewModel.session.round - 1) rounds played")
-                .font(.system(size: 14, design: .monospaced))
-                .foregroundStyle(.secondary)
+                .font(AppTheme.font(size: 16))
+                .secondaryStyle()
         }
     }
 
@@ -43,8 +44,8 @@ struct VSFinalScreen: View {
             )
 
             Text("—")
-                .font(.system(size: 24, weight: .bold, design: .monospaced))
-                .foregroundStyle(.secondary)
+                .font(AppTheme.font(size: 28))
+                .secondaryStyle()
 
             playerFinalScore(
                 name: viewModel.session.player2Name,
@@ -58,15 +59,17 @@ struct VSFinalScreen: View {
         VStack(spacing: 8) {
             if isWinner {
                 Text(">>>")
-                    .font(.system(size: 16, weight: .bold, design: .monospaced))
-                    .foregroundStyle(.secondary)
+                    .font(AppTheme.font(size: 18))
+                    .secondaryStyle()
             }
 
             Text("\(score)")
-                .font(.system(size: 52, weight: .black, design: .monospaced))
+                .font(AppTheme.font(size: 60))
+                .headlineStyle()
 
             Text(name)
-                .font(.system(size: 16, weight: .bold, design: .monospaced))
+                .font(AppTheme.font(size: 18))
+                .bodyStyle()
                 .lineLimit(1)
         }
         .frame(minWidth: 80)

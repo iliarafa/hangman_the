@@ -14,14 +14,16 @@ struct VSCountdownScreen: View {
             ASCIIDivider()
 
             Text("Pass the device to")
-                .font(.system(size: 16, design: .monospaced))
-                .foregroundStyle(.secondary)
+                .font(AppTheme.font(size: 18))
+                .secondaryStyle()
 
             Text(viewModel.session.guesserName)
-                .font(.system(size: 32, weight: .black, design: .monospaced))
+                .font(AppTheme.font(size: 38))
+                .headlineStyle()
 
             Text("\(countdown)")
-                .font(.system(size: 96, weight: .black, design: .monospaced))
+                .font(AppTheme.font(size: 108))
+                .headlineStyle()
                 .contentTransition(.numericText())
 
             ASCIIDivider()

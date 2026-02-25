@@ -25,14 +25,15 @@ struct WordDisplay: View {
 
         VStack(spacing: 0) {
             Text(displayChar.map { String($0) } ?? " ")
-                .font(.system(size: 28, weight: .bold, design: .monospaced))
-                .foregroundStyle(.primary)
-                .opacity(isRevealedOnLose ? 0.4 : (displayChar != nil ? 1 : 0))
+                .font(AppTheme.font(size: 32))
+                .foregroundStyle(.primary.opacity(
+                    isRevealedOnLose ? AppTheme.tertiaryOpacity : (displayChar != nil ? AppTheme.headlineOpacity : 0)
+                ))
                 .animation(.easeIn(duration: 0.2), value: isRevealed)
 
             Text("_")
-                .font(.system(size: 28, weight: .bold, design: .monospaced))
-                .foregroundStyle(.primary)
+                .font(AppTheme.font(size: 32))
+                .foregroundStyle(.primary.opacity(AppTheme.bodyOpacity))
         }
         .frame(width: 32, height: 48)
     }

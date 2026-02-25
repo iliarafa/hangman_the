@@ -13,10 +13,10 @@ struct SolveWordView: View {
             HStack(spacing: 8) {
                 HStack(spacing: 0) {
                     Text("> ")
-                        .font(.system(size: 16, weight: .bold, design: .monospaced))
-                        .foregroundStyle(.secondary)
+                        .font(AppTheme.font(size: 18))
+                        .secondaryStyle()
                     TextField("\(wordLength) letters", text: $text)
-                        .font(.system(size: 16, weight: .bold, design: .monospaced))
+                        .font(AppTheme.font(size: 18))
                         .textInputAutocapitalization(.characters)
                         .autocorrectionDisabled()
                         .focused($isFocused)
@@ -25,7 +25,7 @@ struct SolveWordView: View {
                 .padding(.vertical, 10)
                 .overlay(alignment: .bottom) {
                     Rectangle()
-                        .fill(Color.secondary.opacity(0.3))
+                        .fill(Color.primary.opacity(AppTheme.tertiaryOpacity))
                         .frame(height: 1)
                 }
 
@@ -37,7 +37,7 @@ struct SolveWordView: View {
                     isSolving = false
                 } label: {
                     Text(">")
-                        .font(.system(size: 16, weight: .bold, design: .monospaced))
+                        .font(AppTheme.font(size: 18))
                         .foregroundStyle(.background)
                         .padding(10)
                         .background(.primary)
@@ -48,8 +48,8 @@ struct SolveWordView: View {
                     isSolving = false
                 } label: {
                     Text("x")
-                        .font(.system(size: 16, weight: .bold, design: .monospaced))
-                        .foregroundStyle(.secondary)
+                        .font(AppTheme.font(size: 18))
+                        .secondaryStyle()
                         .padding(10)
                 }
             }

@@ -29,22 +29,23 @@ struct VSWordEntryScreen: View {
     private var headerSection: some View {
         VStack(spacing: 8) {
             Text("ROUND \(viewModel.session.round)")
-                .font(.system(size: 16, design: .monospaced))
-                .foregroundStyle(.secondary)
+                .font(AppTheme.font(size: 18))
+                .secondaryStyle()
 
             Text(viewModel.session.setterName)
-                .font(.system(size: 32, weight: .black, design: .monospaced))
+                .font(AppTheme.font(size: 38))
+                .headlineStyle()
 
             Text("Enter a word for \(viewModel.session.guesserName)")
-                .font(.system(size: 14, design: .monospaced))
-                .foregroundStyle(.secondary)
+                .font(AppTheme.font(size: 16))
+                .secondaryStyle()
                 .multilineTextAlignment(.center)
         }
     }
 
     private var wordField: some View {
         SecureField("Secret word", text: $word)
-            .font(.system(size: 18, design: .monospaced))
+            .font(AppTheme.font(size: 20))
             .textInputAutocapitalization(.never)
             .autocorrectionDisabled()
             .asciiTextField()
@@ -56,7 +57,7 @@ struct VSWordEntryScreen: View {
 
     private var errorLabel: some View {
         Text("! " + errorMessage)
-            .font(.system(size: 14, design: .monospaced))
+            .font(AppTheme.font(size: 16))
             .foregroundStyle(.red)
     }
 

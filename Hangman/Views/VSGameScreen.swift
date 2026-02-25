@@ -26,16 +26,18 @@ struct VSGameScreen: View {
             HStack {
                 VStack(alignment: .leading, spacing: 2) {
                     Text(viewModel.session.guesserName)
-                        .font(.system(size: 18, weight: .bold, design: .monospaced))
+                        .font(AppTheme.font(size: 22))
+                        .bodyStyle()
                     Text("Round \(viewModel.session.round)")
-                        .font(.system(size: 12, design: .monospaced))
-                        .foregroundStyle(.secondary)
+                        .font(AppTheme.font(size: 14))
+                        .secondaryStyle()
                 }
 
                 Spacer()
 
                 Text("\(viewModel.wrongGuessCount)/6")
-                    .font(.system(size: 18, weight: .bold, design: .monospaced))
+                    .font(AppTheme.font(size: 22))
+                    .bodyStyle()
             }
 
             ASCIIDivider()
@@ -76,21 +78,25 @@ struct VSGameScreen: View {
         VStack(spacing: 16) {
             if viewModel.gameStatus == .won {
                 Text(ASCIIArt.trophy)
-                    .font(.system(size: 12, design: .monospaced))
+                    .font(AppTheme.font(size: 14))
+                    .secondaryStyle()
                     .multilineTextAlignment(.center)
 
                 Text("\(viewModel.session.guesserName) WON")
-                    .font(.system(size: 32, weight: .black, design: .monospaced))
+                    .font(AppTheme.font(size: 38))
+                    .headlineStyle()
             } else {
                 Text(ASCIIArt.skull)
-                    .font(.system(size: 12, design: .monospaced))
+                    .font(AppTheme.font(size: 14))
+                    .secondaryStyle()
                     .multilineTextAlignment(.center)
 
                 Text("\(viewModel.session.guesserName) LOST")
-                    .font(.system(size: 32, weight: .black, design: .monospaced))
+                    .font(AppTheme.font(size: 38))
+                    .headlineStyle()
                 Text("The word was \(viewModel.targetWord)")
-                    .font(.system(size: 16, design: .monospaced))
-                    .foregroundStyle(.secondary)
+                    .font(AppTheme.font(size: 18))
+                    .secondaryStyle()
             }
 
             Button {

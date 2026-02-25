@@ -27,8 +27,8 @@ struct VSRoundResultScreen: View {
                 )
 
                 Text("vs")
-                    .font(.system(size: 18, weight: .bold, design: .monospaced))
-                    .foregroundStyle(.secondary)
+                    .font(AppTheme.font(size: 22))
+                    .secondaryStyle()
 
                 playerScore(
                     name: viewModel.session.player2Name,
@@ -37,18 +37,20 @@ struct VSRoundResultScreen: View {
             }
 
             Text("Round \(viewModel.session.round - 1) complete")
-                .font(.system(size: 14, design: .monospaced))
-                .foregroundStyle(.secondary)
+                .font(AppTheme.font(size: 16))
+                .secondaryStyle()
         }
     }
 
     private func playerScore(name: String, score: Int) -> some View {
         VStack(spacing: 8) {
             Text("\(score)")
-                .font(.system(size: 48, weight: .black, design: .monospaced))
+                .font(AppTheme.font(size: 56))
+                .headlineStyle()
 
             Text(name)
-                .font(.system(size: 16, weight: .bold, design: .monospaced))
+                .font(AppTheme.font(size: 18))
+                .bodyStyle()
                 .lineLimit(1)
         }
         .frame(minWidth: 80)

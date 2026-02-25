@@ -12,10 +12,11 @@ struct StatsScreen: View {
                     .padding(.top, 8)
 
                 Text("\(Int(scores.winRate * 100))%")
-                    .font(.system(size: 64, weight: .black, design: .monospaced))
+                    .font(AppTheme.font(size: 72))
+                    .headlineStyle()
                 Text("Win Rate")
-                    .font(.system(size: 14, design: .monospaced))
-                    .foregroundStyle(.secondary)
+                    .font(AppTheme.font(size: 16))
+                    .secondaryStyle()
 
                 ASCIIDivider()
                     .padding(.horizontal)
@@ -36,7 +37,8 @@ struct StatsScreen: View {
 
     private func statRow(title: String, value: String) -> some View {
         Text(asciiStatRow(title: title, value: value))
-            .font(.system(size: 16, design: .monospaced))
+            .font(AppTheme.font(size: 18))
+            .bodyStyle()
             .frame(maxWidth: .infinity, alignment: .leading)
             .padding(.vertical, 6)
     }

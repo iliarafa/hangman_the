@@ -16,22 +16,26 @@ struct ASCIIBracketButton: ViewModifier {
         self.fontSize = fontSize
     }
 
+    private var textOpacity: Double {
+        style == .primary ? AppTheme.headlineOpacity : AppTheme.secondaryOpacity
+    }
+
     func body(content: Content) -> some View {
         content
             .fixedSize()
             .padding(.horizontal, fontSize * 1.2)
             .overlay(alignment: .leading) {
                 Text("[")
-                    .font(.system(size: fontSize, weight: style == .primary ? .bold : .regular, design: .monospaced))
-                    .foregroundStyle(style == .primary ? .primary : .secondary)
+                    .font(AppTheme.font(size: fontSize))
+                    .foregroundStyle(.primary.opacity(textOpacity))
             }
             .overlay(alignment: .trailing) {
                 Text("]")
-                    .font(.system(size: fontSize, weight: style == .primary ? .bold : .regular, design: .monospaced))
-                    .foregroundStyle(style == .primary ? .primary : .secondary)
+                    .font(AppTheme.font(size: fontSize))
+                    .foregroundStyle(.primary.opacity(textOpacity))
             }
-            .font(.system(size: fontSize, weight: style == .primary ? .bold : .regular, design: .monospaced))
-            .foregroundStyle(style == .primary ? .primary : .secondary)
+            .font(AppTheme.font(size: fontSize))
+            .foregroundStyle(.primary.opacity(textOpacity))
     }
 }
 
@@ -46,8 +50,8 @@ extension View {
 struct ASCIIDivider: View {
     var body: some View {
         Text("- - - - - - - - - - - - - - -")
-            .font(.system(size: 14, design: .monospaced))
-            .foregroundStyle(.secondary)
+            .font(AppTheme.font(size: 14))
+            .tertiaryStyle()
             .frame(maxWidth: .infinity)
     }
 }
@@ -63,8 +67,8 @@ struct ASCIITitleBox: View {
 
     var body: some View {
         Text(text)
-            .font(.system(size: 32, weight: .bold, design: .monospaced))
-            .foregroundStyle(.primary)
+            .font(AppTheme.font(size: 36))
+            .headlineStyle()
             .minimumScaleFactor(0.5)
             .lineLimit(1)
     }
@@ -81,8 +85,8 @@ struct ASCIITextField: View {
     var body: some View {
         HStack(spacing: 0) {
             Text("> ")
-                .font(.system(size: 18, weight: .bold, design: .monospaced))
-                .foregroundStyle(.secondary)
+                .font(AppTheme.font(size: 20))
+                .secondaryStyle()
 
             HStack(spacing: 4) {
                 let chars = Array(text)
@@ -91,19 +95,19 @@ struct ASCIITextField: View {
                         let placeholderChars = Array(placeholder)
                         if i < chars.count {
                             Text(String(chars[i]))
-                                .font(.system(size: 18, weight: .bold, design: .monospaced))
-                                .foregroundStyle(.primary)
+                                .font(AppTheme.font(size: 20))
+                                .headlineStyle()
                         } else if text.isEmpty && i < placeholderChars.count {
                             Text(String(placeholderChars[i]))
-                                .font(.system(size: 18, weight: .bold, design: .monospaced))
-                                .foregroundStyle(.secondary.opacity(0.5))
+                                .font(AppTheme.font(size: 20))
+                                .foregroundStyle(.primary.opacity(AppTheme.tertiaryOpacity))
                         } else {
                             Text(" ")
-                                .font(.system(size: 18, weight: .bold, design: .monospaced))
+                                .font(AppTheme.font(size: 20))
                         }
                         Text("_")
-                            .font(.system(size: 18, design: .monospaced))
-                            .foregroundStyle(i < chars.count ? .primary : .secondary)
+                            .font(AppTheme.font(size: 20))
+                            .foregroundStyle(.primary.opacity(i < chars.count ? AppTheme.bodyOpacity : AppTheme.tertiaryOpacity))
                     }
                 }
             }
@@ -131,8 +135,8 @@ struct ASCIITextFieldStyle: ViewModifier {
     func body(content: Content) -> some View {
         HStack(spacing: 0) {
             Text("> ")
-                .font(.system(size: 18, weight: .bold, design: .monospaced))
-                .foregroundStyle(.secondary)
+                .font(AppTheme.font(size: 20))
+                .secondaryStyle()
             content
         }
         .padding(.vertical, 12)

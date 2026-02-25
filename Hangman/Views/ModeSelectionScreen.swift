@@ -19,8 +19,8 @@ struct ModeSelectionScreen: View {
                     }
                 } label: {
                     Text("< BACK")
-                        .font(.system(size: 16, design: .monospaced))
-                        .foregroundStyle(.secondary)
+                        .font(AppTheme.font(size: 18))
+                        .secondaryStyle()
                 }
                 .buttonStyle(.plain)
                 Spacer()

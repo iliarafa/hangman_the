@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A10000031 /* VT323-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A20000031 /* VT323-Regular.ttf */; };
+		A10000032 /* AppTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000034 /* AppTheme.swift */; };
 		A10000001 /* HangmanApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000001 /* HangmanApp.swift */; };
 		A10000002 /* GameState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000002 /* GameState.swift */; };
 		A10000003 /* ScoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000003 /* ScoreData.swift */; };
@@ -72,6 +74,9 @@
 		A20000028 /* ASCIIHangman.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ASCIIHangman.swift; sourceTree = "<group>"; };
 		A20000029 /* ModeSelectionScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModeSelectionScreen.swift; sourceTree = "<group>"; };
 		A20000030 /* ASCIIStyles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ASCIIStyles.swift; sourceTree = "<group>"; };
+		A20000031 /* VT323-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "VT323-Regular.ttf"; sourceTree = "<group>"; };
+		A20000033 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A20000034 /* AppTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTheme.swift; sourceTree = "<group>"; };
 		A30000001 /* Hangman.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Hangman.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -98,6 +103,7 @@
 			isa = PBXGroup;
 			children = (
 				A20000001 /* HangmanApp.swift */,
+				A20000033 /* Info.plist */,
 				A50000003 /* Models */,
 				A50000004 /* ViewModels */,
 				A50000005 /* Views */,
@@ -158,6 +164,7 @@
 				A20000028 /* ASCIIHangman.swift */,
 				A20000080 /* SolveWordView.swift */,
 				A20000030 /* ASCIIStyles.swift */,
+				A20000034 /* AppTheme.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -176,8 +183,17 @@
 			isa = PBXGroup;
 			children = (
 				A20000017 /* fallback_words.txt */,
+				A50000010 /* Fonts */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		A50000010 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				A20000031 /* VT323-Regular.ttf */,
+			);
+			path = Fonts;
 			sourceTree = "<group>";
 		};
 		A50000009 /* Products */ = {
@@ -248,6 +264,7 @@
 			files = (
 				A10000016 /* Assets.xcassets in Resources */,
 				A10000017 /* fallback_words.txt in Resources */,
+				A10000031 /* VT323-Regular.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -287,6 +304,7 @@
 				A10000028 /* ASCIIHangman.swift in Sources */,
 				A10000029 /* ModeSelectionScreen.swift in Sources */,
 				A10000030 /* ASCIIStyles.swift in Sources */,
+				A10000032 /* AppTheme.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -419,6 +437,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 3DLV25C9VK;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Hangman/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "HANGMAN (THE)";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -446,6 +465,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 3DLV25C9VK;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Hangman/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "HANGMAN (THE)";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
