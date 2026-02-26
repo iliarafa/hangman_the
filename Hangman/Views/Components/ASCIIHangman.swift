@@ -9,7 +9,7 @@ struct ASCIIHangman: View {
 
     var body: some View {
         Text(art)
-            .font(AppTheme.font(size: 18))
+            .font(AppTheme.font(size: 24))
             .bodyStyle()
             .lineSpacing(2)
             .multilineTextAlignment(.leading)

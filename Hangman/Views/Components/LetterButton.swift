@@ -8,10 +8,10 @@ struct LetterButton: View {
     var body: some View {
         Button(action: action) {
             Text(String(letter))
-                .font(AppTheme.font(size: 22))
+                .font(AppTheme.font(size: 26))
                 .strikethrough(state == .wrong)
                 .foregroundStyle(.primary.opacity(state == .unused ? AppTheme.headlineOpacity : AppTheme.tertiaryOpacity))
-                .frame(width: 38, height: 42)
+                .frame(width: 44, height: 48)
         }
         .disabled(state != .unused)
         .sensoryFeedback(.impact(flexibility: .soft), trigger: state)

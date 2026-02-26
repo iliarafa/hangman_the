@@ -7,22 +7,42 @@ struct GameScreen: View {
     var body: some View {
         VStack(spacing: 16) {
             header
+
+            Spacer()
+
             hangmanArea
             wordArea
 
             if viewModel.gameStatus == .playing || viewModel.isLoading {
-                keyboardArea
+                KeyboardView(
+                    letterState: { viewModel.letterState($0) },
+                    onTap: { viewModel.guess(letter: $0) }
+                )
+                .disabled(viewModel.gameStatus != .playing || viewModel.isLoading)
+
+                SolveWordView(
+                    wordLength: viewModel.targetWord.count,
+                    onSubmit: { viewModel.guessWord($0) }
+                )
+                .disabled(viewModel.gameStatus != .playing || viewModel.isLoading)
             } else {
                 gameResult
             }
+
+            Spacer()
         }
         .padding(.horizontal)
         .padding(.bottom, 8)
         .navigationBarBackButtonHidden(true)
+        .toolbar(.hidden, for: .navigationBar)
     }
 
     private var header: some View {
-        VStack(spacing: 8) {
+        ZStack {
+            Text("\(viewModel.wrongGuessCount)/6")
+                .font(AppTheme.font(size: 22))
+                .bodyStyle()
+
             HStack {
                 Button {
                     UIView.setAnimationsEnabled(false)
@@ -39,25 +59,17 @@ struct GameScreen: View {
 
                 Spacer()
 
-                Text("\(viewModel.wrongGuessCount)/6")
-                    .font(AppTheme.font(size: 22))
-                    .bodyStyle()
-
-                Spacer()
-
                 Text("\(viewModel.scores.currentStreak)")
                     .font(AppTheme.font(size: 22))
                     .bodyStyle()
             }
-
-            ASCIIDivider()
         }
         .padding(.top, 8)
     }
 
     private var hangmanArea: some View {
         ASCIIHangman(wrongGuessCount: viewModel.wrongGuessCount)
-            .frame(maxHeight: 220)
+            .frame(maxHeight: 280)
             .padding(.vertical, 8)
     }
 
@@ -74,21 +86,6 @@ struct GameScreen: View {
             }
         }
         .padding(.vertical, 8)
-    }
-
-    private var keyboardArea: some View {
-        VStack(spacing: 12) {
-            KeyboardView(
-                letterState: { viewModel.letterState($0) },
-                onTap: { viewModel.guess(letter: $0) }
-            )
-
-            SolveWordView(
-                wordLength: viewModel.targetWord.count,
-                onSubmit: { viewModel.guessWord($0) }
-            )
-        }
-        .disabled(viewModel.gameStatus != .playing || viewModel.isLoading)
     }
 
     private var gameResult: some View {
