@@ -9,7 +9,7 @@ struct VSNameEntryScreen: View {
     @Environment(\.dismiss) private var dismiss
 
     var body: some View {
-        VStack(spacing: 32) {
+        VStack(spacing: 0) {
             HStack {
                 Button {
                     UIView.setAnimationsEnabled(false)
@@ -28,9 +28,10 @@ struct VSNameEntryScreen: View {
 
             Spacer()
             titleSection
-            nameFields
-            startButton
             Spacer()
+            nameFields
+            Spacer()
+            startButton
             Spacer()
         }
         .padding()
