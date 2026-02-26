@@ -42,6 +42,7 @@
 		A10000028 /* ASCIIHangman.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000028 /* ASCIIHangman.swift */; };
 		A10000029 /* ModeSelectionScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000029 /* ModeSelectionScreen.swift */; };
 		A10000030 /* ASCIIStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000030 /* ASCIIStyles.swift */; };
+		A10000083 /* WordValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000083 /* WordValidator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -81,6 +82,7 @@
 		A20000034 /* AppTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTheme.swift; sourceTree = "<group>"; };
 		A20000081 /* PauseOverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PauseOverlayView.swift; sourceTree = "<group>"; };
 		A20000082 /* PixelFloodView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PixelFloodView.swift; sourceTree = "<group>"; };
+		A20000083 /* WordValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordValidator.swift; sourceTree = "<group>"; };
 		A30000001 /* Hangman.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Hangman.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -181,6 +183,7 @@
 				A20000013 /* WordService.swift */,
 				A20000014 /* SoundManager.swift */,
 				A20000015 /* ScoreManager.swift */,
+				A20000083 /* WordValidator.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -313,6 +316,7 @@
 				A10000032 /* AppTheme.swift in Sources */,
 				A10000081 /* PauseOverlayView.swift in Sources */,
 				A10000082 /* PixelFloodView.swift in Sources */,
+				A10000083 /* WordValidator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -24,7 +24,9 @@ final class VSGameViewModel {
     func validateWord(_ word: String) -> Bool {
         let trimmed = word.trimmingCharacters(in: .whitespaces)
         guard trimmed.count >= 2, trimmed.count <= 20 else { return false }
-        return trimmed.allSatisfy { $0.isLetter }
+        guard trimmed.allSatisfy({ $0.isLetter }) else { return false }
+        guard WordValidator.isRealWord(trimmed) else { return false }
+        return true
     }
 
     // MARK: - Round lifecycle

@@ -75,6 +75,7 @@ struct VSWordEntryScreen: View {
         if trimmed.count < 2 { return "Word must be at least 2 characters" }
         if trimmed.count > 20 { return "Word must be 20 characters or less" }
         if !trimmed.allSatisfy({ $0.isLetter }) { return "Letters only" }
+        if !WordValidator.isRealWord(trimmed) { return "Not a recognized word" }
         return ""
     }
 }
