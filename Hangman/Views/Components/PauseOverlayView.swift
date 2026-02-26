@@ -10,7 +10,7 @@ struct PauseOverlayView: View {
 
     var body: some View {
         ZStack {
-            Color.black.opacity(0.85)
+            Color.black
                 .ignoresSafeArea()
 
             VStack(spacing: 32) {
@@ -29,10 +29,11 @@ struct PauseOverlayView: View {
                         onGoHome()
                     } label: {
                         Text("HOMESCREEN")
-                            .asciiBracket(.secondary, fontSize: 24)
+                            .asciiBracket(.body, fontSize: 24)
                     }
                 }
             }
         }
+        .environment(\.colorScheme, .dark)
     }
 }

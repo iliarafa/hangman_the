@@ -61,6 +61,7 @@ struct GameScreen: View {
                         .secondaryStyle()
                 }
                 .buttonStyle(.plain)
+                .padding(.leading, 4)
 
                 Spacer()
 

@@ -4,6 +4,7 @@ import SwiftUI
 
 enum ASCIIButtonStyle {
     case primary
+    case body
     case secondary
 }
 
@@ -17,7 +18,11 @@ struct ASCIIBracketButton: ViewModifier {
     }
 
     private var textOpacity: Double {
-        style == .primary ? AppTheme.headlineOpacity : AppTheme.secondaryOpacity
+        switch style {
+        case .primary: return AppTheme.headlineOpacity
+        case .body: return AppTheme.bodyOpacity
+        case .secondary: return AppTheme.secondaryOpacity
+        }
     }
 
     func body(content: Content) -> some View {
