@@ -8,7 +8,7 @@ struct PixelFloodView: View {
     @Environment(\.colorScheme) private var colorScheme
     @State private var startTime: Date = .now
 
-    private let blockSize: CGFloat = 8
+    private let blockSize: CGFloat = 4
     private let duration: TimeInterval = 0.45
 
     var body: some View {
