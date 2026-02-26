@@ -28,6 +28,7 @@ actor WordService {
                   httpResponse.statusCode == 200,
                   let words = try? JSONDecoder().decode([String].self, from: data),
                   let word = words.first,
+                  !word.isEmpty,
                   word.allSatisfy({ $0.isLetter }) else {
                 return randomFallbackWord()
             }

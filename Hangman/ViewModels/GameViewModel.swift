@@ -3,7 +3,7 @@ import SwiftUI
 @Observable
 final class GameViewModel {
     private(set) var game = GameState()
-    private(set) var isLoading = false
+    private(set) var isLoading = true
 
     private let wordService: WordService
     private let soundManager: SoundManager
