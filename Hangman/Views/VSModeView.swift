@@ -38,6 +38,7 @@ struct VSModeView: View {
         }
         .onReceive(NotificationCenter.default.publisher(for: .navigateToHome)) { _ in
             UIView.setAnimationsEnabled(false)
+            path = NavigationPath()
             dismiss()
             DispatchQueue.main.async {
                 UIView.setAnimationsEnabled(true)
@@ -58,10 +59,10 @@ struct VSModeView: View {
             }
         case .countdown(let word):
             VSCountdownScreen(viewModel: viewModel, word: word) {
-                UIView.setAnimationsEnabled(false)
-                path.append(VSRoute.game)
-                DispatchQueue.main.async {
-                    UIView.setAnimationsEnabled(true)
+                var transaction = Transaction()
+                transaction.disablesAnimations = true
+                withTransaction(transaction) {
+                    path.append(VSRoute.game)
                 }
             }
         case .game:

@@ -24,12 +24,7 @@ struct VSGameScreen: View {
         .overlay {
             if showPauseMenu {
                 PauseOverlayView(isPresented: $showPauseMenu) {
-                    UIView.setAnimationsEnabled(false)
                     NotificationCenter.default.post(name: .navigateToHome, object: nil)
-                    dismiss()
-                    DispatchQueue.main.async {
-                        UIView.setAnimationsEnabled(true)
-                    }
                 }
             }
         }
