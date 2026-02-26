@@ -3,6 +3,7 @@ import SwiftUI
 struct GameScreen: View {
     @Bindable var viewModel: GameViewModel
     @Environment(\.dismiss) private var dismiss
+    @State private var showPauseMenu = false
 
     var body: some View {
         VStack(spacing: 16) {
@@ -35,6 +36,14 @@ struct GameScreen: View {
         .padding(.bottom, 8)
         .navigationBarBackButtonHidden(true)
         .toolbar(.hidden, for: .navigationBar)
+        .overlay {
+            if showPauseMenu {
+                PauseOverlayView(isPresented: $showPauseMenu) {
+                    NotificationCenter.default.post(name: .navigateToHome, object: nil)
+                    dismiss()
+                }
+            }
+        }
     }
 
     private var header: some View {
@@ -45,14 +54,10 @@ struct GameScreen: View {
 
             HStack {
                 Button {
-                    UIView.setAnimationsEnabled(false)
-                    dismiss()
-                    DispatchQueue.main.async {
-                        UIView.setAnimationsEnabled(true)
-                    }
+                    showPauseMenu = true
                 } label: {
-                    Text("< BACK")
-                        .font(AppTheme.font(size: 18))
+                    Text("X")
+                        .font(AppTheme.font(size: 22))
                         .secondaryStyle()
                 }
                 .buttonStyle(.plain)

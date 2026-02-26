@@ -3,6 +3,8 @@ import SwiftUI
 struct VSGameScreen: View {
     @Bindable var viewModel: VSGameViewModel
     let onContinue: () -> Void
+    @Environment(\.dismiss) private var dismiss
+    @State private var showPauseMenu = false
 
     var body: some View {
         VStack(spacing: 16) {
@@ -19,6 +21,14 @@ struct VSGameScreen: View {
         .padding(.horizontal)
         .padding(.bottom, 8)
         .navigationBarBackButtonHidden(true)
+        .overlay {
+            if showPauseMenu {
+                PauseOverlayView(isPresented: $showPauseMenu) {
+                    NotificationCenter.default.post(name: .navigateToHome, object: nil)
+                    dismiss()
+                }
+            }
+        }
     }
 
     private var header: some View {
@@ -38,6 +48,16 @@ struct VSGameScreen: View {
                 Text("\(viewModel.wrongGuessCount)/6")
                     .font(AppTheme.font(size: 22))
                     .bodyStyle()
+
+                Button {
+                    showPauseMenu = true
+                } label: {
+                    Text("X")
+                        .font(AppTheme.font(size: 22))
+                        .secondaryStyle()
+                }
+                .buttonStyle(.plain)
+                .padding(.leading, 12)
             }
 
             ASCIIDivider()

@@ -32,6 +32,9 @@ struct VSModeView: View {
         .onChange(of: startTrigger) {
             path.append(VSRoute.wordEntry)
         }
+        .onReceive(NotificationCenter.default.publisher(for: .navigateToHome)) { _ in
+            dismiss()
+        }
     }
 
     @ViewBuilder

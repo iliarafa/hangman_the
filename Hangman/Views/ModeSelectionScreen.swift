@@ -58,5 +58,8 @@ struct ModeSelectionScreen: View {
         }
         .padding()
         .navigationBarHidden(true)
+        .onReceive(NotificationCenter.default.publisher(for: .navigateToHome)) { _ in
+            dismiss()
+        }
     }
 }
