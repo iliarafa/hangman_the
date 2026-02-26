@@ -20,22 +20,23 @@ struct WordDisplay: View {
     @ViewBuilder
     private func letterBox(char: Character?, revealChar: Character?) -> some View {
         let displayChar = char ?? revealChar
-        let isRevealed = char != nil
         let isRevealedOnLose = char == nil && revealChar != nil
 
-        VStack(spacing: 0) {
+        VStack(spacing: 4) {
             Text(displayChar.map { String($0) } ?? " ")
                 .font(AppTheme.font(size: 32))
+                .frame(minHeight: 36)
                 .foregroundStyle(.primary.opacity(
                     isRevealedOnLose ? AppTheme.tertiaryOpacity : (displayChar != nil ? AppTheme.headlineOpacity : 0)
                 ))
-                .animation(.easeIn(duration: 0.2), value: isRevealed)
+                .animation(.easeIn(duration: 0.2), value: char != nil)
 
-            Text("_")
-                .font(AppTheme.font(size: 32))
-                .foregroundStyle(.primary.opacity(AppTheme.bodyOpacity))
+            Rectangle()
+                .fill(.primary.opacity(AppTheme.bodyOpacity))
+                .frame(height: 2)
         }
-        .frame(width: 32, height: 48)
+        .frame(width: 28)
+        .fixedSize(horizontal: false, vertical: true)
     }
 
     private func revealCharAt(_ index: Int) -> Character? {

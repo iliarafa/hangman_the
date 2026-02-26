@@ -2,6 +2,7 @@ import SwiftUI
 
 @main
 struct HangmanApp: App {
+    @AppStorage("hangman_isDarkMode") private var isDarkMode = true
     @State private var scoreManager = ScoreManager()
     @State private var soundManager = SoundManager()
     private let wordService = WordService()
@@ -16,6 +17,7 @@ struct HangmanApp: App {
                 )
             }
             .tint(.primary)
+            .preferredColorScheme(isDarkMode ? .dark : .light)
         }
     }
 }

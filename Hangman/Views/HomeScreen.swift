@@ -5,10 +5,12 @@ struct HomeScreen: View {
     let wordService: WordService
     let soundManager: SoundManager
 
+    @AppStorage("hangman_isDarkMode") private var isDarkMode = true
     @State private var showModeSelection = false
 
     var body: some View {
         VStack(spacing: 32) {
+            themeToggle
             Spacer()
             titleSection
             Spacer()
@@ -40,6 +42,20 @@ struct HomeScreen: View {
         } label: {
             Text("PLAY")
                 .asciiBracket(.primary, fontSize: 24)
+        }
+    }
+
+    private var themeToggle: some View {
+        HStack {
+            Spacer()
+            Button {
+                isDarkMode.toggle()
+            } label: {
+                Text(isDarkMode ? "NIGHT" : "DAY")
+                    .font(AppTheme.font(size: 14))
+                    .foregroundStyle(.primary.opacity(AppTheme.secondaryOpacity))
+            }
+            .buttonStyle(.plain)
         }
     }
 
