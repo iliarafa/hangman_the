@@ -9,6 +9,9 @@ struct VSGameScreen: View {
     var body: some View {
         VStack(spacing: 16) {
             header
+
+            Spacer()
+
             hangmanArea
             wordArea
 
@@ -17,10 +20,13 @@ struct VSGameScreen: View {
             } else {
                 gameResult
             }
+
+            Spacer()
         }
         .padding(.horizontal)
         .padding(.bottom, 8)
         .navigationBarBackButtonHidden(true)
+        .toolbar(.hidden, for: .navigationBar)
         .overlay {
             if showPauseMenu {
                 PauseOverlayView(isPresented: $showPauseMenu) {
@@ -31,35 +37,31 @@ struct VSGameScreen: View {
     }
 
     private var header: some View {
-        VStack(spacing: 8) {
-            HStack {
-                VStack(alignment: .leading, spacing: 2) {
-                    Text(viewModel.session.guesserName)
-                        .font(AppTheme.font(size: 22))
-                        .bodyStyle()
-                    Text("Round \(viewModel.session.round)")
-                        .font(AppTheme.font(size: 14))
-                        .secondaryStyle()
-                }
-
-                Spacer()
-
-                Text("\(viewModel.wrongGuessCount)/6")
+        HStack {
+            VStack(alignment: .leading, spacing: 2) {
+                Text(viewModel.session.guesserName)
                     .font(AppTheme.font(size: 22))
                     .bodyStyle()
-
-                Button {
-                    showPauseMenu = true
-                } label: {
-                    Text("X")
-                        .font(AppTheme.font(size: 22))
-                        .secondaryStyle()
-                }
-                .buttonStyle(.plain)
-                .padding(.leading, 12)
+                Text("Round \(viewModel.session.round)")
+                    .font(AppTheme.font(size: 14))
+                    .secondaryStyle()
             }
 
-            ASCIIDivider()
+            Spacer()
+
+            Text("\(viewModel.wrongGuessCount)/6")
+                .font(AppTheme.font(size: 22))
+                .bodyStyle()
+
+            Button {
+                showPauseMenu = true
+            } label: {
+                Text("X")
+                    .font(AppTheme.font(size: 22))
+                    .secondaryStyle()
+            }
+            .buttonStyle(.plain)
+            .padding(.leading, 12)
         }
         .padding(.top, 8)
     }
