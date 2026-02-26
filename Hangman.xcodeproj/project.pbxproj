@@ -18,8 +18,6 @@
 		A10000005 /* HomeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000005 /* HomeScreen.swift */; };
 		A10000006 /* GameScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000006 /* GameScreen.swift */; };
 		A10000007 /* StatsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000007 /* StatsScreen.swift */; };
-		A10000008 /* HangmanFigure.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000008 /* HangmanFigure.swift */; };
-		A10000009 /* BodyParts.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000009 /* BodyParts.swift */; };
 		A10000010 /* KeyboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000010 /* KeyboardView.swift */; };
 		A10000011 /* LetterButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000011 /* LetterButton.swift */; };
 		A10000012 /* WordDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000012 /* WordDisplay.swift */; };
@@ -53,8 +51,6 @@
 		A20000005 /* HomeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreen.swift; sourceTree = "<group>"; };
 		A20000006 /* GameScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScreen.swift; sourceTree = "<group>"; };
 		A20000007 /* StatsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsScreen.swift; sourceTree = "<group>"; };
-		A20000008 /* HangmanFigure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HangmanFigure.swift; sourceTree = "<group>"; };
-		A20000009 /* BodyParts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BodyParts.swift; sourceTree = "<group>"; };
 		A20000010 /* KeyboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardView.swift; sourceTree = "<group>"; };
 		A20000011 /* LetterButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LetterButton.swift; sourceTree = "<group>"; };
 		A20000012 /* WordDisplay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordDisplay.swift; sourceTree = "<group>"; };
@@ -161,8 +157,6 @@
 		A50000006 /* Components */ = {
 			isa = PBXGroup;
 			children = (
-				A20000008 /* HangmanFigure.swift */,
-				A20000009 /* BodyParts.swift */,
 				A20000010 /* KeyboardView.swift */,
 				A20000011 /* LetterButton.swift */,
 				A20000012 /* WordDisplay.swift */,
@@ -291,8 +285,6 @@
 				A10000005 /* HomeScreen.swift in Sources */,
 				A10000006 /* GameScreen.swift in Sources */,
 				A10000007 /* StatsScreen.swift in Sources */,
-				A10000008 /* HangmanFigure.swift in Sources */,
-				A10000009 /* BodyParts.swift in Sources */,
 				A10000010 /* KeyboardView.swift in Sources */,
 				A10000011 /* LetterButton.swift in Sources */,
 				A10000012 /* WordDisplay.swift in Sources */,

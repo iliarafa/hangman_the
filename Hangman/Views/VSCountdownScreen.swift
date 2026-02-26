@@ -6,6 +6,7 @@ struct VSCountdownScreen: View {
     let onComplete: () -> Void
 
     @State private var countdown = 3
+    @State private var countdownTask: Task<Void, Never>?
 
     var body: some View {
         VStack(spacing: 40) {
@@ -36,17 +37,21 @@ struct VSCountdownScreen: View {
             viewModel.startRound(word: word)
             startCountdown()
         }
+        .onDisappear {
+            countdownTask?.cancel()
+        }
     }
 
     private func startCountdown() {
-        for tick in 0..<3 {
-            DispatchQueue.main.asyncAfter(deadline: .now() + Double(tick)) {
+        countdownTask = Task { @MainActor in
+            for tick in 0..<3 {
+                try? await Task.sleep(for: .seconds(1))
+                guard !Task.isCancelled else { return }
                 withAnimation {
-                    countdown = 3 - tick
+                    countdown = 2 - tick
                 }
             }
-        }
-        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+            guard !Task.isCancelled else { return }
             onComplete()
         }
     }

@@ -10,7 +10,7 @@ struct PauseOverlayView: View {
 
     var body: some View {
         ZStack {
-            Color.black
+            Color(uiColor: .systemBackground)
                 .ignoresSafeArea()
 
             VStack(spacing: 32) {
@@ -34,6 +34,5 @@ struct PauseOverlayView: View {
                 }
             }
         }
-        .environment(\.colorScheme, .dark)
     }
 }

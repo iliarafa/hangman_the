@@ -30,7 +30,7 @@ struct ModeSelectionScreen: View {
 
             Spacer()
 
-            ASCIITitleBox("SELECT MODE", charWidth: 22)
+            ASCIITitleBox("SELECT MODE")
 
             Button {
                 guard !isFlooding else { return }
@@ -85,9 +85,11 @@ struct ModeSelectionScreen: View {
             UIView.setAnimationsEnabled(false)
             showArcade = false
             showVSMode = false
-            dismiss()
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) {
-                UIView.setAnimationsEnabled(true)
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                dismiss()
+                DispatchQueue.main.async {
+                    UIView.setAnimationsEnabled(true)
+                }
             }
         }
     }

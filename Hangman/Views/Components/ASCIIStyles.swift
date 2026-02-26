@@ -66,7 +66,7 @@ struct ASCIIDivider: View {
 struct ASCIITitleBox: View {
     let text: String
 
-    init(_ text: String, charWidth: Int = 30) {
+    init(_ text: String) {
         self.text = text
     }
 

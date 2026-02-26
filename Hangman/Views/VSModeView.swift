@@ -50,13 +50,23 @@ struct VSModeView: View {
     private func destinationView(for route: VSRoute, viewModel: VSGameViewModel) -> some View {
         switch route {
         case .wordEntry:
-            VSWordEntryScreen(viewModel: viewModel) { word in
+            VSWordEntryScreen(viewModel: viewModel, onReady: { word in
                 UIView.setAnimationsEnabled(false)
                 path.append(VSRoute.countdown(word: word))
                 DispatchQueue.main.async {
                     UIView.setAnimationsEnabled(true)
                 }
-            }
+            }, onBack: {
+                UIView.setAnimationsEnabled(false)
+                if path.isEmpty {
+                    dismiss()
+                } else {
+                    path.removeLast()
+                }
+                DispatchQueue.main.async {
+                    UIView.setAnimationsEnabled(true)
+                }
+            })
         case .countdown(let word):
             VSCountdownScreen(viewModel: viewModel, word: word) {
                 var transaction = Transaction()

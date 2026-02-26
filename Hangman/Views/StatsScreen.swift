@@ -26,7 +26,7 @@ struct StatsScreen: View {
                     Spacer()
                 }
 
-                ASCIITitleBox("STATISTICS", charWidth: 22)
+                ASCIITitleBox("STATISTICS")
                     .padding(.top, 8)
 
                 Text("\(Int(scores.winRate * 100))%")

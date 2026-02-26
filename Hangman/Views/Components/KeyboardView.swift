@@ -8,6 +8,7 @@ struct KeyboardView: View {
     private let letters: [Character] = Array("ABCDEFGHIJKLMNOPQRSTUVWXYZ")
 
     @State private var scrolledID: Character?
+    @State private var hasAppeared = false
     @State private var feedbackGenerator = UISelectionFeedbackGenerator()
 
     var body: some View {
@@ -27,12 +28,16 @@ struct KeyboardView: View {
         .scrollPosition(id: $scrolledID)
         .scrollTargetBehavior(.viewAligned)
         .onChange(of: scrolledID) {
+            guard hasAppeared else { return }
             feedbackGenerator.selectionChanged()
             AudioServicesPlaySystemSound(1104)
             feedbackGenerator.prepare()
         }
         .onAppear {
             feedbackGenerator.prepare()
+            DispatchQueue.main.async {
+                hasAppeared = true
+            }
         }
     }
 }

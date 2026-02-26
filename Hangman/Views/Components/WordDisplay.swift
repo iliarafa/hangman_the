@@ -10,21 +10,29 @@ struct WordDisplay: View {
     }
 
     var body: some View {
-        HStack(spacing: 8) {
-            ForEach(Array(displayWord.enumerated()), id: \.offset) { index, char in
-                letterBox(char: char, revealChar: revealCharAt(index))
+        GeometryReader { geo in
+            let count = max(displayWord.count, 1)
+            let totalSpacing = CGFloat(count - 1) * 8
+            let slotWidth = min(28, (geo.size.width - totalSpacing) / CGFloat(count))
+            HStack(spacing: 8) {
+                ForEach(Array(displayWord.enumerated()), id: \.offset) { index, char in
+                    letterBox(char: char, revealChar: revealCharAt(index), slotWidth: slotWidth)
+                }
             }
+            .frame(maxWidth: .infinity)
         }
+        .frame(height: 52)
     }
 
     @ViewBuilder
-    private func letterBox(char: Character?, revealChar: Character?) -> some View {
+    private func letterBox(char: Character?, revealChar: Character?, slotWidth: CGFloat = 28) -> some View {
         let displayChar = char ?? revealChar
         let isRevealedOnLose = char == nil && revealChar != nil
+        let fontSize = min(32, slotWidth * 1.14)
 
         VStack(spacing: 4) {
             Text(displayChar.map { String($0) } ?? " ")
-                .font(AppTheme.font(size: 32))
+                .font(AppTheme.font(size: fontSize))
                 .frame(minHeight: 36)
                 .foregroundStyle(.primary.opacity(
                     isRevealedOnLose ? AppTheme.tertiaryOpacity : (displayChar != nil ? AppTheme.headlineOpacity : 0)
@@ -35,7 +43,7 @@ struct WordDisplay: View {
                 .fill(.primary.opacity(AppTheme.bodyOpacity))
                 .frame(height: 2)
         }
-        .frame(width: 28)
+        .frame(width: slotWidth)
         .fixedSize(horizontal: false, vertical: true)
     }
 

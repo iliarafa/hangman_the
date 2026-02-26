@@ -24,9 +24,9 @@ struct VSFinalScreen: View {
                     .secondaryStyle()
                     .multilineTextAlignment(.center)
 
-                ASCIITitleBox("\(winner) WINS", charWidth: 24)
+                ASCIITitleBox("\(winner) WINS")
             } else {
-                ASCIITitleBox("IT'S A TIE", charWidth: 24)
+                ASCIITitleBox("IT'S A TIE")
             }
 
             Text("\(viewModel.session.round - 1) rounds played")

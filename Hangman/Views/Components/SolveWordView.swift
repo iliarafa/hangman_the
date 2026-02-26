@@ -31,7 +31,7 @@ struct SolveWordView: View {
 
                 Button {
                     let trimmed = text.trimmingCharacters(in: .whitespacesAndNewlines)
-                    guard !trimmed.isEmpty else { return }
+                    guard !trimmed.isEmpty, trimmed.count == wordLength else { return }
                     onSubmit(trimmed)
                     text = ""
                     isSolving = false

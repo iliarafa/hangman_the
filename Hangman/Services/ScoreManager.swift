@@ -2,41 +2,56 @@ import SwiftUI
 
 @Observable
 final class ScoreManager {
-    @ObservationIgnored
-    @AppStorage("hangman_wins") private var storedWins = 0
-    @ObservationIgnored
-    @AppStorage("hangman_losses") private var storedLosses = 0
-    @ObservationIgnored
-    @AppStorage("hangman_currentStreak") private var storedCurrentStreak = 0
-    @ObservationIgnored
-    @AppStorage("hangman_bestStreak") private var storedBestStreak = 0
+    private(set) var wins: Int
+    private(set) var losses: Int
+    private(set) var currentStreak: Int
+    private(set) var bestStreak: Int
+
+    private let defaults = UserDefaults.standard
+
+    init() {
+        wins = UserDefaults.standard.integer(forKey: "hangman_wins")
+        losses = UserDefaults.standard.integer(forKey: "hangman_losses")
+        currentStreak = UserDefaults.standard.integer(forKey: "hangman_currentStreak")
+        bestStreak = UserDefaults.standard.integer(forKey: "hangman_bestStreak")
+    }
 
     var scores: ScoreData {
         ScoreData(
-            wins: storedWins,
-            losses: storedLosses,
-            currentStreak: storedCurrentStreak,
-            bestStreak: storedBestStreak
+            wins: wins,
+            losses: losses,
+            currentStreak: currentStreak,
+            bestStreak: bestStreak
         )
     }
 
     func recordWin() {
-        storedWins += 1
-        storedCurrentStreak += 1
-        if storedCurrentStreak > storedBestStreak {
-            storedBestStreak = storedCurrentStreak
+        wins += 1
+        currentStreak += 1
+        if currentStreak > bestStreak {
+            bestStreak = currentStreak
         }
+        save()
     }
 
     func recordLoss() {
-        storedLosses += 1
-        storedCurrentStreak = 0
+        losses += 1
+        currentStreak = 0
+        save()
     }
 
     func resetScores() {
-        storedWins = 0
-        storedLosses = 0
-        storedCurrentStreak = 0
-        storedBestStreak = 0
+        wins = 0
+        losses = 0
+        currentStreak = 0
+        bestStreak = 0
+        save()
+    }
+
+    private func save() {
+        defaults.set(wins, forKey: "hangman_wins")
+        defaults.set(losses, forKey: "hangman_losses")
+        defaults.set(currentStreak, forKey: "hangman_currentStreak")
+        defaults.set(bestStreak, forKey: "hangman_bestStreak")
     }
 }

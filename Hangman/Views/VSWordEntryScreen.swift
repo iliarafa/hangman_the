@@ -3,12 +3,26 @@ import SwiftUI
 struct VSWordEntryScreen: View {
     @Bindable var viewModel: VSGameViewModel
     let onReady: (String) -> Void
+    let onBack: () -> Void
 
     @State private var word = ""
     @State private var errorMessage = ""
+    @State private var didSubmit = false
 
     var body: some View {
         VStack(spacing: 32) {
+            HStack {
+                Button {
+                    onBack()
+                } label: {
+                    Text("< BACK")
+                        .font(AppTheme.font(size: 16))
+                        .secondaryStyle()
+                }
+                .buttonStyle(.plain)
+                Spacer()
+            }
+
             Spacer()
             headerSection
             wordField
@@ -23,6 +37,7 @@ struct VSWordEntryScreen: View {
         .onAppear {
             word = ""
             errorMessage = ""
+            didSubmit = false
         }
     }
 
@@ -58,7 +73,9 @@ struct VSWordEntryScreen: View {
 
     private var readyButton: some View {
         Button {
+            guard !didSubmit else { return }
             if viewModel.validateWord(word) {
+                didSubmit = true
                 onReady(word)
             } else {
                 errorMessage = validationMessage
@@ -70,12 +87,6 @@ struct VSWordEntryScreen: View {
     }
 
     private var validationMessage: String {
-        let trimmed = word.trimmingCharacters(in: .whitespaces)
-        if trimmed.isEmpty { return "Please enter a word" }
-        if trimmed.count < 2 { return "Word must be at least 2 characters" }
-        if trimmed.count > 20 { return "Word must be 20 characters or less" }
-        if !trimmed.allSatisfy({ $0.isLetter }) { return "Letters only" }
-        if !WordValidator.isRealWord(trimmed) { return "Not a recognized word" }
-        return ""
+        viewModel.wordValidationError(word) ?? ""
     }
 }

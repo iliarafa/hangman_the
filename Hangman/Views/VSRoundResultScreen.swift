@@ -18,7 +18,7 @@ struct VSRoundResultScreen: View {
 
     private var scoreboard: some View {
         VStack(spacing: 24) {
-            ASCIITitleBox("SCOREBOARD", charWidth: 22)
+            ASCIITitleBox("SCOREBOARD")
 
             HStack(spacing: 32) {
                 playerScore(

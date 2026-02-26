@@ -22,11 +22,17 @@ final class VSGameViewModel {
     // MARK: - Word validation
 
     func validateWord(_ word: String) -> Bool {
+        wordValidationError(word) == nil
+    }
+
+    func wordValidationError(_ word: String) -> String? {
         let trimmed = word.trimmingCharacters(in: .whitespaces)
-        guard trimmed.count >= 2, trimmed.count <= 20 else { return false }
-        guard trimmed.allSatisfy({ $0.isLetter }) else { return false }
-        guard WordValidator.isRealWord(trimmed) else { return false }
-        return true
+        if trimmed.isEmpty { return "Please enter a word" }
+        if trimmed.count < 2 { return "Word must be at least 2 characters" }
+        if trimmed.count > 12 { return "Word must be 12 characters or less" }
+        if !trimmed.allSatisfy({ $0.isLetter }) { return "Letters only" }
+        if !WordValidator.isRealWord(trimmed) { return "Not a recognized word" }
+        return nil
     }
 
     // MARK: - Round lifecycle
@@ -58,15 +64,17 @@ final class VSGameViewModel {
 
     func guessWord(_ word: String) {
         guard game.status == .playing else { return }
+        let previousCount = game.wrongGuessCount
         let isCorrect = game.guessWord(word)
         if isCorrect {
             game.status = .won
-            soundManager.play(.correct)
             soundManager.play(.win)
-        } else {
-            game.status = .lost
+        } else if game.wrongGuessCount > previousCount {
             soundManager.play(.wrong)
-            soundManager.play(.lose)
+            if game.isLost {
+                game.status = .lost
+                soundManager.play(.lose)
+            }
         }
     }
 

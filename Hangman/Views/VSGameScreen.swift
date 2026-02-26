@@ -5,6 +5,7 @@ struct VSGameScreen: View {
     let onContinue: () -> Void
     @Environment(\.dismiss) private var dismiss
     @State private var showPauseMenu = false
+    @State private var didContinue = false
 
     var body: some View {
         VStack(spacing: 16) {
@@ -121,6 +122,8 @@ struct VSGameScreen: View {
             }
 
             Button {
+                guard !didContinue else { return }
+                didContinue = true
                 viewModel.endRound()
                 onContinue()
             } label: {

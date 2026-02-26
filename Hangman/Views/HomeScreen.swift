@@ -33,7 +33,7 @@ struct HomeScreen: View {
     }
 
     private var titleSection: some View {
-        ASCIITitleBox("HANGMAN (THE)", charWidth: 26)
+        ASCIITitleBox("HANGMAN (THE)")
     }
 
     private var playButton: some View {

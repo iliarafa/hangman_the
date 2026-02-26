@@ -40,7 +40,7 @@ struct VSNameEntryScreen: View {
 
     private var titleSection: some View {
         VStack(spacing: 8) {
-            ASCIITitleBox("VS MODE", charWidth: 20)
+            ASCIITitleBox("VS MODE")
 
             Text("Enter player names")
                 .font(AppTheme.font(size: 16))
@@ -57,6 +57,12 @@ struct VSNameEntryScreen: View {
 
     private func nameField(placeholder: String, text: Binding<String>) -> some View {
         ASCIITextField(placeholder: placeholder, text: text, slotCount: 12)
+            .onChange(of: text.wrappedValue) { _, newValue in
+                let filtered = String(newValue.filter { $0.isLetter || $0 == " " })
+                if filtered != newValue {
+                    text.wrappedValue = filtered
+                }
+            }
     }
 
     private var canStart: Bool {

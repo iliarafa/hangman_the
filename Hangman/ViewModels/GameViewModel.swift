@@ -14,7 +14,9 @@ final class GameViewModel {
         self.wordService = wordService
         self.soundManager = soundManager
         self.scoreManager = scoreManager
-        Task { await self.startNewGame() }
+        Task { [weak self] in
+            await self?.startNewGame()
+        }
     }
 
     var targetWord: String { game.targetWord }
@@ -26,6 +28,7 @@ final class GameViewModel {
     var scores: ScoreData { scoreManager.scores }
 
     func startNewGame() async {
+        guard !isLoading else { return }
         isLoading = true
         let word = await wordService.fetchWord()
         game = GameState(targetWord: word)
@@ -57,13 +60,13 @@ final class GameViewModel {
 
     func guessWord(_ word: String) {
         guard game.status == .playing else { return }
+        let previousCount = game.wrongGuessCount
         let isCorrect = game.guessWord(word)
         if isCorrect {
             game.status = .won
             scoreManager.recordWin()
-            soundManager.play(.correct)
             soundManager.play(.win)
-        } else {
+        } else if game.wrongGuessCount > previousCount {
             soundManager.play(.wrong)
             if game.isLost {
                 game.status = .lost
