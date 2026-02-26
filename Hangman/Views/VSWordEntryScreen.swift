@@ -44,12 +44,7 @@ struct VSWordEntryScreen: View {
     }
 
     private var wordField: some View {
-        SecureField("Secret word", text: $word)
-            .font(AppTheme.font(size: 20))
-            .textInputAutocapitalization(.never)
-            .autocorrectionDisabled()
-            .asciiTextField()
-            .padding(.horizontal, 20)
+        ASCIITextField(placeholder: "Secret word", text: $word, slotCount: 12)
             .onChange(of: word) { _, _ in
                 errorMessage = ""
             }
