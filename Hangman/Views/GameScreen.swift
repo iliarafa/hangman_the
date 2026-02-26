@@ -2,8 +2,10 @@ import SwiftUI
 
 struct GameScreen: View {
     @Bindable var viewModel: GameViewModel
+    var playEntryTransition: Bool = false
     @Environment(\.dismiss) private var dismiss
     @State private var showPauseMenu = false
+    @State private var showRetreat = false
 
     var body: some View {
         VStack(spacing: 16) {
@@ -46,6 +48,18 @@ struct GameScreen: View {
                         UIView.setAnimationsEnabled(true)
                     }
                 }
+            }
+        }
+        .overlay {
+            if showRetreat {
+                PixelFloodView(phase: .retreating) {
+                    showRetreat = false
+                }
+            }
+        }
+        .onAppear {
+            if playEntryTransition {
+                showRetreat = true
             }
         }
     }

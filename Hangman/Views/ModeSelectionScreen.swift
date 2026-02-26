@@ -8,6 +8,7 @@ struct ModeSelectionScreen: View {
     @Environment(\.dismiss) private var dismiss
     @State private var showVSMode = false
     @State private var showArcade = false
+    @State private var isFlooding = false
 
     var body: some View {
         VStack(spacing: 32) {
@@ -32,11 +33,8 @@ struct ModeSelectionScreen: View {
             ASCIITitleBox("SELECT MODE", charWidth: 22)
 
             Button {
-                UIView.setAnimationsEnabled(false)
-                showArcade = true
-                DispatchQueue.main.async {
-                    UIView.setAnimationsEnabled(true)
-                }
+                guard !isFlooding else { return }
+                isFlooding = true
             } label: {
                 Text("ARCADE")
                     .asciiBracket(.primary, fontSize: 24)
@@ -61,13 +59,26 @@ struct ModeSelectionScreen: View {
         }
         .padding()
         .navigationBarHidden(true)
+        .overlay {
+            if isFlooding {
+                PixelFloodView(phase: .flooding) {
+                    UIView.setAnimationsEnabled(false)
+                    showArcade = true
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) {
+                        UIView.setAnimationsEnabled(true)
+                    }
+                    isFlooding = false
+                }
+            }
+        }
         .navigationDestination(isPresented: $showArcade) {
             GameScreen(
                 viewModel: GameViewModel(
                     wordService: wordService,
                     soundManager: soundManager,
                     scoreManager: scoreManager
-                )
+                ),
+                playEntryTransition: true
             )
         }
         .onReceive(NotificationCenter.default.publisher(for: .navigateToHome)) { _ in

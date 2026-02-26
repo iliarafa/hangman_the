@@ -10,6 +10,7 @@
 		A10000031 /* VT323-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A20000031 /* VT323-Regular.ttf */; };
 		A10000032 /* AppTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000034 /* AppTheme.swift */; };
 		A10000081 /* PauseOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000081 /* PauseOverlayView.swift */; };
+		A10000082 /* PixelFloodView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000082 /* PixelFloodView.swift */; };
 		A10000001 /* HangmanApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000001 /* HangmanApp.swift */; };
 		A10000002 /* GameState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000002 /* GameState.swift */; };
 		A10000003 /* ScoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000003 /* ScoreData.swift */; };
@@ -79,6 +80,7 @@
 		A20000033 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A20000034 /* AppTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTheme.swift; sourceTree = "<group>"; };
 		A20000081 /* PauseOverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PauseOverlayView.swift; sourceTree = "<group>"; };
+		A20000082 /* PixelFloodView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PixelFloodView.swift; sourceTree = "<group>"; };
 		A30000001 /* Hangman.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Hangman.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -168,6 +170,7 @@
 				A20000030 /* ASCIIStyles.swift */,
 				A20000034 /* AppTheme.swift */,
 				A20000081 /* PauseOverlayView.swift */,
+				A20000082 /* PixelFloodView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -309,6 +312,7 @@
 				A10000030 /* ASCIIStyles.swift in Sources */,
 				A10000032 /* AppTheme.swift in Sources */,
 				A10000081 /* PauseOverlayView.swift in Sources */,
+				A10000082 /* PixelFloodView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
