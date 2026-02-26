@@ -14,12 +14,13 @@ struct VSModeView: View {
     @Environment(\.dismiss) private var dismiss
     @State private var path = NavigationPath()
     @State private var viewModel: VSGameViewModel?
+    @State private var startTrigger = 0
 
     var body: some View {
         NavigationStack(path: $path) {
             VSNameEntryScreen(soundManager: soundManager) { vm in
                 viewModel = vm
-                path.append(VSRoute.wordEntry)
+                startTrigger += 1
             }
             .navigationDestination(for: VSRoute.self) { route in
                 if let viewModel {
@@ -28,6 +29,9 @@ struct VSModeView: View {
             }
         }
         .tint(.primary)
+        .onChange(of: startTrigger) {
+            path.append(VSRoute.wordEntry)
+        }
     }
 
     @ViewBuilder

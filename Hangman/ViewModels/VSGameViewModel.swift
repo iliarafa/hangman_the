@@ -1,5 +1,6 @@
 import SwiftUI
 
+@MainActor
 @Observable
 final class VSGameViewModel {
     private(set) var session: VSSession
