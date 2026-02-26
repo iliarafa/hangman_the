@@ -84,8 +84,9 @@ struct ModeSelectionScreen: View {
         .onReceive(NotificationCenter.default.publisher(for: .navigateToHome)) { _ in
             UIView.setAnimationsEnabled(false)
             showArcade = false
+            showVSMode = false
             dismiss()
-            DispatchQueue.main.async {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) {
                 UIView.setAnimationsEnabled(true)
             }
         }
