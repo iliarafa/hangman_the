@@ -30,9 +30,9 @@ struct PixelFloodView: View {
                         let visible: Bool
                         switch phase {
                         case .flooding:
-                            visible = progress * 1.3 > threshold
+                            visible = progress * 1.1 > threshold
                         case .retreating:
-                            visible = progress * 1.3 <= threshold
+                            visible = progress * 1.1 <= threshold
                         }
 
                         guard visible else { continue }
