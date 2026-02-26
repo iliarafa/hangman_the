@@ -1,9 +1,10 @@
 import SwiftUI
 
+@MainActor
 @Observable
 final class GameViewModel {
     private(set) var game = GameState()
-    private(set) var isLoading = true
+    private(set) var isLoading = false
 
     private let wordService: WordService
     private let soundManager: SoundManager
@@ -13,6 +14,7 @@ final class GameViewModel {
         self.wordService = wordService
         self.soundManager = soundManager
         self.scoreManager = scoreManager
+        Task { await self.startNewGame() }
     }
 
     var targetWord: String { game.targetWord }

@@ -19,9 +19,6 @@ struct GameScreen: View {
         .padding(.horizontal)
         .padding(.bottom, 8)
         .navigationBarBackButtonHidden(true)
-        .task {
-            await viewModel.startNewGame()
-        }
     }
 
     private var header: some View {
