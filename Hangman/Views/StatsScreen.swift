@@ -3,11 +3,29 @@ import SwiftUI
 struct StatsScreen: View {
     let scoreManager: ScoreManager
 
+    @Environment(\.dismiss) private var dismiss
+
     var body: some View {
         let scores = scoreManager.scores
 
         ScrollView {
             VStack(spacing: 24) {
+                HStack {
+                    Button {
+                        UIView.setAnimationsEnabled(false)
+                        dismiss()
+                        DispatchQueue.main.async {
+                            UIView.setAnimationsEnabled(true)
+                        }
+                    } label: {
+                        Text("< BACK")
+                            .font(AppTheme.font(size: 18))
+                            .secondaryStyle()
+                    }
+                    .buttonStyle(.plain)
+                    Spacer()
+                }
+
                 ASCIITitleBox("STATISTICS", charWidth: 22)
                     .padding(.top, 8)
 
@@ -33,6 +51,7 @@ struct StatsScreen: View {
             }
         }
         .navigationBarTitleDisplayMode(.inline)
+        .navigationBarBackButtonHidden(true)
     }
 
     private func statRow(title: String, value: String) -> some View {

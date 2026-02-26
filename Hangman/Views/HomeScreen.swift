@@ -7,6 +7,7 @@ struct HomeScreen: View {
 
     @AppStorage("hangman_isDarkMode") private var isDarkMode = true
     @State private var showModeSelection = false
+    @State private var showStats = false
 
     var body: some View {
         VStack(spacing: 32) {
@@ -25,6 +26,9 @@ struct HomeScreen: View {
                 wordService: wordService,
                 soundManager: soundManager
             )
+        }
+        .navigationDestination(isPresented: $showStats) {
+            StatsScreen(scoreManager: scoreManager)
         }
     }
 
@@ -60,8 +64,12 @@ struct HomeScreen: View {
     }
 
     private var navLinks: some View {
-        NavigationLink {
-            StatsScreen(scoreManager: scoreManager)
+        Button {
+            UIView.setAnimationsEnabled(false)
+            showStats = true
+            DispatchQueue.main.async {
+                UIView.setAnimationsEnabled(true)
+            }
         } label: {
             Text("Statistics")
                 .asciiBracket(.secondary, fontSize: 16)
