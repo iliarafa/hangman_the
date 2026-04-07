@@ -1,15 +1,22 @@
 # HANGMAN (THE)
 
-A minimalist Hangman word game for iPhone. Guess letters to save the figure before it's too late. Features Arcade mode with random words, VS Mode for local two-player challenges, animated hangman figure, sound effects, confetti celebrations, and detailed win/streak/game statistics. Built with SwiftUI.
+A retro-styled Hangman word game for iPhone. Guess letters to save the figure before it's too late. Features Arcade mode with difficulty levels and hints, VS Mode for local two-player challenges with configurable rounds, animated ASCII hangman figure, sound effects, confetti celebrations, game history, and detailed statistics. Built with SwiftUI using the VT323 pixel font.
 
 ## Features
 
 - **Arcade Mode** — guess randomly fetched words before running out of attempts
+- **Difficulty Levels** — Easy (8 guesses), Normal (6), or Hard (4)
+- **Hints** — reveal a letter when you're stuck (available while 2+ letters remain)
 - **VS Mode** — two players take turns setting words for each other
-- **Animated Hangman** — body parts drawn progressively with each wrong guess
-- **Sound Effects** — audio feedback for correct/wrong guesses and game outcomes
+- **Round Limits** — configure VS matches as best-of-3, 5, 7, or unlimited
+- **Animated Hangman** — ASCII body parts drawn progressively with each wrong guess
+- **Sound Effects** — audio feedback for correct/wrong guesses and game outcomes, with mute toggle
 - **Confetti** — celebration animation on wins
-- **Statistics** — track wins, losses, streaks, and total games played
+- **Statistics** — track wins, losses, streaks, and win rate
+- **Game History** — review your last 50 games with words, outcomes, and dates
+- **Offline Support** — falls back to bundled word list when offline, with indicator
+- **Accessibility** — VoiceOver labels, Dynamic Type support, reduced motion support
+- **Dark/Light Mode** — toggle between themes
 
 ## Requirements
 
@@ -20,12 +27,16 @@ A minimalist Hangman word game for iPhone. Guess letters to save the figure befo
 
 ```
 Hangman/
-├── Models/          # GameState, ScoreData, VSSession
+├── Models/          # GameState, ScoreData, VSSession, GameRecord, Difficulty
 ├── ViewModels/      # GameViewModel, VSGameViewModel
-├── Views/           # HomeScreen, ModeSelectionScreen, GameScreen, StatsScreen, VS screens
-│   └── Components/  # HangmanFigure, KeyboardView, LetterButton, WordDisplay, ConfettiView
-├── Services/        # WordService, SoundManager, ScoreManager
-└── Resources/       # Fallback word list
+├── Views/           # HomeScreen, ModeSelectionScreen, GameScreen, StatsScreen,
+│   │                  HistoryScreen, VS screens (6 screens)
+│   └── Components/  # ASCIIHangman, KeyboardView, LetterButton, WordDisplay,
+│                      ConfettiView, PixelFloodView, SolveWordView, PauseOverlayView,
+│                      AppTheme, ASCIIStyles
+├── Services/        # WordService, SoundManager, ScoreManager, WordValidator
+└── Resources/       # Fallback word list, VT323 font
+HangmanTests/        # 43 unit tests (Swift Testing)
 ```
 
 ## Getting Started
@@ -33,3 +44,12 @@ Hangman/
 1. Clone the repo
 2. Open `Hangman.xcodeproj` in Xcode
 3. Build and run on a simulator or device
+
+## Running Tests
+
+```bash
+xcodebuild test -project Hangman.xcodeproj -scheme Hangman \
+  -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 16'
+```
+
+43 tests across 3 suites: `GameStateTests`, `VSSessionTests`, `ScoreManagerTests`.
