@@ -8,10 +8,17 @@ enum Setter {
 struct VSSession {
     var player1Name: String
     var player2Name: String
+    let totalRounds: Int
     var player1Score: Int = 0
     var player2Score: Int = 0
     var round: Int = 1
     var currentSetter: Setter = .player1
+
+    init(player1Name: String, player2Name: String, totalRounds: Int = 0) {
+        self.player1Name = player1Name
+        self.player2Name = player2Name
+        self.totalRounds = totalRounds
+    }
 
     var currentGuesser: Setter {
         currentSetter == .player1 ? .player2 : .player1
@@ -39,6 +46,10 @@ struct VSSession {
         }
         currentSetter = currentSetter == .player1 ? .player2 : .player1
         round += 1
+    }
+
+    var isComplete: Bool {
+        totalRounds > 0 && (round - 1) >= totalRounds
     }
 
     var winnerName: String? {

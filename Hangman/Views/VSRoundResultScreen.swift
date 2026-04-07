@@ -36,7 +36,7 @@ struct VSRoundResultScreen: View {
                 )
             }
 
-            Text("Round \(viewModel.session.round - 1) complete")
+            Text(roundLabel)
                 .font(AppTheme.font(size: 16))
                 .secondaryStyle()
         }
@@ -56,16 +56,31 @@ struct VSRoundResultScreen: View {
         .frame(minWidth: 80)
     }
 
+    private var roundLabel: String {
+        let completed = viewModel.session.round - 1
+        if viewModel.session.totalRounds > 0 {
+            return "Round \(completed) of \(viewModel.session.totalRounds)"
+        }
+        return "Round \(completed) complete"
+    }
+
     private var actionButtons: some View {
         VStack(spacing: 16) {
-            Button(action: onNextRound) {
-                Text("NEXT ROUND")
-                    .asciiBracket(.primary, fontSize: 20)
-            }
+            if viewModel.session.isComplete {
+                Button(action: onEndGame) {
+                    Text("SEE RESULTS")
+                        .asciiBracket(.primary, fontSize: 20)
+                }
+            } else {
+                Button(action: onNextRound) {
+                    Text("NEXT ROUND")
+                        .asciiBracket(.primary, fontSize: 20)
+                }
 
-            Button(action: onEndGame) {
-                Text("End Game")
-                    .asciiBracket(.secondary, fontSize: 16)
+                Button(action: onEndGame) {
+                    Text("End Game")
+                        .asciiBracket(.secondary, fontSize: 16)
+                }
             }
         }
     }

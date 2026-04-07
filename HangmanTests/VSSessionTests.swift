@@ -100,4 +100,23 @@ struct VSSessionTests {
 
         #expect(session.winnerName == "Bob")
     }
+
+    // MARK: - Round Limit
+
+    @Test func isCompleteAfterTotalRounds() {
+        var session = VSSession(player1Name: "Alice", player2Name: "Bob", totalRounds: 2)
+        #expect(!session.isComplete)
+        session.endRound(guesserWon: true)
+        #expect(!session.isComplete)
+        session.endRound(guesserWon: false)
+        #expect(session.isComplete)
+    }
+
+    @Test func unlimitedRoundsNeverComplete() {
+        var session = VSSession(player1Name: "Alice", player2Name: "Bob", totalRounds: 0)
+        for _ in 0..<10 {
+            session.endRound(guesserWon: true)
+        }
+        #expect(!session.isComplete)
+    }
 }

@@ -5,6 +5,7 @@ struct StatsScreen: View {
 
     @Environment(\.dismiss) private var dismiss
     @State private var showResetConfirmation = false
+    @State private var showHistory = false
 
     var body: some View {
         let scores = scoreManager.scores
@@ -44,6 +45,13 @@ struct StatsScreen: View {
                 }
                 .padding(.horizontal)
 
+                Button {
+                    withoutNavAnimation { showHistory = true }
+                } label: {
+                    Text("GAME HISTORY")
+                        .asciiBracket(.body, fontSize: 16)
+                }
+
                 ASCIIDivider()
                     .padding(.horizontal)
 
@@ -59,6 +67,9 @@ struct StatsScreen: View {
         }
         .navigationBarTitleDisplayMode(.inline)
         .navigationBarBackButtonHidden(true)
+        .navigationDestination(isPresented: $showHistory) {
+            HistoryScreen(scoreManager: scoreManager)
+        }
         .alert("Reset Statistics?", isPresented: $showResetConfirmation) {
             Button("Reset", role: .destructive) {
                 scoreManager.resetScores()

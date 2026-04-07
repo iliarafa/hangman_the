@@ -6,7 +6,10 @@ struct VSNameEntryScreen: View {
 
     @State private var player1Name = ""
     @State private var player2Name = ""
+    @State private var selectedRounds = 0 // 0 = unlimited
     @Environment(\.dismiss) private var dismiss
+
+    private let roundOptions = [0, 3, 5, 7]
 
     var body: some View {
         VStack(spacing: 0) {
@@ -26,6 +29,8 @@ struct VSNameEntryScreen: View {
             titleSection
             Spacer()
             nameFields
+            Spacer()
+            roundPicker
             Spacer()
             startButton
             Spacer()
@@ -61,6 +66,29 @@ struct VSNameEntryScreen: View {
             }
     }
 
+    private var roundPicker: some View {
+        VStack(spacing: 8) {
+            Text("Rounds")
+                .font(AppTheme.font(size: 16))
+                .secondaryStyle()
+
+            HStack(spacing: 16) {
+                ForEach(roundOptions, id: \.self) { count in
+                    Button {
+                        selectedRounds = count
+                    } label: {
+                        Text(count == 0 ? "∞" : "\(count)")
+                            .font(AppTheme.font(size: 20))
+                            .foregroundStyle(.primary.opacity(
+                                selectedRounds == count ? AppTheme.headlineOpacity : AppTheme.tertiaryOpacity
+                            ))
+                    }
+                    .buttonStyle(.plain)
+                }
+            }
+        }
+    }
+
     private var canStart: Bool {
         !player1Name.trimmingCharacters(in: .whitespaces).isEmpty &&
         !player2Name.trimmingCharacters(in: .whitespaces).isEmpty
@@ -71,7 +99,8 @@ struct VSNameEntryScreen: View {
             let vm = VSGameViewModel(
                 player1: player1Name.trimmingCharacters(in: .whitespaces),
                 player2: player2Name.trimmingCharacters(in: .whitespaces),
-                soundManager: soundManager
+                soundManager: soundManager,
+                totalRounds: selectedRounds
             )
             onStart(vm)
         } label: {

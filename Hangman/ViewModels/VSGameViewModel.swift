@@ -7,8 +7,8 @@ final class VSGameViewModel {
     private(set) var game = GameState()
     private let soundManager: SoundManager
 
-    init(player1: String, player2: String, soundManager: SoundManager) {
-        self.session = VSSession(player1Name: player1, player2Name: player2)
+    init(player1: String, player2: String, soundManager: SoundManager, totalRounds: Int = 0) {
+        self.session = VSSession(player1Name: player1, player2Name: player2, totalRounds: totalRounds)
         self.soundManager = soundManager
     }
 

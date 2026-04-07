@@ -60,6 +60,21 @@ struct GameState {
         wrongGuessCount >= maxWrongGuesses
     }
 
+    var hintsRemaining: Int {
+        let unrevealed = Set(targetWord.uppercased()).subtracting(guessedLetters)
+        // Can't hint if it would reveal the last letter (that's winning, not hinting)
+        return max(0, unrevealed.count - 1)
+    }
+
+    mutating func useHint() -> Character? {
+        let unrevealed = Array(Set(targetWord.uppercased()).subtracting(guessedLetters))
+        // Need at least 2 unrevealed letters (hint one, leave one to guess)
+        guard unrevealed.count > 1, status == .playing else { return nil }
+        let letter = unrevealed.randomElement()!
+        guessedLetters.insert(letter)
+        return letter
+    }
+
     mutating func guessWord(_ word: String) -> Bool {
         let cleaned = word.uppercased().trimmingCharacters(in: .whitespacesAndNewlines)
         guard !cleaned.isEmpty, status == .playing else { return false }

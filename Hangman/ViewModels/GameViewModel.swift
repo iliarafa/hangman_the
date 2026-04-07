@@ -5,6 +5,7 @@ import SwiftUI
 final class GameViewModel {
     private(set) var game: GameState
     private(set) var isLoading = false
+    private(set) var isOffline = false
     let difficulty: Difficulty
 
     private let wordService: WordService
@@ -29,12 +30,14 @@ final class GameViewModel {
     var displayWord: [Character?] { game.displayWord }
     var gameStatus: GameStatus { game.status }
     var scores: ScoreData { scoreManager.scores }
+    var hintsRemaining: Int { game.hintsRemaining }
 
     func startNewGame() async {
         guard !isLoading else { return }
         isLoading = true
-        let word = await wordService.fetchWord()
-        game = GameState(targetWord: word, maxWrongGuesses: difficulty.maxWrongGuesses)
+        let result = await wordService.fetchWordResult()
+        game = GameState(targetWord: result.word, maxWrongGuesses: difficulty.maxWrongGuesses)
+        isOffline = result.isOffline
         isLoading = false
     }
 
@@ -49,6 +52,7 @@ final class GameViewModel {
             if game.isWon {
                 game.status = .won
                 scoreManager.recordWin()
+                recordGame(won: true)
                 soundManager.play(.win)
             }
         } else {
@@ -56,6 +60,7 @@ final class GameViewModel {
             if game.isLost {
                 game.status = .lost
                 scoreManager.recordLoss()
+                recordGame(won: false)
                 soundManager.play(.lose)
             }
         }
@@ -68,14 +73,36 @@ final class GameViewModel {
         if isCorrect {
             game.status = .won
             scoreManager.recordWin()
+            recordGame(won: true)
             soundManager.play(.win)
         } else if game.wrongGuessCount > previousCount {
             soundManager.play(.wrong)
             if game.isLost {
                 game.status = .lost
                 scoreManager.recordLoss()
+                recordGame(won: false)
                 soundManager.play(.lose)
             }
+        }
+    }
+
+    private func recordGame(won: Bool) {
+        scoreManager.recordGame(GameRecord(
+            word: game.targetWord,
+            won: won,
+            wrongGuessCount: game.wrongGuessCount,
+            mode: .arcade
+        ))
+    }
+
+    func useHint() {
+        guard let _ = game.useHint() else { return }
+        soundManager.play(.correct)
+        if game.isWon {
+            game.status = .won
+            scoreManager.recordWin()
+            recordGame(won: true)
+            soundManager.play(.win)
         }
     }
 

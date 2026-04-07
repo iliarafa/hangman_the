@@ -1,5 +1,10 @@
 import Foundation
 
+struct WordResult {
+    let word: String
+    let isOffline: Bool
+}
+
 actor WordService {
     private var fallbackWords: [String]
 
@@ -15,11 +20,16 @@ actor WordService {
     }
 
     func fetchWord() async -> String {
+        let result = await fetchWordResult()
+        return result.word
+    }
+
+    func fetchWordResult() async -> WordResult {
         let wordLength = Int.random(in: 4...10)
         let urlString = "https://random-word-api.vercel.app/api?words=1&length=\(wordLength)"
 
         guard let url = URL(string: urlString) else {
-            return randomFallbackWord()
+            return WordResult(word: randomFallbackWord(), isOffline: true)
         }
 
         do {
@@ -32,11 +42,11 @@ actor WordService {
                   let word = words.first,
                   !word.isEmpty,
                   word.allSatisfy({ $0.isLetter }) else {
-                return randomFallbackWord()
+                return WordResult(word: randomFallbackWord(), isOffline: true)
             }
-            return word.uppercased()
+            return WordResult(word: word.uppercased(), isOffline: false)
         } catch {
-            return randomFallbackWord()
+            return WordResult(word: randomFallbackWord(), isOffline: true)
         }
     }
 

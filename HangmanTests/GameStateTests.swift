@@ -148,4 +148,47 @@ struct GameStateTests {
         #expect(result == true)
         #expect(game.isWon)
     }
+
+    // MARK: - Hints
+
+    @Test func hintRevealsOneLetter() {
+        var game = GameState()
+        game.targetWord = "CAT"
+        let before = game.correctGuesses.count
+        let letter = game.useHint()
+        #expect(letter != nil)
+        #expect(game.correctGuesses.count == before + 1)
+    }
+
+    @Test func hintNotAvailableWithOnlyOneLetterLeft() {
+        var game = GameState()
+        game.targetWord = "CAT"
+        game.guessedLetters = ["C", "A"] // only T left
+        #expect(game.hintsRemaining == 0)
+        #expect(game.useHint() == nil)
+    }
+
+    @Test func hintNotAvailableWhenNotPlaying() {
+        var game = GameState()
+        game.targetWord = "CAT"
+        game.status = .won
+        #expect(game.useHint() == nil)
+    }
+
+    @Test func hintsRemainingCountsCorrectly() {
+        var game = GameState()
+        game.targetWord = "CAT" // 3 unique letters
+        #expect(game.hintsRemaining == 2) // can hint 2, must guess last one
+        _ = game.useHint()
+        #expect(game.hintsRemaining == 1)
+    }
+
+    // MARK: - Difficulty
+
+    @Test func customMaxWrongGuesses() {
+        var game = GameState(targetWord: "CAT", maxWrongGuesses: 4)
+        game.guessedLetters = ["X", "Y", "Z", "W"]
+        #expect(game.isLost)
+        #expect(game.wrongGuessCount == 4)
+    }
 }

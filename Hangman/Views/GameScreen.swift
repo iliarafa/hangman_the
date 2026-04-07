@@ -23,10 +23,23 @@ struct GameScreen: View {
                 )
                 .disabled(viewModel.gameStatus != .playing || viewModel.isLoading)
 
-                SolveWordView(
-                    wordLength: viewModel.targetWord.count,
-                    onSubmit: { viewModel.guessWord($0) }
-                )
+                HStack(spacing: 16) {
+                    SolveWordView(
+                        wordLength: viewModel.targetWord.count,
+                        onSubmit: { viewModel.guessWord($0) }
+                    )
+
+                    Button {
+                        viewModel.useHint()
+                    } label: {
+                        Text("HINT")
+                            .asciiBracket(.secondary, fontSize: 16)
+                            .opacity(viewModel.hintsRemaining > 0 ? 1 : 0.3)
+                    }
+                    .disabled(viewModel.hintsRemaining == 0)
+                    .accessibilityLabel("Hint")
+                    .accessibilityHint("Reveals one letter")
+                }
                 .disabled(viewModel.gameStatus != .playing || viewModel.isLoading)
             } else {
                 gameResult
@@ -67,10 +80,18 @@ struct GameScreen: View {
 
     private var header: some View {
         ZStack {
-            Text("\(viewModel.wrongGuessCount)/\(viewModel.difficulty.maxWrongGuesses)")
-                .font(AppTheme.font(size: 22))
-                .bodyStyle()
-                .accessibilityLabel("\(viewModel.wrongGuessCount) of \(viewModel.difficulty.maxWrongGuesses) wrong guesses")
+            VStack(spacing: 2) {
+                Text("\(viewModel.wrongGuessCount)/\(viewModel.difficulty.maxWrongGuesses)")
+                    .font(AppTheme.font(size: 22))
+                    .bodyStyle()
+                    .accessibilityLabel("\(viewModel.wrongGuessCount) of \(viewModel.difficulty.maxWrongGuesses) wrong guesses")
+
+                if viewModel.isOffline {
+                    Text("OFFLINE")
+                        .font(AppTheme.font(size: 12))
+                        .tertiaryStyle()
+                }
+            }
 
             HStack {
                 Button {
