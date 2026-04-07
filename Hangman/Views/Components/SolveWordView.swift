@@ -42,6 +42,7 @@ struct SolveWordView: View {
                         .padding(10)
                         .background(.primary)
                 }
+                .accessibilityLabel("Submit guess")
 
                 Button {
                     text = ""
@@ -52,6 +53,7 @@ struct SolveWordView: View {
                         .secondaryStyle()
                         .padding(10)
                 }
+                .accessibilityLabel("Cancel")
             }
             .onAppear { isFocused = true }
         } else {

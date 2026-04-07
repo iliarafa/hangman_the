@@ -6,12 +6,23 @@ struct PixelFloodView: View {
     let onComplete: () -> Void
 
     @Environment(\.colorScheme) private var colorScheme
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
     @State private var startTime: Date = .now
 
     private let blockSize: CGFloat = 4
     private let duration: TimeInterval = 0.45
 
     var body: some View {
+        if reduceMotion {
+            Color.clear
+                .ignoresSafeArea()
+                .onAppear { onComplete() }
+        } else {
+            animatedContent
+        }
+    }
+
+    private var animatedContent: some View {
         TimelineView(.animation) { timeline in
             Canvas { context, size in
                 let elapsed = timeline.date.timeIntervalSince(startTime)
@@ -50,6 +61,7 @@ struct PixelFloodView: View {
         }
         .ignoresSafeArea()
         .allowsHitTesting(false)
+        .accessibilityHidden(true)
         .task {
             try? await Task.sleep(for: .seconds(duration + 0.02))
             onComplete()

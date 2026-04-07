@@ -22,6 +22,15 @@ struct WordDisplay: View {
             .frame(maxWidth: .infinity)
         }
         .frame(height: 52)
+        .accessibilityElement(children: .ignore)
+        .accessibilityLabel(accessibilityDescription)
+    }
+
+    private var accessibilityDescription: String {
+        let letters = displayWord.map { char in
+            char.map(String.init) ?? "blank"
+        }
+        return "Word: " + letters.joined(separator: ", ")
     }
 
     @ViewBuilder

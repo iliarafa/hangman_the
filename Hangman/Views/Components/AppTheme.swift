@@ -30,7 +30,7 @@ enum AppTheme {
     // MARK: - Font Constructors
 
     static func font(size: CGFloat) -> Font {
-        .custom(fontName, size: size)
+        .custom(fontName, size: size, relativeTo: .body)
     }
 }
 
@@ -57,7 +57,7 @@ func withoutNavAnimation(restoreDelay: TimeInterval = 0, _ body: () -> Void) {
 extension View {
     /// Apply VT323 font at a given size.
     func vt323(_ size: CGFloat) -> some View {
-        self.font(.custom(AppTheme.fontName, size: size))
+        self.font(.custom(AppTheme.fontName, size: size, relativeTo: .body))
     }
 
     /// Apply headline-level grayscale (full brightness).

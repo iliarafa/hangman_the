@@ -14,10 +14,19 @@ struct ConfettiPiece: Identifiable {
 struct ConfettiView: View {
     @State private var pieces: [ConfettiPiece] = []
     @State private var animate = false
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
 
     let colors: [Color] = [.red, .blue, .green, .yellow, .purple, .orange, .pink, .mint]
 
     var body: some View {
+        if reduceMotion {
+            EmptyView()
+        } else {
+            animatedContent
+        }
+    }
+
+    private var animatedContent: some View {
         TimelineView(.animation) { timeline in
             Canvas { context, size in
                 let elapsed = animate
@@ -52,6 +61,7 @@ struct ConfettiView: View {
             }
         }
         .allowsHitTesting(false)
+        .accessibilityHidden(true)
         .onAppear {
             pieces = (0..<60).map { _ in
                 ConfettiPiece(

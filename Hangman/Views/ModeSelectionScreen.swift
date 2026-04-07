@@ -9,6 +9,7 @@ struct ModeSelectionScreen: View {
     @State private var showVSMode = false
     @State private var showArcade = false
     @State private var isFlooding = false
+    @State private var difficulty: Difficulty = .normal
 
     var body: some View {
         VStack(spacing: 32) {
@@ -34,6 +35,21 @@ struct ModeSelectionScreen: View {
             } label: {
                 Text("ARCADE")
                     .asciiBracket(.primary, fontSize: 24)
+            }
+
+            HStack(spacing: 16) {
+                ForEach(Difficulty.allCases, id: \.self) { level in
+                    Button {
+                        difficulty = level
+                    } label: {
+                        Text(level.displayName)
+                            .font(AppTheme.font(size: 16))
+                            .foregroundStyle(.primary.opacity(
+                                difficulty == level ? AppTheme.headlineOpacity : AppTheme.tertiaryOpacity
+                            ))
+                    }
+                    .buttonStyle(.plain)
+                }
             }
 
             Button {
@@ -66,7 +82,8 @@ struct ModeSelectionScreen: View {
                 viewModel: GameViewModel(
                     wordService: wordService,
                     soundManager: soundManager,
-                    scoreManager: scoreManager
+                    scoreManager: scoreManager,
+                    difficulty: difficulty
                 ),
                 playEntryTransition: true
             )

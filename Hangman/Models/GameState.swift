@@ -6,13 +6,33 @@ enum GameStatus: Equatable {
     case lost
 }
 
+enum Difficulty: String, CaseIterable {
+    case easy
+    case normal
+    case hard
+
+    var maxWrongGuesses: Int {
+        switch self {
+        case .easy: return 8
+        case .normal: return 6
+        case .hard: return 4
+        }
+    }
+
+    var displayName: String { rawValue.uppercased() }
+}
+
 struct GameState {
     var targetWord: String = ""
     var guessedLetters: Set<Character> = []
     var wrongWordGuesses: [String] = []
     var status: GameStatus = .playing
+    let maxWrongGuesses: Int
 
-    var maxWrongGuesses: Int { 6 }
+    init(targetWord: String = "", maxWrongGuesses: Int = 6) {
+        self.targetWord = targetWord
+        self.maxWrongGuesses = maxWrongGuesses
+    }
 
     var wrongGuesses: [Character] {
         guessedLetters.filter { !targetWord.uppercased().contains($0) }.sorted()

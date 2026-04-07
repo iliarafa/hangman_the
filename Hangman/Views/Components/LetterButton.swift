@@ -15,6 +15,9 @@ struct LetterButton: View {
         }
         .disabled(state != .unused)
         .sensoryFeedback(.impact(flexibility: .soft), trigger: state)
+        .accessibilityLabel(String(letter))
+        .accessibilityValue(state == .unused ? "not guessed" : state == .correct ? "correct" : "wrong")
+        .accessibilityHint(state == .unused ? "Guess this letter" : "")
     }
 }
 

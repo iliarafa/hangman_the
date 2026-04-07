@@ -67,9 +67,10 @@ struct GameScreen: View {
 
     private var header: some View {
         ZStack {
-            Text("\(viewModel.wrongGuessCount)/6")
+            Text("\(viewModel.wrongGuessCount)/\(viewModel.difficulty.maxWrongGuesses)")
                 .font(AppTheme.font(size: 22))
                 .bodyStyle()
+                .accessibilityLabel("\(viewModel.wrongGuessCount) of \(viewModel.difficulty.maxWrongGuesses) wrong guesses")
 
             HStack {
                 Button {
@@ -81,19 +82,21 @@ struct GameScreen: View {
                 }
                 .buttonStyle(.plain)
                 .padding(.leading, 4)
+                .accessibilityLabel("Pause game")
 
                 Spacer()
 
                 Text("\(viewModel.scores.currentStreak)")
                     .font(AppTheme.font(size: 22))
                     .bodyStyle()
+                    .accessibilityLabel("Current streak: \(viewModel.scores.currentStreak)")
             }
         }
         .padding(.top, 8)
     }
 
     private var hangmanArea: some View {
-        ASCIIHangman(wrongGuessCount: viewModel.wrongGuessCount)
+        ASCIIHangman(wrongGuessCount: viewModel.wrongGuessCount, maxWrongGuesses: viewModel.difficulty.maxWrongGuesses)
             .frame(maxHeight: 280)
             .padding(.vertical, 8)
     }

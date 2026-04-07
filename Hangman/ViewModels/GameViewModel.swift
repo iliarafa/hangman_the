@@ -3,17 +3,20 @@ import SwiftUI
 @MainActor
 @Observable
 final class GameViewModel {
-    private(set) var game = GameState()
+    private(set) var game: GameState
     private(set) var isLoading = false
+    let difficulty: Difficulty
 
     private let wordService: WordService
     private let soundManager: SoundManager
     private let scoreManager: ScoreManager
 
-    init(wordService: WordService, soundManager: SoundManager, scoreManager: ScoreManager) {
+    init(wordService: WordService, soundManager: SoundManager, scoreManager: ScoreManager, difficulty: Difficulty = .normal) {
         self.wordService = wordService
         self.soundManager = soundManager
         self.scoreManager = scoreManager
+        self.difficulty = difficulty
+        self.game = GameState(maxWrongGuesses: difficulty.maxWrongGuesses)
         Task { [weak self] in
             await self?.startNewGame()
         }
@@ -31,7 +34,7 @@ final class GameViewModel {
         guard !isLoading else { return }
         isLoading = true
         let word = await wordService.fetchWord()
-        game = GameState(targetWord: word)
+        game = GameState(targetWord: word, maxWrongGuesses: difficulty.maxWrongGuesses)
         isLoading = false
     }
 
