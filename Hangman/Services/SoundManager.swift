@@ -20,6 +20,9 @@ enum SoundEffect: String, CaseIterable {
 
 @Observable
 final class SoundManager {
+    @ObservationIgnored
+    @AppStorage("hangman_soundMuted") var isMuted = false
+
     private var players: [SoundEffect: AVAudioPlayer] = [:]
 
     init() {
@@ -42,6 +45,7 @@ final class SoundManager {
     }
 
     func play(_ effect: SoundEffect) {
+        guard !isMuted else { return }
         if let player = players[effect] {
             player.currentTime = 0
             player.play()

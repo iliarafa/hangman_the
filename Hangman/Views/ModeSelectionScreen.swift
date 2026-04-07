@@ -14,11 +14,7 @@ struct ModeSelectionScreen: View {
         VStack(spacing: 32) {
             HStack {
                 Button {
-                    UIView.setAnimationsEnabled(false)
-                    dismiss()
-                    DispatchQueue.main.async {
-                        UIView.setAnimationsEnabled(true)
-                    }
+                    withoutNavAnimation { dismiss() }
                 } label: {
                     Text("< BACK")
                         .font(AppTheme.font(size: 18))
@@ -41,11 +37,7 @@ struct ModeSelectionScreen: View {
             }
 
             Button {
-                UIView.setAnimationsEnabled(false)
-                showVSMode = true
-                DispatchQueue.main.async {
-                    UIView.setAnimationsEnabled(true)
-                }
+                withoutNavAnimation { showVSMode = true }
             } label: {
                 Text("VS MODE")
                     .asciiBracket(.secondary, fontSize: 24)
@@ -62,12 +54,10 @@ struct ModeSelectionScreen: View {
         .overlay {
             if isFlooding {
                 PixelFloodView(phase: .flooding) {
-                    UIView.setAnimationsEnabled(false)
-                    showArcade = true
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) {
-                        UIView.setAnimationsEnabled(true)
+                    withoutNavAnimation(restoreDelay: 0.05) {
+                        showArcade = true
+                        isFlooding = false
                     }
-                    isFlooding = false
                 }
             }
         }
@@ -82,14 +72,12 @@ struct ModeSelectionScreen: View {
             )
         }
         .onReceive(NotificationCenter.default.publisher(for: .navigateToHome)) { _ in
-            UIView.setAnimationsEnabled(false)
-            showArcade = false
-            showVSMode = false
+            withoutNavAnimation(restoreDelay: 0.1) {
+                showArcade = false
+                showVSMode = false
+            }
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
                 dismiss()
-                DispatchQueue.main.async {
-                    UIView.setAnimationsEnabled(true)
-                }
             }
         }
     }

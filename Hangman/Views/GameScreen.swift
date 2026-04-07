@@ -39,6 +39,12 @@ struct GameScreen: View {
         .navigationBarBackButtonHidden(true)
         .toolbar(.hidden, for: .navigationBar)
         .overlay {
+            if viewModel.gameStatus == .won {
+                ConfettiView()
+                    .ignoresSafeArea()
+            }
+        }
+        .overlay {
             if showPauseMenu {
                 PauseOverlayView(isPresented: $showPauseMenu) {
                     NotificationCenter.default.post(name: .navigateToHome, object: nil)

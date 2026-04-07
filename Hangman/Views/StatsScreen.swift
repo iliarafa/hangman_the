@@ -4,6 +4,7 @@ struct StatsScreen: View {
     let scoreManager: ScoreManager
 
     @Environment(\.dismiss) private var dismiss
+    @State private var showResetConfirmation = false
 
     var body: some View {
         let scores = scoreManager.scores
@@ -12,11 +13,7 @@ struct StatsScreen: View {
             VStack(spacing: 24) {
                 HStack {
                     Button {
-                        UIView.setAnimationsEnabled(false)
-                        dismiss()
-                        DispatchQueue.main.async {
-                            UIView.setAnimationsEnabled(true)
-                        }
+                        withoutNavAnimation { dismiss() }
                     } label: {
                         Text("< BACK")
                             .font(AppTheme.font(size: 18))
@@ -47,11 +44,29 @@ struct StatsScreen: View {
                 }
                 .padding(.horizontal)
 
+                ASCIIDivider()
+                    .padding(.horizontal)
+
+                Button {
+                    showResetConfirmation = true
+                } label: {
+                    Text("RESET")
+                        .asciiBracket(.secondary, fontSize: 16)
+                }
+
                 Spacer(minLength: 40)
             }
         }
         .navigationBarTitleDisplayMode(.inline)
         .navigationBarBackButtonHidden(true)
+        .alert("Reset Statistics?", isPresented: $showResetConfirmation) {
+            Button("Reset", role: .destructive) {
+                scoreManager.resetScores()
+            }
+            Button("Cancel", role: .cancel) {}
+        } message: {
+            Text("This will permanently erase all your stats.")
+        }
     }
 
     private func statRow(title: String, value: String) -> some View {

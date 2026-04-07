@@ -12,11 +12,7 @@ struct VSNameEntryScreen: View {
         VStack(spacing: 0) {
             HStack {
                 Button {
-                    UIView.setAnimationsEnabled(false)
-                    dismiss()
-                    DispatchQueue.main.async {
-                        UIView.setAnimationsEnabled(true)
-                    }
+                    withoutNavAnimation { dismiss() }
                 } label: {
                     Text("< BACK")
                         .font(AppTheme.font(size: 18))

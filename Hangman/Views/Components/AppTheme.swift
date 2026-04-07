@@ -34,6 +34,24 @@ enum AppTheme {
     }
 }
 
+// MARK: - Animation Suppression
+
+/// Perform a navigation action without SwiftUI's implicit push/pop animations.
+/// Re-enables animations on the next run-loop tick (or after an optional delay).
+func withoutNavAnimation(restoreDelay: TimeInterval = 0, _ body: () -> Void) {
+    UIView.setAnimationsEnabled(false)
+    body()
+    if restoreDelay > 0 {
+        DispatchQueue.main.asyncAfter(deadline: .now() + restoreDelay) {
+            UIView.setAnimationsEnabled(true)
+        }
+    } else {
+        DispatchQueue.main.async {
+            UIView.setAnimationsEnabled(true)
+        }
+    }
+}
+
 // MARK: - View Extensions
 
 extension View {

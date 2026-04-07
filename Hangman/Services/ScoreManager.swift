@@ -10,10 +10,10 @@ final class ScoreManager {
     private let defaults = UserDefaults.standard
 
     init() {
-        wins = UserDefaults.standard.integer(forKey: "hangman_wins")
-        losses = UserDefaults.standard.integer(forKey: "hangman_losses")
-        currentStreak = UserDefaults.standard.integer(forKey: "hangman_currentStreak")
-        bestStreak = UserDefaults.standard.integer(forKey: "hangman_bestStreak")
+        wins = max(0, UserDefaults.standard.integer(forKey: "hangman_wins"))
+        losses = max(0, UserDefaults.standard.integer(forKey: "hangman_losses"))
+        currentStreak = max(0, UserDefaults.standard.integer(forKey: "hangman_currentStreak"))
+        bestStreak = max(0, UserDefaults.standard.integer(forKey: "hangman_bestStreak"))
     }
 
     var scores: ScoreData {

@@ -30,18 +30,12 @@ struct VSModeView: View {
         }
         .tint(.primary)
         .onChange(of: startTrigger) {
-            UIView.setAnimationsEnabled(false)
-            path.append(VSRoute.wordEntry)
-            DispatchQueue.main.async {
-                UIView.setAnimationsEnabled(true)
-            }
+            withoutNavAnimation { path.append(VSRoute.wordEntry) }
         }
         .onReceive(NotificationCenter.default.publisher(for: .navigateToHome)) { _ in
-            UIView.setAnimationsEnabled(false)
-            path = NavigationPath()
-            dismiss()
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) {
-                UIView.setAnimationsEnabled(true)
+            withoutNavAnimation(restoreDelay: 0.05) {
+                path = NavigationPath()
+                dismiss()
             }
         }
     }
@@ -51,20 +45,14 @@ struct VSModeView: View {
         switch route {
         case .wordEntry:
             VSWordEntryScreen(viewModel: viewModel, onReady: { word in
-                UIView.setAnimationsEnabled(false)
-                path.append(VSRoute.countdown(word: word))
-                DispatchQueue.main.async {
-                    UIView.setAnimationsEnabled(true)
-                }
+                withoutNavAnimation { path.append(VSRoute.countdown(word: word)) }
             }, onBack: {
-                UIView.setAnimationsEnabled(false)
-                if path.isEmpty {
-                    dismiss()
-                } else {
-                    path.removeLast()
-                }
-                DispatchQueue.main.async {
-                    UIView.setAnimationsEnabled(true)
+                withoutNavAnimation {
+                    if path.isEmpty {
+                        dismiss()
+                    } else {
+                        path.removeLast()
+                    }
                 }
             })
         case .countdown(let word):
@@ -77,11 +65,7 @@ struct VSModeView: View {
             }
         case .game:
             VSGameScreen(viewModel: viewModel) {
-                UIView.setAnimationsEnabled(false)
-                path.append(VSRoute.result)
-                DispatchQueue.main.async {
-                    UIView.setAnimationsEnabled(true)
-                }
+                withoutNavAnimation { path.append(VSRoute.result) }
             }
         case .result:
             VSRoundResultScreen(
@@ -91,9 +75,7 @@ struct VSModeView: View {
                     path = NavigationPath()
                     DispatchQueue.main.async {
                         path.append(VSRoute.wordEntry)
-                        DispatchQueue.main.async {
-                            UIView.setAnimationsEnabled(true)
-                        }
+                        DispatchQueue.main.async { UIView.setAnimationsEnabled(true) }
                     }
                 },
                 onEndGame: {
@@ -101,19 +83,13 @@ struct VSModeView: View {
                     path = NavigationPath()
                     DispatchQueue.main.async {
                         path.append(VSRoute.finalResult)
-                        DispatchQueue.main.async {
-                            UIView.setAnimationsEnabled(true)
-                        }
+                        DispatchQueue.main.async { UIView.setAnimationsEnabled(true) }
                     }
                 }
             )
         case .finalResult:
             VSFinalScreen(viewModel: viewModel) {
-                UIView.setAnimationsEnabled(false)
-                dismiss()
-                DispatchQueue.main.async {
-                    UIView.setAnimationsEnabled(true)
-                }
+                withoutNavAnimation { dismiss() }
             }
         }
     }

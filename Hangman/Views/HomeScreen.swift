@@ -38,11 +38,7 @@ struct HomeScreen: View {
 
     private var playButton: some View {
         Button {
-            UIView.setAnimationsEnabled(false)
-            showModeSelection = true
-            DispatchQueue.main.async {
-                UIView.setAnimationsEnabled(true)
-            }
+            withoutNavAnimation { showModeSelection = true }
         } label: {
             Text("PLAY")
                 .asciiBracket(.primary, fontSize: 24)
@@ -52,6 +48,15 @@ struct HomeScreen: View {
     private var themeToggle: some View {
         HStack {
             Spacer()
+            Button {
+                soundManager.isMuted.toggle()
+            } label: {
+                Text(soundManager.isMuted ? "SFX OFF" : "SFX ON")
+                    .font(AppTheme.font(size: 14))
+                    .foregroundStyle(.primary.opacity(AppTheme.secondaryOpacity))
+            }
+            .buttonStyle(.plain)
+
             Button {
                 isDarkMode.toggle()
             } label: {
@@ -65,11 +70,7 @@ struct HomeScreen: View {
 
     private var navLinks: some View {
         Button {
-            UIView.setAnimationsEnabled(false)
-            showStats = true
-            DispatchQueue.main.async {
-                UIView.setAnimationsEnabled(true)
-            }
+            withoutNavAnimation { showStats = true }
         } label: {
             Text("Statistics")
                 .asciiBracket(.secondary, fontSize: 16)
