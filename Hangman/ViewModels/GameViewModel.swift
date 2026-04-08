@@ -111,9 +111,3 @@ final class GameViewModel {
         return game.targetWord.uppercased().contains(letter) ? .correct : .wrong
     }
 }
-
-enum LetterState {
-    case unused
-    case correct
-    case wrong
-}

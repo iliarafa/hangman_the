@@ -1,5 +1,11 @@
 import Foundation
 
+enum LetterState {
+    case unused
+    case correct
+    case wrong
+}
+
 enum GameStatus: Equatable {
     case playing
     case won

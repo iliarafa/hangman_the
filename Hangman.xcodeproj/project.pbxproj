@@ -47,6 +47,24 @@
 		B10000001 /* GameStateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20000001 /* GameStateTests.swift */; };
 		B10000002 /* VSSessionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20000002 /* VSSessionTests.swift */; };
 		B10000003 /* ScoreManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20000003 /* ScoreManagerTests.swift */; };
+		D10000001 /* MessagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D20000001 /* MessagesViewController.swift */; };
+		D10000002 /* MessageGameState.swift in Sources */ = {isa = PBXBuildFile; fileRef = D20000002 /* MessageGameState.swift */; };
+		D10000003 /* MessageSetWordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D20000003 /* MessageSetWordView.swift */; };
+		D10000004 /* MessageGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D20000004 /* MessageGameView.swift */; };
+		D10000005 /* MessageResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D20000005 /* MessageResultView.swift */; };
+		D10000010 /* GameState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000002 /* GameState.swift */; };
+		D10000011 /* WordValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000083 /* WordValidator.swift */; };
+		D10000012 /* AppTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000034 /* AppTheme.swift */; };
+		D10000013 /* KeyboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000010 /* KeyboardView.swift */; };
+		D10000014 /* WordDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000012 /* WordDisplay.swift */; };
+		D10000015 /* ASCIIHangman.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000028 /* ASCIIHangman.swift */; };
+		D10000016 /* LetterButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000011 /* LetterButton.swift */; };
+		D10000017 /* ASCIIStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000030 /* ASCIIStyles.swift */; };
+		D10000018 /* SolveWordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000080 /* SolveWordView.swift */; };
+		D10000019 /* SoundManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000014 /* SoundManager.swift */; };
+		D10000020 /* ConfettiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000018 /* ConfettiView.swift */; };
+		D10000021 /* VT323-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A20000031 /* VT323-Regular.ttf */; };
+		D90000002 /* HangmanMessages.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = D30000001 /* HangmanMessages.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -93,6 +111,13 @@
 		B20000002 /* VSSessionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VSSessionTests.swift; sourceTree = "<group>"; };
 		B20000003 /* ScoreManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreManagerTests.swift; sourceTree = "<group>"; };
 		B30000001 /* HangmanTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HangmanTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		D20000001 /* MessagesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesViewController.swift; sourceTree = "<group>"; };
+		D20000002 /* MessageGameState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageGameState.swift; sourceTree = "<group>"; };
+		D20000003 /* MessageSetWordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageSetWordView.swift; sourceTree = "<group>"; };
+		D20000004 /* MessageGameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageGameView.swift; sourceTree = "<group>"; };
+		D20000005 /* MessageResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageResultView.swift; sourceTree = "<group>"; };
+		D20000006 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D30000001 /* HangmanMessages.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = HangmanMessages.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,6 +135,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		D40000003 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -117,6 +149,7 @@
 			isa = PBXGroup;
 			children = (
 				A50000002 /* Hangman */,
+				D50000001 /* HangmanMessages */,
 				B50000001 /* HangmanTests */,
 				A50000009 /* Products */,
 			);
@@ -228,6 +261,7 @@
 			children = (
 				A30000001 /* Hangman.app */,
 				B30000001 /* HangmanTests.xctest */,
+				D30000001 /* HangmanMessages.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -242,6 +276,19 @@
 			path = HangmanTests;
 			sourceTree = "<group>";
 		};
+		D50000001 /* HangmanMessages */ = {
+			isa = PBXGroup;
+			children = (
+				D20000001 /* MessagesViewController.swift */,
+				D20000002 /* MessageGameState.swift */,
+				D20000003 /* MessageSetWordView.swift */,
+				D20000004 /* MessageGameView.swift */,
+				D20000005 /* MessageResultView.swift */,
+				D20000006 /* Info.plist */,
+			);
+			path = HangmanMessages;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -252,10 +299,12 @@
 				A70000001 /* Sources */,
 				A40000001 /* Frameworks */,
 				A70000002 /* Resources */,
+				D90000001 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				D80000002 /* PBXTargetDependency */,
 			);
 			name = Hangman;
 			productName = Hangman;
@@ -279,6 +328,23 @@
 			productReference = B30000001 /* HangmanTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		D60000001 /* HangmanMessages */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D70000003 /* Build configuration list for PBXNativeTarget "HangmanMessages" */;
+			buildPhases = (
+				D40000001 /* Sources */,
+				D40000003 /* Frameworks */,
+				D40000002 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = HangmanMessages;
+			productName = HangmanMessages;
+			productReference = D30000001 /* HangmanMessages.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXContainerItemProxy section */
@@ -289,6 +355,13 @@
 			remoteGlobalIDString = A60000001;
 			remoteInfo = Hangman;
 		};
+		D80000001 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A90000001 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D60000001;
+			remoteInfo = HangmanMessages;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXTargetDependency section */
@@ -296,6 +369,11 @@
 			isa = PBXTargetDependency;
 			target = A60000001 /* Hangman */;
 			targetProxy = B90000001 /* PBXContainerItemProxy */;
+		};
+		D80000002 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D60000001 /* HangmanMessages */;
+			targetProxy = D80000001 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -314,6 +392,9 @@
 						CreatedOnToolsVersion = 15.0;
 						TestTargetID = A60000001;
 					};
+					D60000001 = {
+						CreatedOnToolsVersion = 15.0;
+					};
 				};
 			};
 			buildConfigurationList = A80000001 /* Build configuration list for PBXProject "Hangman" */;
@@ -331,6 +412,7 @@
 			targets = (
 				A60000001 /* Hangman */,
 				B60000001 /* HangmanTests */,
+				D60000001 /* HangmanMessages */,
 			);
 		};
 /* End PBXProject section */
@@ -346,7 +428,29 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		D40000002 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D10000021 /* VT323-Regular.ttf in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		D90000001 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				D90000002 /* HangmanMessages.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		A70000001 /* Sources */ = {
@@ -397,6 +501,29 @@
 				B10000001 /* GameStateTests.swift in Sources */,
 				B10000002 /* VSSessionTests.swift in Sources */,
 				B10000003 /* ScoreManagerTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D40000001 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D10000001 /* MessagesViewController.swift in Sources */,
+				D10000002 /* MessageGameState.swift in Sources */,
+				D10000003 /* MessageSetWordView.swift in Sources */,
+				D10000004 /* MessageGameView.swift in Sources */,
+				D10000005 /* MessageResultView.swift in Sources */,
+				D10000010 /* GameState.swift in Sources */,
+				D10000011 /* WordValidator.swift in Sources */,
+				D10000012 /* AppTheme.swift in Sources */,
+				D10000013 /* KeyboardView.swift in Sources */,
+				D10000014 /* WordDisplay.swift in Sources */,
+				D10000015 /* ASCIIHangman.swift in Sources */,
+				D10000016 /* LetterButton.swift in Sources */,
+				D10000017 /* ASCIIStyles.swift in Sources */,
+				D10000018 /* SolveWordView.swift in Sources */,
+				D10000019 /* SoundManager.swift in Sources */,
+				D10000020 /* ConfettiView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -614,6 +741,58 @@
 			};
 			name = Release;
 		};
+		D70000001 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 3DLV25C9VK;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = HangmanMessages/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Hangman Messages";
+				INFOPLIST_KEY_NSExtension_NSExtensionPointIdentifier = "com.apple.message-payload-provider";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hangman.app.messages;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		D70000002 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 3DLV25C9VK;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = HangmanMessages/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Hangman Messages";
+				INFOPLIST_KEY_NSExtension_NSExtensionPointIdentifier = "com.apple.message-payload-provider";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hangman.app.messages;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -640,6 +819,15 @@
 			buildConfigurations = (
 				B80000012 /* Debug */,
 				B80000013 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D70000003 /* Build configuration list for PBXNativeTarget "HangmanMessages" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D70000001 /* Debug */,
+				D70000002 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
