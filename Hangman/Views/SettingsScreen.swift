@@ -5,6 +5,7 @@ struct SettingsScreen: View {
     let soundManager: SoundManager
 
     @AppStorage("hangman_displayMode") private var displayMode: String = "night"
+    @AppStorage("hangman_difficulty") private var difficulty: String = Difficulty.normal.rawValue
     @Environment(\.dismiss) private var dismiss
     @State private var showStats = false
 
@@ -62,6 +63,28 @@ struct SettingsScreen: View {
                                     .font(AppTheme.font(size: 16))
                                     .foregroundStyle(.primary.opacity(
                                         displayMode == mode
+                                            ? AppTheme.headlineOpacity
+                                            : AppTheme.tertiaryOpacity
+                                    ))
+                            }
+                            .buttonStyle(.plain)
+                        }
+                    }
+                }
+
+                ASCIIDivider()
+                    .padding(.horizontal)
+
+                settingRow(title: "DIFFICULTY") {
+                    HStack(spacing: 16) {
+                        ForEach(Difficulty.allCases, id: \.self) { level in
+                            Button {
+                                difficulty = level.rawValue
+                            } label: {
+                                Text(level.displayName)
+                                    .font(AppTheme.font(size: 16))
+                                    .foregroundStyle(.primary.opacity(
+                                        difficulty == level.rawValue
                                             ? AppTheme.headlineOpacity
                                             : AppTheme.tertiaryOpacity
                                     ))

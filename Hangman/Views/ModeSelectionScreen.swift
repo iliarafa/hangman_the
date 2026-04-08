@@ -10,7 +10,7 @@ struct ModeSelectionScreen: View {
     @State private var showArcade = false
     @State private var showSettings = false
     @State private var isFlooding = false
-    @State private var difficulty: Difficulty = .normal
+    @AppStorage("hangman_difficulty") private var difficulty: String = Difficulty.normal.rawValue
 
     var body: some View {
         VStack(spacing: 32) {
@@ -36,21 +36,6 @@ struct ModeSelectionScreen: View {
             } label: {
                 Text("ARCADE")
                     .asciiBracket(.primary, fontSize: 24)
-            }
-
-            HStack(spacing: 16) {
-                ForEach(Difficulty.allCases, id: \.self) { level in
-                    Button {
-                        difficulty = level
-                    } label: {
-                        Text(level.displayName)
-                            .font(AppTheme.font(size: 16))
-                            .foregroundStyle(.primary.opacity(
-                                difficulty == level ? AppTheme.headlineOpacity : AppTheme.tertiaryOpacity
-                            ))
-                    }
-                    .buttonStyle(.plain)
-                }
             }
 
             Button {
@@ -94,7 +79,7 @@ struct ModeSelectionScreen: View {
                     wordService: wordService,
                     soundManager: soundManager,
                     scoreManager: scoreManager,
-                    difficulty: difficulty
+                    difficulty: Difficulty(rawValue: difficulty) ?? .normal
                 ),
                 playEntryTransition: true
             )
