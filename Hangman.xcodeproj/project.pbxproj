@@ -44,6 +44,7 @@
 		A10000084 /* GameRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000084 /* GameRecord.swift */; };
 		A10000085 /* HistoryScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000085 /* HistoryScreen.swift */; };
 		A10000086 /* SettingsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000086 /* SettingsScreen.swift */; };
+		A10000087 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000087 /* OnboardingView.swift */; };
 		B10000001 /* GameStateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20000001 /* GameStateTests.swift */; };
 		B10000002 /* VSSessionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20000002 /* VSSessionTests.swift */; };
 		B10000003 /* ScoreManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20000003 /* ScoreManagerTests.swift */; };
@@ -107,6 +108,7 @@
 		A20000084 /* GameRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameRecord.swift; sourceTree = "<group>"; };
 		A20000085 /* HistoryScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryScreen.swift; sourceTree = "<group>"; };
 		A20000086 /* SettingsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsScreen.swift; sourceTree = "<group>"; };
+		A20000087 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		A30000001 /* Hangman.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Hangman.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B20000001 /* GameStateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameStateTests.swift; sourceTree = "<group>"; };
 		B20000002 /* VSSessionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VSSessionTests.swift; sourceTree = "<group>"; };
@@ -208,6 +210,7 @@
 				A20000027 /* VSFinalScreen.swift */,
 				A20000085 /* HistoryScreen.swift */,
 				A20000086 /* SettingsScreen.swift */,
+				A20000087 /* OnboardingView.swift */,
 				A50000006 /* Components */,
 			);
 			path = Views;
@@ -495,6 +498,7 @@
 				A10000084 /* GameRecord.swift in Sources */,
 				A10000085 /* HistoryScreen.swift in Sources */,
 				A10000086 /* SettingsScreen.swift in Sources */,
+				A10000087 /* OnboardingView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

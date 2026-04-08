@@ -6,10 +6,12 @@ struct SettingsScreen: View {
 
     @AppStorage("hangman_displayMode") private var displayMode: String = "night"
     @AppStorage("hangman_difficulty") private var difficulty: String = Difficulty.normal.rawValue
+    @AppStorage("hangman_wordLength") private var wordLength: String = "any"
     @Environment(\.dismiss) private var dismiss
     @State private var showStats = false
 
     private let displayModes = ["day", "night", "system"]
+    private let wordLengths = ["any", "short", "medium", "long"]
 
     var body: some View {
         VStack(spacing: 32) {
@@ -85,6 +87,28 @@ struct SettingsScreen: View {
                                     .font(AppTheme.font(size: 16))
                                     .foregroundStyle(.primary.opacity(
                                         difficulty == level.rawValue
+                                            ? AppTheme.headlineOpacity
+                                            : AppTheme.tertiaryOpacity
+                                    ))
+                            }
+                            .buttonStyle(.plain)
+                        }
+                    }
+                }
+
+                ASCIIDivider()
+                    .padding(.horizontal)
+
+                settingRow(title: "WORD LENGTH") {
+                    HStack(spacing: 16) {
+                        ForEach(wordLengths, id: \.self) { length in
+                            Button {
+                                wordLength = length
+                            } label: {
+                                Text(length.uppercased())
+                                    .font(AppTheme.font(size: 16))
+                                    .foregroundStyle(.primary.opacity(
+                                        wordLength == length
                                             ? AppTheme.headlineOpacity
                                             : AppTheme.tertiaryOpacity
                                     ))

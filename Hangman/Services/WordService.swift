@@ -24,12 +24,23 @@ actor WordService {
         return result.word
     }
 
+    private var wordLengthRange: ClosedRange<Int> {
+        let pref = UserDefaults.standard.string(forKey: "hangman_wordLength") ?? "any"
+        switch pref {
+        case "short": return 4...5
+        case "medium": return 6...7
+        case "long": return 8...10
+        default: return 4...10
+        }
+    }
+
     func fetchWordResult() async -> WordResult {
-        let wordLength = Int.random(in: 4...10)
+        let range = wordLengthRange
+        let wordLength = Int.random(in: range)
         let urlString = "https://random-word-api.vercel.app/api?words=1&length=\(wordLength)"
 
         guard let url = URL(string: urlString) else {
-            return WordResult(word: randomFallbackWord(), isOffline: true)
+            return WordResult(word: randomFallbackWord(range: range), isOffline: true)
         }
 
         do {
@@ -42,16 +53,18 @@ actor WordService {
                   let word = words.first,
                   !word.isEmpty,
                   word.allSatisfy({ $0.isLetter }) else {
-                return WordResult(word: randomFallbackWord(), isOffline: true)
+                return WordResult(word: randomFallbackWord(range: range), isOffline: true)
             }
             return WordResult(word: word.uppercased(), isOffline: false)
         } catch {
-            return WordResult(word: randomFallbackWord(), isOffline: true)
+            return WordResult(word: randomFallbackWord(range: range), isOffline: true)
         }
     }
 
-    private func randomFallbackWord() -> String {
-        let words = fallbackWords.isEmpty ? defaultWords : fallbackWords
+    private func randomFallbackWord(range: ClosedRange<Int> = 4...10) -> String {
+        let source = fallbackWords.isEmpty ? defaultWords : fallbackWords
+        let filtered = source.filter { range.contains($0.count) }
+        let words = filtered.isEmpty ? source : filtered
         return (words.randomElement() ?? "SWIFT").uppercased()
     }
 
