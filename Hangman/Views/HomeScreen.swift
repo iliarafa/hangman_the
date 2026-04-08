@@ -12,6 +12,8 @@ struct HomeScreen: View {
             Spacer()
             titleSection
             Spacer()
+            ASCIIHangman(wrongGuessCount: 0)
+            Spacer()
             playButton
             Spacer()
         }
