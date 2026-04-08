@@ -29,6 +29,7 @@
 		A10000017 /* fallback_words.txt in Resources */ = {isa = PBXBuildFile; fileRef = A20000017 /* fallback_words.txt */; };
 		A10000088 /* mainmusic.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A20000088 /* mainmusic.mp3 */; };
 		A10000089 /* gamemusic.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A20000089 /* gamemusic.mp3 */; };
+		A10000090 /* winmusic.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A20000090 /* winmusic.mp3 */; };
 		A10000018 /* ConfettiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000018 /* ConfettiView.swift */; };
 		A10000019 /* VSSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000019 /* VSSession.swift */; };
 		A10000020 /* VSGameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000020 /* VSGameViewModel.swift */; };
@@ -90,6 +91,7 @@
 		A20000017 /* fallback_words.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = fallback_words.txt; sourceTree = "<group>"; };
 		A20000088 /* mainmusic.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = mainmusic.mp3; sourceTree = "<group>"; };
 		A20000089 /* gamemusic.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = gamemusic.mp3; sourceTree = "<group>"; };
+		A20000090 /* winmusic.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = winmusic.mp3; sourceTree = "<group>"; };
 		A20000018 /* ConfettiView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfettiView.swift; sourceTree = "<group>"; };
 		A20000019 /* VSSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VSSession.swift; sourceTree = "<group>"; };
 		A20000020 /* VSGameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VSGameViewModel.swift; sourceTree = "<group>"; };
@@ -254,6 +256,7 @@
 				A20000017 /* fallback_words.txt */,
 				A20000088 /* mainmusic.mp3 */,
 				A20000089 /* gamemusic.mp3 */,
+				A20000090 /* winmusic.mp3 */,
 				A50000010 /* Fonts */,
 			);
 			path = Resources;
@@ -438,6 +441,7 @@
 				A10000017 /* fallback_words.txt in Resources */,
 				A10000088 /* mainmusic.mp3 in Resources */,
 				A10000089 /* gamemusic.mp3 in Resources */,
+				A10000090 /* winmusic.mp3 in Resources */,
 				A10000031 /* VT323-Regular.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

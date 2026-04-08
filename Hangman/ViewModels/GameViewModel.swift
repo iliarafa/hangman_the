@@ -35,6 +35,9 @@ final class GameViewModel {
     func startNewGame() async {
         guard !isLoading else { return }
         isLoading = true
+        if game.status != .playing {
+            soundManager.playBackgroundMusic("gamemusic")
+        }
         let result = await wordService.fetchWordResult()
         game = GameState(targetWord: result.word, maxWrongGuesses: difficulty.maxWrongGuesses)
         isOffline = result.isOffline
@@ -53,7 +56,7 @@ final class GameViewModel {
                 game.status = .won
                 scoreManager.recordWin()
                 recordGame(won: true)
-                soundManager.play(.win)
+                soundManager.playWinMusic()
             }
         } else {
             soundManager.play(.wrong)
@@ -74,7 +77,7 @@ final class GameViewModel {
             game.status = .won
             scoreManager.recordWin()
             recordGame(won: true)
-            soundManager.play(.win)
+            soundManager.playWinMusic()
         } else if game.wrongGuessCount > previousCount {
             soundManager.play(.wrong)
             if game.isLost {
@@ -102,7 +105,7 @@ final class GameViewModel {
             game.status = .won
             scoreManager.recordWin()
             recordGame(won: true)
-            soundManager.play(.win)
+            soundManager.playWinMusic()
         }
     }
 

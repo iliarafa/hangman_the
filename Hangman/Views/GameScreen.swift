@@ -77,9 +77,6 @@ struct GameScreen: View {
                 showRetreat = true
             }
         }
-        .onDisappear {
-            viewModel.soundManager.playBackgroundMusic("mainmusic")
-        }
     }
 
     private var header: some View {
@@ -144,11 +141,6 @@ struct GameScreen: View {
     private var gameResult: some View {
         VStack(spacing: 16) {
             if viewModel.gameStatus == .won {
-                Text(ASCIIArt.trophy)
-                    .font(AppTheme.font(size: 14))
-                    .secondaryStyle()
-                    .multilineTextAlignment(.center)
-
                 Text("YOU WON")
                     .font(AppTheme.font(size: 38))
                     .headlineStyle()
