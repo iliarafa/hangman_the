@@ -18,6 +18,7 @@ struct HomeScreen: View {
             Spacer()
         }
         .padding()
+        .onAppear { soundManager.playBackgroundMusic("mainmusic") }
         .navigationDestination(isPresented: $showModeSelection) {
             ModeSelectionScreen(
                 scoreManager: scoreManager,

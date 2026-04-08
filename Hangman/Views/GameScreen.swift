@@ -72,9 +72,13 @@ struct GameScreen: View {
             }
         }
         .onAppear {
+            viewModel.soundManager.playBackgroundMusic("gamemusic")
             if playEntryTransition {
                 showRetreat = true
             }
+        }
+        .onDisappear {
+            viewModel.soundManager.playBackgroundMusic("mainmusic")
         }
     }
 

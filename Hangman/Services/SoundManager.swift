@@ -21,10 +21,25 @@ enum SoundEffect: String, CaseIterable {
 @Observable
 final class SoundManager {
     var isMuted: Bool {
-        didSet { UserDefaults.standard.set(isMuted, forKey: "hangman_soundMuted") }
+        didSet {
+            UserDefaults.standard.set(isMuted, forKey: "hangman_soundMuted")
+            if isMuted {
+                backgroundPlayer?.pause()
+            } else if let track = currentTrack {
+                if backgroundPlayer != nil {
+                    backgroundPlayer?.play()
+                } else {
+                    let saved = track
+                    currentTrack = nil
+                    playBackgroundMusic(saved)
+                }
+            }
+        }
     }
 
     private var players: [SoundEffect: AVAudioPlayer] = [:]
+    private var backgroundPlayer: AVAudioPlayer?
+    private var currentTrack: String?
 
     init() {
         self.isMuted = UserDefaults.standard.bool(forKey: "hangman_soundMuted")
@@ -54,5 +69,29 @@ final class SoundManager {
         } else {
             AudioServicesPlaySystemSound(effect.systemSoundID)
         }
+    }
+
+    func playBackgroundMusic(_ name: String) {
+        guard currentTrack != name else { return }
+        backgroundPlayer?.stop()
+        currentTrack = name
+        guard !isMuted else { return }
+        guard let url = Bundle.main.url(forResource: name, withExtension: "mp3") else { return }
+        do {
+            let player = try AVAudioPlayer(contentsOf: url)
+            player.numberOfLoops = -1
+            player.volume = 0.3
+            player.prepareToPlay()
+            player.play()
+            backgroundPlayer = player
+        } catch {
+            // Music file not available
+        }
+    }
+
+    func stopBackgroundMusic() {
+        backgroundPlayer?.stop()
+        backgroundPlayer = nil
+        currentTrack = nil
     }
 }

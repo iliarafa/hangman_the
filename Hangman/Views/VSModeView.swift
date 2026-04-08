@@ -29,6 +29,8 @@ struct VSModeView: View {
             }
         }
         .tint(.primary)
+        .onAppear { soundManager.playBackgroundMusic("gamemusic") }
+        .onDisappear { soundManager.playBackgroundMusic("mainmusic") }
         .onChange(of: startTrigger) {
             withoutNavAnimation { path.append(VSRoute.wordEntry) }
         }

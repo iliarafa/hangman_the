@@ -9,7 +9,7 @@ final class GameViewModel {
     let difficulty: Difficulty
 
     private let wordService: WordService
-    private let soundManager: SoundManager
+    let soundManager: SoundManager
     private let scoreManager: ScoreManager
 
     init(wordService: WordService, soundManager: SoundManager, scoreManager: ScoreManager, difficulty: Difficulty = .normal) {
