@@ -64,6 +64,7 @@
 		D10000019 /* SoundManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000014 /* SoundManager.swift */; };
 		D10000020 /* ConfettiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000018 /* ConfettiView.swift */; };
 		D10000021 /* VT323-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A20000031 /* VT323-Regular.ttf */; };
+		D10000022 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D20000007 /* Assets.xcassets */; };
 		D90000002 /* HangmanMessages.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = D30000001 /* HangmanMessages.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
@@ -117,6 +118,7 @@
 		D20000004 /* MessageGameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageGameView.swift; sourceTree = "<group>"; };
 		D20000005 /* MessageResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageResultView.swift; sourceTree = "<group>"; };
 		D20000006 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D20000007 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D30000001 /* HangmanMessages.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = HangmanMessages.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -285,6 +287,7 @@
 				D20000004 /* MessageGameView.swift */,
 				D20000005 /* MessageResultView.swift */,
 				D20000006 /* Info.plist */,
+				D20000007 /* Assets.xcassets */,
 			);
 			path = HangmanMessages;
 			sourceTree = "<group>";
@@ -433,6 +436,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D10000021 /* VT323-Regular.ttf in Resources */,
+				D10000022 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -744,12 +748,13 @@
 		D70000001 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 3DLV25C9VK;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = HangmanMessages/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "Hangman Messages";
+				INFOPLIST_KEY_CFBundleDisplayName = Hangman;
 				INFOPLIST_KEY_NSExtension_NSExtensionPointIdentifier = "com.apple.message-payload-provider";
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -770,12 +775,13 @@
 		D70000002 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 3DLV25C9VK;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = HangmanMessages/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "Hangman Messages";
+				INFOPLIST_KEY_CFBundleDisplayName = Hangman;
 				INFOPLIST_KEY_NSExtension_NSExtensionPointIdentifier = "com.apple.message-payload-provider";
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (

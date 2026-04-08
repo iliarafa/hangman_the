@@ -66,25 +66,30 @@ class MessagesViewController: MSMessagesAppViewController {
     // MARK: - View Presentation
 
     private func showCompactView() {
-        let view = VStack(spacing: 4) {
-            Text("HANGMAN")
-                .font(AppTheme.font(size: 20))
-                .headlineStyle()
-            Text("Tap to play")
-                .font(AppTheme.font(size: 14))
-                .secondaryStyle()
+        guard let conversation = activeConversation else { return }
+        // Show the same content in compact — the keyboard will expand when needed
+        if let message = conversation.selectedMessage,
+           let url = message.url,
+           let gameState = MessageGameState.decode(from: url) {
+            switch gameState.phase {
+            case .wordSet:
+                if message.senderParticipantIdentifier == conversation.localParticipantIdentifier {
+                    showWaitingView(word: gameState.targetWord)
+                } else {
+                    showGameView(gameState: gameState, conversation: conversation)
+                }
+            case .completed:
+                showResultView(gameState: gameState, conversation: conversation)
+            }
+        } else {
+            showSetWordView(conversation: conversation)
         }
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .background(Color.black)
-
-        embed(UIHostingController(rootView: view))
     }
 
     private func showSetWordView(conversation: MSConversation) {
         let view = MessageSetWordView { [weak self] word in
             self?.sendWord(word, conversation: conversation)
         }
-        .preferredColorScheme(.dark)
 
         embed(UIHostingController(rootView: view))
     }
@@ -101,7 +106,6 @@ class MessagesViewController: MSMessagesAppViewController {
                 conversation: conversation
             )
         }
-        .preferredColorScheme(.dark)
 
         embed(UIHostingController(rootView: view))
     }
@@ -116,7 +120,6 @@ class MessagesViewController: MSMessagesAppViewController {
                     .asciiBracket(.primary, fontSize: 20)
             }
         }
-        .preferredColorScheme(.dark)
 
         embed(UIHostingController(rootView: view))
     }
@@ -134,7 +137,6 @@ class MessagesViewController: MSMessagesAppViewController {
             Spacer()
         }
         .padding()
-        .preferredColorScheme(.dark)
 
         embed(UIHostingController(rootView: view))
     }
