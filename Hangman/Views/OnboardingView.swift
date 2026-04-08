@@ -3,91 +3,46 @@ import SwiftUI
 struct OnboardingView: View {
     let onComplete: () -> Void
 
-    @State private var currentPage = 0
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
+    @State private var stage = 0 // 0 = gallows only, 1-6 = body parts, 7 = button
+
+    // Each line is exactly 9 characters wide to prevent jitter
+    private let stages: [(art: String, text: String?)] = [
+        // 0: empty gallows
+        ("┌──────┐\n│      │\n│       \n│       \n│       \n│       \n═════════", nil),
+        // 1: head
+        ("┌──────┐\n│      │\n│      O\n│       \n│       \n│       \n═════════", "LETTER BY LETTER"),
+        // 2: body
+        ("┌──────┐\n│      │\n│      O\n│      |\n│       \n│       \n═════════", "GUESSING THE WORD"),
+        // 3: left arm
+        ("┌──────┐\n│      │\n│      O\n│     /|\n│       \n│       \n═════════", "I'M CHOOSING WISELY"),
+        // 4: right arm
+        ("┌──────┐\n│      │\n│      O\n│     /|\\\n│       \n│       \n═════════", "CAUSE I CAN'T GO WRONG"),
+        // 5: left leg
+        ("┌──────┐\n│      │\n│      O\n│     /|\\\n│     / \n│       \n═════════", "YOU BLINK, I DO NOT"),
+        // 6: right leg (full body)
+        ("┌──────┐\n│      │\n│      O\n│     /|\\\n│     / \\\n│       \n═════════", "THE HANGMAN IS GONE"),
+    ]
 
     var body: some View {
-        VStack {
-            TabView(selection: $currentPage) {
-                page1.tag(0)
-                page2.tag(1)
-                page3.tag(2)
-            }
-            .tabViewStyle(.page(indexDisplayMode: .always))
-        }
-    }
-
-    // MARK: - Page 1: The Game
-
-    private var page1: some View {
         VStack(spacing: 32) {
             Spacer()
 
-            ASCIIHangman(wrongGuessCount: 6)
-
-            Text("GUESS THE WORD")
+            Text(stages[min(stage, 6)].art)
                 .font(AppTheme.font(size: 24))
-                .headlineStyle()
+                .bodyStyle()
+                .lineSpacing(2)
+                .multilineTextAlignment(.leading)
+                .fixedSize()
+                .animation(nil, value: stage)
 
-            Text("Letter by letter.\nDon't get hanged.")
-                .font(AppTheme.font(size: 16))
-                .secondaryStyle()
-                .multilineTextAlignment(.center)
-
-            Spacer()
-        }
-        .padding()
-    }
-
-    // MARK: - Page 2: Game Modes
-
-    private var page2: some View {
-        VStack(spacing: 32) {
-            Spacer()
-
-            VStack(spacing: 24) {
-                Text("[ ARCADE ]")
-                    .font(AppTheme.font(size: 22))
+            if let text = stages[min(stage, 6)].text {
+                Text(text)
+                    .font(AppTheme.font(size: 20))
                     .headlineStyle()
-                Text("Play solo against\nrandom words")
-                    .font(AppTheme.font(size: 16))
-                    .secondaryStyle()
-                    .multilineTextAlignment(.center)
+                    .transition(.opacity)
+                    .id(text)
             }
-
-            ASCIIDivider()
-                .padding(.horizontal, 48)
-
-            VStack(spacing: 24) {
-                Text("[ VS MODE ]")
-                    .font(AppTheme.font(size: 22))
-                    .headlineStyle()
-                Text("Pass & play with\na friend")
-                    .font(AppTheme.font(size: 16))
-                    .secondaryStyle()
-                    .multilineTextAlignment(.center)
-            }
-
-            Spacer()
-        }
-        .padding()
-    }
-
-    // MARK: - Page 3: Difficulty & Start
-
-    private var page3: some View {
-        VStack(spacing: 32) {
-            Spacer()
-
-            VStack(spacing: 16) {
-                difficultyRow("EASY", guesses: 8)
-                difficultyRow("NORMAL", guesses: 6)
-                difficultyRow("HARD", guesses: 4)
-            }
-
-            Text("Change anytime\nin Settings")
-                .font(AppTheme.font(size: 14))
-                .secondaryStyle()
-                .multilineTextAlignment(.center)
 
             Spacer()
 
@@ -97,21 +52,30 @@ struct OnboardingView: View {
                 Text("LET'S PLAY")
                     .asciiBracket(.primary, fontSize: 24)
             }
+            .opacity(stage >= 7 ? 1 : 0)
+            .allowsHitTesting(stage >= 7)
 
             Spacer()
         }
         .padding()
+        .onAppear {
+            if reduceMotion {
+                stage = 7
+            } else {
+                runAnimation()
+            }
+        }
     }
 
-    private func difficultyRow(_ name: String, guesses: Int) -> some View {
-        HStack {
-            Text(name)
-                .font(AppTheme.font(size: 18))
-                .headlineStyle()
-                .frame(width: 100, alignment: .leading)
-            Text("\(guesses) guesses")
-                .font(AppTheme.font(size: 16))
-                .secondaryStyle()
+    private func runAnimation() {
+        // Show empty gallows first, then reveal each limb
+        let delays: [Double] = [0.8, 2.8, 4.8, 6.8, 8.8, 10.8, 12.8]
+        for (i, delay) in delays.enumerated() {
+            DispatchQueue.main.asyncAfter(deadline: .now() + delay) {
+                withAnimation(.easeOut(duration: 0.4)) {
+                    stage = i + 1
+                }
+            }
         }
     }
 }
