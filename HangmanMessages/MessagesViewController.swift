@@ -152,7 +152,7 @@ class MessagesViewController: MSMessagesAppViewController {
         message.url = url
 
         let layout = MSMessageTemplateLayout()
-        layout.caption = "HANGMAN — Can you guess my word?"
+        layout.caption = "Guess my word!"
         layout.subcaption = "\(word.count) letters"
         message.layout = layout
 
