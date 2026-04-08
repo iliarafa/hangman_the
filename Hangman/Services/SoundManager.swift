@@ -106,6 +106,23 @@ final class SoundManager {
         }
     }
 
+    func playLossMusic() {
+        backgroundPlayer?.stop()
+        currentTrack = nil
+        guard !isMuted else { return }
+        guard let url = Bundle.main.url(forResource: "lossmusic", withExtension: "mp3") else { return }
+        do {
+            let player = try AVAudioPlayer(contentsOf: url)
+            player.numberOfLoops = 0
+            player.volume = 0.3
+            player.prepareToPlay()
+            player.play()
+            backgroundPlayer = player
+        } catch {
+            // Loss music not available
+        }
+    }
+
     func stopBackgroundMusic() {
         backgroundPlayer?.stop()
         backgroundPlayer = nil

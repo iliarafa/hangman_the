@@ -64,7 +64,7 @@ final class GameViewModel {
                 game.status = .lost
                 scoreManager.recordLoss()
                 recordGame(won: false)
-                soundManager.play(.lose)
+                soundManager.playLossMusic()
             }
         }
     }
@@ -84,7 +84,7 @@ final class GameViewModel {
                 game.status = .lost
                 scoreManager.recordLoss()
                 recordGame(won: false)
-                soundManager.play(.lose)
+                soundManager.playLossMusic()
             }
         }
     }
