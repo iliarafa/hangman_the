@@ -8,6 +8,7 @@ struct ModeSelectionScreen: View {
     @Environment(\.dismiss) private var dismiss
     @State private var showVSMode = false
     @State private var showArcade = false
+    @State private var showSettings = false
     @State private var isFlooding = false
     @State private var difficulty: Difficulty = .normal
 
@@ -63,7 +64,14 @@ struct ModeSelectionScreen: View {
             }
 
             Spacer()
-            Spacer()
+
+            Button {
+                withoutNavAnimation { showSettings = true }
+            } label: {
+                Text("Settings")
+                    .asciiBracket(.secondary, fontSize: 16)
+            }
+            .padding(.bottom, 8)
         }
         .padding()
         .navigationBarHidden(true)
@@ -76,6 +84,9 @@ struct ModeSelectionScreen: View {
                     }
                 }
             }
+        }
+        .navigationDestination(isPresented: $showSettings) {
+            SettingsScreen(scoreManager: scoreManager, soundManager: soundManager)
         }
         .navigationDestination(isPresented: $showArcade) {
             GameScreen(

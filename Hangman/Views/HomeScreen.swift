@@ -5,19 +5,15 @@ struct HomeScreen: View {
     let wordService: WordService
     let soundManager: SoundManager
 
-    @AppStorage("hangman_isDarkMode") private var isDarkMode = true
     @State private var showModeSelection = false
-    @State private var showStats = false
 
     var body: some View {
         VStack(spacing: 32) {
-            themeToggle
             Spacer()
             titleSection
             Spacer()
             playButton
             Spacer()
-            navLinks
         }
         .padding()
         .navigationDestination(isPresented: $showModeSelection) {
@@ -26,9 +22,6 @@ struct HomeScreen: View {
                 wordService: wordService,
                 soundManager: soundManager
             )
-        }
-        .navigationDestination(isPresented: $showStats) {
-            StatsScreen(scoreManager: scoreManager)
         }
     }
 
@@ -43,38 +36,5 @@ struct HomeScreen: View {
             Text("PLAY")
                 .asciiBracket(.primary, fontSize: 24)
         }
-    }
-
-    private var themeToggle: some View {
-        HStack {
-            Spacer()
-            Button {
-                soundManager.isMuted.toggle()
-            } label: {
-                Text(soundManager.isMuted ? "SFX OFF" : "SFX ON")
-                    .font(AppTheme.font(size: 14))
-                    .foregroundStyle(.primary.opacity(AppTheme.secondaryOpacity))
-            }
-            .buttonStyle(.plain)
-
-            Button {
-                isDarkMode.toggle()
-            } label: {
-                Text(isDarkMode ? "NIGHT" : "DAY")
-                    .font(AppTheme.font(size: 14))
-                    .foregroundStyle(.primary.opacity(AppTheme.secondaryOpacity))
-            }
-            .buttonStyle(.plain)
-        }
-    }
-
-    private var navLinks: some View {
-        Button {
-            withoutNavAnimation { showStats = true }
-        } label: {
-            Text("Statistics")
-                .asciiBracket(.secondary, fontSize: 16)
-        }
-        .padding(.bottom, 8)
     }
 }

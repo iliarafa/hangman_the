@@ -20,12 +20,14 @@ enum SoundEffect: String, CaseIterable {
 
 @Observable
 final class SoundManager {
-    @ObservationIgnored
-    @AppStorage("hangman_soundMuted") var isMuted = false
+    var isMuted: Bool {
+        didSet { UserDefaults.standard.set(isMuted, forKey: "hangman_soundMuted") }
+    }
 
     private var players: [SoundEffect: AVAudioPlayer] = [:]
 
     init() {
+        self.isMuted = UserDefaults.standard.bool(forKey: "hangman_soundMuted")
         preloadSounds()
     }
 
