@@ -1,0 +1,235 @@
+/* HANGMAN (THE) — Support & Privacy page
+   Mirrors the iOS app's VT323 + grayscale-opacity theme. */
+
+:root {
+    /* Grayscale opacity ladder — copied verbatim from
+       Hangman/Views/Components/AppTheme.swift:25-28 */
+    --headline: 1.00;
+    --body:     0.85;
+    --secondary: 0.55;
+    --tertiary: 0.35;
+
+    /* Default = night mode (matches the app default) */
+    --bg: #000;
+    --fg: 255, 255, 255;          /* RGB tuple, used with the opacity vars */
+    --accent: #00b300;            /* slightly brighter than #008000 for web legibility on black */
+
+    --font-stack: "VT323", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+    --max-width: 640px;
+}
+
+@media (prefers-color-scheme: light) {
+    :root {
+        --bg: #fff;
+        --fg: 0, 0, 0;
+        --accent: #006600;        /* darker green for contrast on white */
+    }
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    background: var(--bg);
+    color: rgba(var(--fg), var(--body));
+    font-family: var(--font-stack);
+    font-size: 22px;
+    line-height: 1.45;
+    -webkit-font-smoothing: none;
+    -moz-osx-font-smoothing: auto;
+    text-rendering: geometricPrecision;
+}
+
+main {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 48px 24px 64px;
+}
+
+/* --- Skip link (accessibility) --- */
+
+.skip-link {
+    position: absolute;
+    left: -9999px;
+    top: auto;
+}
+
+.skip-link:focus {
+    left: 24px;
+    top: 24px;
+    background: var(--bg);
+    color: rgba(var(--fg), var(--headline));
+    padding: 8px 12px;
+    border: 1px solid rgba(var(--fg), var(--body));
+    z-index: 10;
+}
+
+/* --- Hero --- */
+
+.hero {
+    text-align: center;
+    margin-bottom: 32px;
+}
+
+.ascii-hangman {
+    font-family: var(--font-stack);
+    font-size: 28px;
+    line-height: 1.05;
+    color: rgba(var(--fg), var(--headline));
+    margin: 0 auto 24px;
+    display: inline-block;
+    text-align: left;
+    white-space: pre;
+    letter-spacing: 0;
+}
+
+.title {
+    font-family: var(--font-stack);
+    font-size: 42px;
+    font-weight: normal;
+    color: rgba(var(--fg), var(--headline));
+    margin: 0 0 8px;
+    letter-spacing: 1px;
+}
+
+.tagline {
+    font-size: 22px;
+    color: rgba(var(--fg), var(--secondary));
+    margin: 0;
+}
+
+/* --- Dividers --- */
+
+.divider {
+    text-align: center;
+    color: rgba(var(--fg), var(--tertiary));
+    margin: 32px 0;
+    font-size: 22px;
+    letter-spacing: 2px;
+    user-select: none;
+}
+
+/* --- Sections --- */
+
+.section {
+    margin: 0;
+}
+
+.section-title {
+    font-family: var(--font-stack);
+    font-size: 30px;
+    font-weight: normal;
+    color: rgba(var(--fg), var(--headline));
+    margin: 0 0 20px;
+    letter-spacing: 1px;
+}
+
+.section p {
+    margin: 0 0 16px;
+    color: rgba(var(--fg), var(--body));
+}
+
+.section ul {
+    margin: 0 0 16px;
+    padding-left: 28px;
+    color: rgba(var(--fg), var(--body));
+}
+
+.section li {
+    margin: 0 0 4px;
+}
+
+.subheading {
+    font-family: var(--font-stack);
+    font-size: 24px;
+    font-weight: normal;
+    color: rgba(var(--fg), var(--headline));
+    margin: 28px 0 8px;
+    letter-spacing: 1px;
+}
+
+.muted {
+    color: rgba(var(--fg), var(--secondary));
+}
+
+.nowrap {
+    white-space: nowrap;
+}
+
+/* --- Bracket-style call-to-action link --- */
+
+.cta-row {
+    text-align: center;
+    margin: 24px 0 20px;
+}
+
+.bracket-link {
+    font-family: var(--font-stack);
+    font-size: 26px;
+    color: var(--accent);
+    text-decoration: none;
+    padding: 6px 12px;
+    display: inline-block;
+    letter-spacing: 1px;
+}
+
+.bracket-link::before {
+    content: "[ ";
+    color: rgba(var(--fg), var(--secondary));
+}
+
+.bracket-link::after {
+    content: " ]";
+    color: rgba(var(--fg), var(--secondary));
+}
+
+.bracket-link:hover,
+.bracket-link:focus {
+    outline: none;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+}
+
+.bracket-link:focus-visible::before { content: "> "; }
+.bracket-link:focus-visible::after  { content: " <"; }
+
+/* --- Inline link (used in body copy) --- */
+
+.inline-link {
+    color: var(--accent);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+.inline-link:hover,
+.inline-link:focus {
+    text-decoration: none;
+}
+
+/* --- Footer --- */
+
+.footer {
+    text-align: center;
+    color: rgba(var(--fg), var(--tertiary));
+    font-size: 20px;
+    margin-top: 16px;
+}
+
+.footer p {
+    margin: 0;
+}
+
+/* --- Small screens --- */
+
+@media (max-width: 480px) {
+    html, body { font-size: 20px; }
+    main       { padding: 32px 18px 48px; }
+    .ascii-hangman { font-size: 22px; }
+    .title         { font-size: 34px; }
+    .section-title { font-size: 26px; }
+    .subheading    { font-size: 22px; }
+    .bracket-link  { font-size: 22px; }
+}
