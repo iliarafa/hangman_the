@@ -78,21 +78,26 @@ struct SettingsScreen: View {
                     .padding(.horizontal)
 
                 settingRow(title: "DIFFICULTY") {
-                    HStack(spacing: 16) {
-                        ForEach(Difficulty.allCases, id: \.self) { level in
-                            Button {
-                                difficulty = level.rawValue
-                            } label: {
-                                Text(level.displayName)
-                                    .font(AppTheme.font(size: 16))
-                                    .foregroundStyle(.primary.opacity(
-                                        difficulty == level.rawValue
-                                            ? AppTheme.headlineOpacity
-                                            : AppTheme.tertiaryOpacity
-                                    ))
+                    VStack(spacing: 8) {
+                        HStack(spacing: 16) {
+                            ForEach(Difficulty.allCases, id: \.self) { level in
+                                Button {
+                                    difficulty = level.rawValue
+                                } label: {
+                                    Text(level.displayName)
+                                        .font(AppTheme.font(size: 16))
+                                        .foregroundStyle(.primary.opacity(
+                                            difficulty == level.rawValue
+                                                ? AppTheme.headlineOpacity
+                                                : AppTheme.tertiaryOpacity
+                                        ))
+                                }
+                                .buttonStyle(.plain)
                             }
-                            .buttonStyle(.plain)
                         }
+                        Text("FILTERS THE WORD POOL")
+                            .font(AppTheme.font(size: 11))
+                            .tertiaryStyle()
                     }
                 }
 

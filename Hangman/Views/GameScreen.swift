@@ -82,10 +82,10 @@ struct GameScreen: View {
     private var header: some View {
         ZStack {
             VStack(spacing: 2) {
-                Text("\(viewModel.wrongGuessCount)/\(viewModel.difficulty.maxWrongGuesses)")
+                Text("\(viewModel.wrongGuessCount)/6")
                     .font(AppTheme.font(size: 22))
                     .bodyStyle()
-                    .accessibilityLabel("\(viewModel.wrongGuessCount) of \(viewModel.difficulty.maxWrongGuesses) wrong guesses")
+                    .accessibilityLabel("\(viewModel.wrongGuessCount) of 6 wrong guesses")
 
                 if viewModel.isOffline {
                     Text("OFFLINE")
@@ -118,7 +118,7 @@ struct GameScreen: View {
     }
 
     private var hangmanArea: some View {
-        ASCIIHangman(wrongGuessCount: viewModel.wrongGuessCount, maxWrongGuesses: viewModel.difficulty.maxWrongGuesses)
+        ASCIIHangman(wrongGuessCount: viewModel.wrongGuessCount)
             .frame(maxHeight: 280)
             .padding(.vertical, 8)
     }

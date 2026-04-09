@@ -2,11 +2,9 @@ import SwiftUI
 
 struct ASCIIHangman: View {
     let wrongGuessCount: Int
-    var maxWrongGuesses: Int = 6
 
     private var stage: Int {
-        guard maxWrongGuesses > 0 else { return 0 }
-        return min(6, wrongGuessCount * 6 / maxWrongGuesses)
+        min(6, max(0, wrongGuessCount))
     }
 
     private var art: String {
@@ -20,7 +18,7 @@ struct ASCIIHangman: View {
             .lineSpacing(2)
             .multilineTextAlignment(.leading)
             .accessibilityElement(children: .ignore)
-            .accessibilityLabel("Hangman drawing, \(wrongGuessCount) of \(maxWrongGuesses) wrong guesses")
+            .accessibilityLabel("Hangman drawing, \(wrongGuessCount) of 6 wrong guesses")
     }
 
     private let states = [

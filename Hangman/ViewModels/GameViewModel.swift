@@ -17,7 +17,7 @@ final class GameViewModel {
         self.soundManager = soundManager
         self.scoreManager = scoreManager
         self.difficulty = difficulty
-        self.game = GameState(maxWrongGuesses: difficulty.maxWrongGuesses)
+        self.game = GameState()
         Task { [weak self] in
             await self?.startNewGame()
         }
@@ -38,8 +38,8 @@ final class GameViewModel {
         if game.status != .playing {
             soundManager.playBackgroundMusic("gamemusic")
         }
-        let result = await wordService.fetchWordResult()
-        game = GameState(targetWord: result.word, maxWrongGuesses: difficulty.maxWrongGuesses)
+        let result = await wordService.fetchWord(matching: difficulty)
+        game = GameState(targetWord: result.word)
         isOffline = result.isOffline
         isLoading = false
     }

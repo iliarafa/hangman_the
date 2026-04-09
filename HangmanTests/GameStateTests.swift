@@ -183,12 +183,42 @@ struct GameStateTests {
         #expect(game.hintsRemaining == 1)
     }
 
-    // MARK: - Difficulty
+    // MARK: - Fixed mistake budget
 
-    @Test func customMaxWrongGuesses() {
-        var game = GameState(targetWord: "CAT", maxWrongGuesses: 4)
-        game.guessedLetters = ["X", "Y", "Z", "W"]
-        #expect(game.isLost)
-        #expect(game.wrongGuessCount == 4)
+    @Test func maxWrongGuessesIsAlwaysSix() {
+        let game = GameState(targetWord: "CAT")
+        #expect(game.maxWrongGuesses == 6)
+        #expect(GameState.maxWrongGuesses == 6)
+    }
+
+    // MARK: - Difficulty scoring
+
+    @Test func easyWordsScoreAsEasy() {
+        // Common letters, repeats, healthy vowel ratio.
+        #expect(Difficulty.score(for: "banana") == .easy)
+        #expect(Difficulty.score(for: "apple") == .easy)
+    }
+
+    @Test func shortTrickyWordsScoreAsHard() {
+        // 4 letters or fewer + rare letter + low vowel ratio = hard.
+        #expect(Difficulty.score(for: "lynx") == .hard)
+        #expect(Difficulty.score(for: "jazz") == .hard)
+    }
+
+    @Test func longUnusualWordsScoreAsHard() {
+        // No standard vowels at all + all unique letters = hard.
+        #expect(Difficulty.score(for: "rhythm") == .hard)
+    }
+
+    @Test func midLengthCommonWordsScoreAsNormal() {
+        #expect(Difficulty.score(for: "garden") == .normal)
+    }
+
+    @Test func scoringIsCaseInsensitive() {
+        #expect(Difficulty.score(for: "LYNX") == Difficulty.score(for: "lynx"))
+    }
+
+    @Test func emptyWordIsTreatedAsNormal() {
+        #expect(Difficulty.score(for: "") == .normal)
     }
 }
