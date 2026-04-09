@@ -7,10 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		A10000031 /* VT323-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A20000031 /* VT323-Regular.ttf */; };
-		A10000032 /* AppTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000034 /* AppTheme.swift */; };
-		A10000081 /* PauseOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000081 /* PauseOverlayView.swift */; };
-		A10000082 /* PixelFloodView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000082 /* PixelFloodView.swift */; };
 		A10000001 /* HangmanApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000001 /* HangmanApp.swift */; };
 		A10000002 /* GameState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000002 /* GameState.swift */; };
 		A10000003 /* ScoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000003 /* ScoreData.swift */; };
@@ -21,16 +17,11 @@
 		A10000010 /* KeyboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000010 /* KeyboardView.swift */; };
 		A10000011 /* LetterButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000011 /* LetterButton.swift */; };
 		A10000012 /* WordDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000012 /* WordDisplay.swift */; };
-		A10000080 /* SolveWordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000080 /* SolveWordView.swift */; };
 		A10000013 /* WordService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000013 /* WordService.swift */; };
 		A10000014 /* SoundManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000014 /* SoundManager.swift */; };
 		A10000015 /* ScoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000015 /* ScoreManager.swift */; };
 		A10000016 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A20000016 /* Assets.xcassets */; };
 		A10000017 /* fallback_words.txt in Resources */ = {isa = PBXBuildFile; fileRef = A20000017 /* fallback_words.txt */; };
-		A10000088 /* mainmusic.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A20000088 /* mainmusic.mp3 */; };
-		A10000089 /* gamemusic.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A20000089 /* gamemusic.mp3 */; };
-		A10000090 /* winmusic.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A20000090 /* winmusic.mp3 */; };
-		A10000091 /* lossmusic.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A20000091 /* lossmusic.mp3 */; };
 		A10000018 /* ConfettiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000018 /* ConfettiView.swift */; };
 		A10000019 /* VSSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000019 /* VSSession.swift */; };
 		A10000020 /* VSGameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000020 /* VSGameViewModel.swift */; };
@@ -44,11 +35,20 @@
 		A10000028 /* ASCIIHangman.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000028 /* ASCIIHangman.swift */; };
 		A10000029 /* ModeSelectionScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000029 /* ModeSelectionScreen.swift */; };
 		A10000030 /* ASCIIStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000030 /* ASCIIStyles.swift */; };
+		A10000031 /* VT323-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A20000031 /* VT323-Regular.ttf */; };
+		A10000032 /* AppTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000034 /* AppTheme.swift */; };
+		A10000080 /* SolveWordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000080 /* SolveWordView.swift */; };
+		A10000081 /* PauseOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000081 /* PauseOverlayView.swift */; };
+		A10000082 /* PixelFloodView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000082 /* PixelFloodView.swift */; };
 		A10000083 /* WordValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000083 /* WordValidator.swift */; };
 		A10000084 /* GameRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000084 /* GameRecord.swift */; };
 		A10000085 /* HistoryScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000085 /* HistoryScreen.swift */; };
 		A10000086 /* SettingsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000086 /* SettingsScreen.swift */; };
 		A10000087 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000087 /* OnboardingView.swift */; };
+		A10000088 /* mainmusic.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A20000088 /* mainmusic.mp3 */; };
+		A10000089 /* gamemusic.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A20000089 /* gamemusic.mp3 */; };
+		A10000090 /* winmusic.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A20000090 /* winmusic.mp3 */; };
+		A10000091 /* lossmusic.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A20000091 /* lossmusic.mp3 */; };
 		B10000001 /* GameStateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20000001 /* GameStateTests.swift */; };
 		B10000002 /* VSSessionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20000002 /* VSSessionTests.swift */; };
 		B10000003 /* ScoreManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20000003 /* ScoreManagerTests.swift */; };
@@ -73,6 +73,37 @@
 		D90000002 /* HangmanMessages.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = D30000001 /* HangmanMessages.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		B90000001 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A90000001 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A60000001;
+			remoteInfo = Hangman;
+		};
+		D80000001 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A90000001 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D60000001;
+			remoteInfo = HangmanMessages;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		D90000001 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				D90000002 /* HangmanMessages.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		A20000001 /* HangmanApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HangmanApp.swift; sourceTree = "<group>"; };
 		A20000002 /* GameState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameState.swift; sourceTree = "<group>"; };
@@ -84,16 +115,11 @@
 		A20000010 /* KeyboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardView.swift; sourceTree = "<group>"; };
 		A20000011 /* LetterButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LetterButton.swift; sourceTree = "<group>"; };
 		A20000012 /* WordDisplay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordDisplay.swift; sourceTree = "<group>"; };
-		A20000080 /* SolveWordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SolveWordView.swift; sourceTree = "<group>"; };
 		A20000013 /* WordService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordService.swift; sourceTree = "<group>"; };
 		A20000014 /* SoundManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundManager.swift; sourceTree = "<group>"; };
 		A20000015 /* ScoreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreManager.swift; sourceTree = "<group>"; };
 		A20000016 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A20000017 /* fallback_words.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = fallback_words.txt; sourceTree = "<group>"; };
-		A20000088 /* mainmusic.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = mainmusic.mp3; sourceTree = "<group>"; };
-		A20000089 /* gamemusic.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = gamemusic.mp3; sourceTree = "<group>"; };
-		A20000090 /* winmusic.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = winmusic.mp3; sourceTree = "<group>"; };
-		A20000091 /* lossmusic.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = lossmusic.mp3; sourceTree = "<group>"; };
 		A20000018 /* ConfettiView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfettiView.swift; sourceTree = "<group>"; };
 		A20000019 /* VSSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VSSession.swift; sourceTree = "<group>"; };
 		A20000020 /* VSGameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VSGameViewModel.swift; sourceTree = "<group>"; };
@@ -110,6 +136,7 @@
 		A20000031 /* VT323-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "VT323-Regular.ttf"; sourceTree = "<group>"; };
 		A20000033 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A20000034 /* AppTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTheme.swift; sourceTree = "<group>"; };
+		A20000080 /* SolveWordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SolveWordView.swift; sourceTree = "<group>"; };
 		A20000081 /* PauseOverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PauseOverlayView.swift; sourceTree = "<group>"; };
 		A20000082 /* PixelFloodView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PixelFloodView.swift; sourceTree = "<group>"; };
 		A20000083 /* WordValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordValidator.swift; sourceTree = "<group>"; };
@@ -117,6 +144,10 @@
 		A20000085 /* HistoryScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryScreen.swift; sourceTree = "<group>"; };
 		A20000086 /* SettingsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsScreen.swift; sourceTree = "<group>"; };
 		A20000087 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
+		A20000088 /* mainmusic.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = mainmusic.mp3; sourceTree = "<group>"; };
+		A20000089 /* gamemusic.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = gamemusic.mp3; sourceTree = "<group>"; };
+		A20000090 /* winmusic.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = winmusic.mp3; sourceTree = "<group>"; };
+		A20000091 /* lossmusic.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = lossmusic.mp3; sourceTree = "<group>"; };
 		A30000001 /* Hangman.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Hangman.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B20000001 /* GameStateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameStateTests.swift; sourceTree = "<group>"; };
 		B20000002 /* VSSessionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VSSessionTests.swift; sourceTree = "<group>"; };
@@ -265,14 +296,6 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
-		A50000010 /* Fonts */ = {
-			isa = PBXGroup;
-			children = (
-				A20000031 /* VT323-Regular.ttf */,
-			);
-			path = Fonts;
-			sourceTree = "<group>";
-		};
 		A50000009 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -281,6 +304,14 @@
 				D30000001 /* HangmanMessages.appex */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		A50000010 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				A20000031 /* VT323-Regular.ttf */,
+			);
+			path = Fonts;
 			sourceTree = "<group>";
 		};
 		B50000001 /* HangmanTests */ = {
@@ -361,39 +392,9 @@
 			name = HangmanMessages;
 			productName = HangmanMessages;
 			productReference = D30000001 /* HangmanMessages.appex */;
-			productType = "com.apple.product-type.app-extension";
+			productType = "com.apple.product-type.app-extension.messages";
 		};
 /* End PBXNativeTarget section */
-
-/* Begin PBXContainerItemProxy section */
-		B90000001 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = A90000001 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = A60000001;
-			remoteInfo = Hangman;
-		};
-		D80000001 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = A90000001 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = D60000001;
-			remoteInfo = HangmanMessages;
-		};
-/* End PBXContainerItemProxy section */
-
-/* Begin PBXTargetDependency section */
-		B90000002 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = A60000001 /* Hangman */;
-			targetProxy = B90000001 /* PBXContainerItemProxy */;
-		};
-		D80000002 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = D60000001 /* HangmanMessages */;
-			targetProxy = D80000001 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXProject section */
 		A90000001 /* Project object */ = {
@@ -460,20 +461,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		D90000001 /* Embed App Extensions */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 13;
-			files = (
-				D90000002 /* HangmanMessages.appex in Embed App Extensions */,
-			);
-			name = "Embed App Extensions";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		A70000001 /* Sources */ = {
@@ -552,6 +539,19 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		B90000002 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A60000001 /* Hangman */;
+			targetProxy = B90000001 /* PBXContainerItemProxy */;
+		};
+		D80000002 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D60000001 /* HangmanMessages */;
+			targetProxy = D80000001 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		A80000010 /* Debug */ = {
@@ -768,7 +768,7 @@
 		D70000001 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "iMessage App Icon";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 3DLV25C9VK;
@@ -795,7 +795,7 @@
 		D70000002 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "iMessage App Icon";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 3DLV25C9VK;
