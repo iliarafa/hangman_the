@@ -1,7 +1,15 @@
 import SwiftUI
+import UIKit
+
+class AppDelegate: NSObject, UIApplicationDelegate {
+    func application(_ application: UIApplication, supportedInterfaceOrientationsFor window: UIWindow?) -> UIInterfaceOrientationMask {
+        .portrait
+    }
+}
 
 @main
 struct HangmanApp: App {
+    @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
     @AppStorage("hangman_displayMode") private var displayMode: String = "night"
     @AppStorage("hangman_hasLaunchedBefore") private var hasLaunchedBefore = false
     @State private var scoreManager = ScoreManager()
