@@ -34,11 +34,6 @@ class MessagesViewController: MSMessagesAppViewController {
             child.removeFromParent()
         }
 
-        if presentationStyle == .compact {
-            showCompactView()
-            return
-        }
-
         // Check if there's an active message with game state
         if let message = conversation.selectedMessage,
            let url = message.url,
@@ -64,27 +59,6 @@ class MessagesViewController: MSMessagesAppViewController {
     }
 
     // MARK: - View Presentation
-
-    private func showCompactView() {
-        guard let conversation = activeConversation else { return }
-        // Show the same content in compact — the keyboard will expand when needed
-        if let message = conversation.selectedMessage,
-           let url = message.url,
-           let gameState = MessageGameState.decode(from: url) {
-            switch gameState.phase {
-            case .wordSet:
-                if message.senderParticipantIdentifier == conversation.localParticipantIdentifier {
-                    showWaitingView(word: gameState.targetWord)
-                } else {
-                    showGameView(gameState: gameState, conversation: conversation)
-                }
-            case .completed:
-                showResultView(gameState: gameState, conversation: conversation)
-            }
-        } else {
-            showSetWordView(conversation: conversation)
-        }
-    }
 
     private func showSetWordView(conversation: MSConversation) {
         let view = MessageSetWordView { [weak self] word in
