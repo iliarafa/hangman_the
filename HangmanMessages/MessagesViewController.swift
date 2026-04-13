@@ -40,8 +40,9 @@ class MessagesViewController: MSMessagesAppViewController {
            let gameState = MessageGameState.decode(from: url) {
             switch gameState.phase {
             case .wordSet:
-                // We received a word to guess — check if we sent it
-                if message.senderParticipantIdentifier == conversation.localParticipantIdentifier {
+                // Check if we're the one who set this word
+                let localID = conversation.localParticipantIdentifier.uuidString
+                if gameState.senderIdentifier == localID {
                     // We sent this message — show waiting view
                     showWaitingView(word: gameState.targetWord)
                 } else {
@@ -118,9 +119,9 @@ class MessagesViewController: MSMessagesAppViewController {
     // MARK: - Message Composition
 
     private func sendWord(_ word: String, conversation: MSConversation) {
-        let localName = conversation.localParticipantIdentifier.uuidString
-        let displayName = String(localName.prefix(8))
-        let gameState = MessageGameState(targetWord: word.uppercased(), senderName: displayName)
+        let localID = conversation.localParticipantIdentifier.uuidString
+        let displayName = String(localID.prefix(8))
+        let gameState = MessageGameState(targetWord: word.uppercased(), senderName: displayName, senderIdentifier: localID)
 
         guard let url = gameState.encodeToURL() else { return }
 
@@ -143,6 +144,7 @@ class MessagesViewController: MSMessagesAppViewController {
         let resultState = MessageGameState(
             targetWord: originalState.targetWord,
             senderName: originalState.senderName,
+            senderIdentifier: originalState.senderIdentifier,
             guessedLetters: completedGame.guessedLetters,
             wrongWordGuesses: completedGame.wrongWordGuesses,
             won: completedGame.status == .won
