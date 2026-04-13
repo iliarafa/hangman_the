@@ -1,6 +1,6 @@
 # HANGMAN (THE)
 
-A retro-styled Hangman word game for iPhone. Guess letters to save the figure before it's too late. Features Arcade mode with difficulty levels and hints, VS Mode for local two-player challenges with configurable rounds, iMessage extension for turn-based play, animated ASCII hangman figure, sound effects, confetti celebrations, game history, and detailed statistics. Built with SwiftUI using the VT323 pixel font.
+A retro-styled Hangman word game for iPhone and iPad. Guess letters to save the figure before it's too late. Features Arcade mode with difficulty levels and hints, VS Mode for local two-player challenges with configurable rounds, iMessage extension for turn-based play, animated ASCII hangman figure, sound effects, confetti celebrations, a built-in dictionary with word definitions, and detailed statistics. Built with SwiftUI using the VT323 pixel font.
 
 ## Features
 
@@ -14,7 +14,7 @@ A retro-styled Hangman word game for iPhone. Guess letters to save the figure be
 - **Sound Effects** — audio feedback for correct/wrong guesses and game outcomes, with mute toggle
 - **Confetti** — celebration animation on wins
 - **Statistics** — track wins, losses, streaks, and win rate
-- **Game History** — review your last 50 games with words, outcomes, and dates
+- **Dictionary** — review your last 50 games with words, definitions, outcomes, and dates
 - **Offline Support** — falls back to bundled word list when offline, with indicator
 - **Accessibility** — VoiceOver labels, Dynamic Type support, reduced motion support
 - **Settings** — sound, display mode (day/night/system), and difficulty all in one place
@@ -32,7 +32,7 @@ Hangman/
 ├── Models/          # GameState, ScoreData, VSSession, GameRecord, Difficulty
 ├── ViewModels/      # GameViewModel, VSGameViewModel
 ├── Views/           # HomeScreen, ModeSelectionScreen, GameScreen, StatsScreen,
-│   │                  HistoryScreen, VS screens (6 screens)
+│   │                  HistoryScreen (Dictionary), VS screens (6 screens)
 │   └── Components/  # ASCIIHangman, KeyboardView, LetterButton, WordDisplay,
 │                      ConfettiView, PixelFloodView, SolveWordView, PauseOverlayView,
 │                      AppTheme, ASCIIStyles
