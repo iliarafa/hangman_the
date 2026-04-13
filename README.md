@@ -5,7 +5,7 @@ A retro-styled Hangman word game for iPhone and iPad. Guess letters to save the 
 ## Features
 
 - **Arcade Mode** — guess randomly fetched words before running out of attempts
-- **Difficulty Levels** — Easy (8 guesses), Normal (6), or Hard (4) — configurable in Settings
+- **Difficulty Levels** — Easy, Normal, or Hard — words are scored by length, rare letters, and vowel ratio to match your chosen difficulty
 - **Hints** — reveal a letter when you're stuck (available while 2+ letters remain)
 - **VS Mode** — two players take turns setting words for each other
 - **iMessage Extension** — challenge friends to hangman directly in Messages
