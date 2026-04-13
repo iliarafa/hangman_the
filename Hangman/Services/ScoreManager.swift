@@ -57,6 +57,13 @@ final class ScoreManager {
         saveHistory()
     }
 
+    func updateDefinition(for word: String, definition: String) {
+        if let index = gameHistory.firstIndex(where: { $0.word == word && $0.definition == nil }) {
+            gameHistory[index].definition = definition
+            saveHistory()
+        }
+    }
+
     func resetScores() {
         wins = 0
         losses = 0

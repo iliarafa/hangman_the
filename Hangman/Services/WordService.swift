@@ -104,6 +104,38 @@ actor WordService {
         return (pool.randomElement() ?? randomFallbackWord(range: range)).uppercased()
     }
 
+    func fetchDefinition(for word: String) async -> String? {
+        let lowered = word.lowercased()
+        guard let url = URL(string: "https://api.dictionaryapi.dev/api/v2/entries/en/\(lowered)") else {
+            return nil
+        }
+        do {
+            var request = URLRequest(url: url)
+            request.timeoutInterval = 5
+            let (data, response) = try await URLSession.shared.data(for: request)
+            guard let httpResponse = response as? HTTPURLResponse,
+                  httpResponse.statusCode == 200 else {
+                return nil
+            }
+            let entries = try JSONDecoder().decode([DictionaryEntry].self, from: data)
+            return entries.first?.meanings.first?.definitions.first?.definition
+        } catch {
+            return nil
+        }
+    }
+
+    private struct DictionaryEntry: Decodable {
+        let meanings: [Meaning]
+    }
+
+    private struct Meaning: Decodable {
+        let definitions: [DefinitionEntry]
+    }
+
+    private struct DefinitionEntry: Decodable {
+        let definition: String
+    }
+
     private let defaultWords = [
         // 4-letter
         "arch", "barn", "calm", "dock", "fawn",

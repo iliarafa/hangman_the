@@ -157,33 +157,6 @@ extension View {
     }
 }
 
-// MARK: - ASCII Art
-
-enum ASCIIArt {
-    static let trophy = """
-        ___________
-       |           |
-       |     #     |
-        \\   ###   /
-         \\  ###  /
-          \\ ### /
-           \\   /
-            | |
-            | |
-          __|_|__
-         |_______|
-    """
-
-    static let skull = """
-          _____
-         /     \\
-        | () () |
-         \\  ^  /
-          |||||
-          |||||
-    """
-}
-
 // MARK: - ASCII Stat Row
 
 func asciiStatRow(title: String, value: String, totalWidth: Int = 32) -> String {

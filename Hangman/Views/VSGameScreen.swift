@@ -99,20 +99,10 @@ struct VSGameScreen: View {
     private var gameResult: some View {
         VStack(spacing: 16) {
             if viewModel.gameStatus == .won {
-                Text(ASCIIArt.trophy)
-                    .font(AppTheme.font(size: 14))
-                    .secondaryStyle()
-                    .multilineTextAlignment(.center)
-
                 Text("\(viewModel.session.guesserName) WON")
                     .font(AppTheme.font(size: 38))
                     .headlineStyle()
             } else {
-                Text(ASCIIArt.skull)
-                    .font(AppTheme.font(size: 14))
-                    .secondaryStyle()
-                    .multilineTextAlignment(.center)
-
                 Text("\(viewModel.session.guesserName) LOST")
                     .font(AppTheme.font(size: 38))
                     .headlineStyle()

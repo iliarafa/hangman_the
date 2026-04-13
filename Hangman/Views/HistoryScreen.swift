@@ -22,7 +22,7 @@ struct HistoryScreen: View {
             }
             .padding(.horizontal)
 
-            ASCIITitleBox("HISTORY")
+            ASCIITitleBox("DICTIONARY")
                 .padding(.top, 16)
 
             if history.isEmpty {
@@ -48,25 +48,35 @@ struct HistoryScreen: View {
     }
 
     private func gameRow(_ record: GameRecord) -> some View {
-        HStack {
-            Text(record.won ? "W" : "L")
-                .font(AppTheme.font(size: 18))
-                .foregroundStyle(record.won
-                    ? Color(red: 0.0, green: 0.5, blue: 0.0)
-                    : .primary.opacity(AppTheme.secondaryOpacity))
+        VStack(alignment: .leading, spacing: 4) {
+            HStack {
+                Text(record.won ? "W" : "L")
+                    .font(AppTheme.font(size: 18))
+                    .foregroundStyle(record.won
+                        ? Color(red: 0.0, green: 0.5, blue: 0.0)
+                        : .primary.opacity(AppTheme.secondaryOpacity))
 
-            Text(record.word.uppercased())
-                .font(AppTheme.font(size: 18))
-                .bodyStyle()
-                .frame(maxWidth: .infinity, alignment: .leading)
+                Text(record.word.uppercased())
+                    .font(AppTheme.font(size: 18))
+                    .bodyStyle()
+                    .frame(maxWidth: .infinity, alignment: .leading)
 
-            Text("\(record.wrongGuessCount) wrong")
-                .font(AppTheme.font(size: 14))
-                .secondaryStyle()
+                Text("\(record.wrongGuessCount) wrong")
+                    .font(AppTheme.font(size: 14))
+                    .secondaryStyle()
 
-            Text(record.date.formatted(.dateTime.month(.abbreviated).day()))
-                .font(AppTheme.font(size: 14))
-                .tertiaryStyle()
+                Text(record.date.formatted(.dateTime.month(.abbreviated).day()))
+                    .font(AppTheme.font(size: 14))
+                    .tertiaryStyle()
+            }
+
+            if let definition = record.definition {
+                Text(definition)
+                    .font(AppTheme.font(size: 14))
+                    .tertiaryStyle()
+                    .lineLimit(2)
+                    .padding(.leading, 24)
+            }
         }
         .padding(.vertical, 8)
     }

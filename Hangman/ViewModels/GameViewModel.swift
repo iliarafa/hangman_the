@@ -90,12 +90,19 @@ final class GameViewModel {
     }
 
     private func recordGame(won: Bool) {
+        let word = game.targetWord
+        let wrongCount = game.wrongGuessCount
         scoreManager.recordGame(GameRecord(
-            word: game.targetWord,
+            word: word,
             won: won,
-            wrongGuessCount: game.wrongGuessCount,
+            wrongGuessCount: wrongCount,
             mode: .arcade
         ))
+        Task {
+            if let definition = await wordService.fetchDefinition(for: word) {
+                scoreManager.updateDefinition(for: word, definition: definition)
+            }
+        }
     }
 
     func useHint() {

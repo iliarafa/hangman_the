@@ -148,11 +148,6 @@ struct GameScreen: View {
                     .font(AppTheme.font(size: 18))
                     .secondaryStyle()
             } else {
-                Text(ASCIIArt.skull)
-                    .font(AppTheme.font(size: 14))
-                    .secondaryStyle()
-                    .multilineTextAlignment(.center)
-
                 Text("GAME OVER")
                     .font(AppTheme.font(size: 38))
                     .headlineStyle()

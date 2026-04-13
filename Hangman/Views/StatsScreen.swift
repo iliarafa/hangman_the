@@ -48,8 +48,8 @@ struct StatsScreen: View {
                 Button {
                     withoutNavAnimation { showHistory = true }
                 } label: {
-                    Text("GAME HISTORY")
-                        .asciiBracket(.body, fontSize: 16)
+                    Text("DICTIONARY")
+                        .asciiBracket(.primary, fontSize: 24)
                 }
 
                 ASCIIDivider()
@@ -84,7 +84,7 @@ struct StatsScreen: View {
         Text(asciiStatRow(title: title, value: value))
             .font(AppTheme.font(size: 18))
             .bodyStyle()
-            .frame(maxWidth: .infinity, alignment: .leading)
+            .frame(maxWidth: .infinity, alignment: .center)
             .padding(.vertical, 6)
     }
 }

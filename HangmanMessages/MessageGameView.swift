@@ -63,18 +63,10 @@ struct MessageGameView: View {
     private var gameResult: some View {
         VStack(spacing: 16) {
             if game.status == .won {
-                Text(ASCIIArt.trophy)
-                    .font(AppTheme.font(size: 14))
-                    .secondaryStyle()
-                    .multilineTextAlignment(.center)
                 Text("YOU WON")
                     .font(AppTheme.font(size: 36))
                     .headlineStyle()
             } else {
-                Text(ASCIIArt.skull)
-                    .font(AppTheme.font(size: 14))
-                    .secondaryStyle()
-                    .multilineTextAlignment(.center)
                 Text("YOU LOST")
                     .font(AppTheme.font(size: 36))
                     .headlineStyle()

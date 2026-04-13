@@ -19,11 +19,6 @@ struct VSFinalScreen: View {
     private var resultSection: some View {
         VStack(spacing: 12) {
             if let winner = viewModel.session.winnerName {
-                Text(ASCIIArt.trophy)
-                    .font(AppTheme.font(size: 14))
-                    .secondaryStyle()
-                    .multilineTextAlignment(.center)
-
                 ASCIITitleBox("\(winner) WINS")
             } else {
                 ASCIITitleBox("IT'S A TIE")
