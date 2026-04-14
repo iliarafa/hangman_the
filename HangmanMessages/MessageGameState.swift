@@ -8,13 +8,13 @@ enum MessagePhase: String, Codable {
 struct MessageGameState: Codable {
     let targetWord: String
     let senderName: String
-    let senderIdentifier: String
+    let senderIdentifier: String?
     let phase: MessagePhase
     var guessedLetters: [String]
     var wrongWordGuesses: [String]
     var won: Bool
 
-    init(targetWord: String, senderName: String, senderIdentifier: String) {
+    init(targetWord: String, senderName: String, senderIdentifier: String?) {
         self.targetWord = targetWord
         self.senderName = senderName
         self.senderIdentifier = senderIdentifier
@@ -24,7 +24,7 @@ struct MessageGameState: Codable {
         self.won = false
     }
 
-    init(targetWord: String, senderName: String, senderIdentifier: String, guessedLetters: Set<Character>, wrongWordGuesses: [String], won: Bool) {
+    init(targetWord: String, senderName: String, senderIdentifier: String?, guessedLetters: Set<Character>, wrongWordGuesses: [String], won: Bool) {
         self.targetWord = targetWord
         self.senderName = senderName
         self.senderIdentifier = senderIdentifier

@@ -40,13 +40,19 @@ class MessagesViewController: MSMessagesAppViewController {
            let gameState = MessageGameState.decode(from: url) {
             switch gameState.phase {
             case .wordSet:
-                // Check if we're the one who set this word
+                // Check if we're the one who set this word.
+                // Prefer the sender ID encoded in the game state (reliable across devices);
+                // fall back to senderParticipantIdentifier for older messages that predate this field.
                 let localID = conversation.localParticipantIdentifier.uuidString
-                if gameState.senderIdentifier == localID {
-                    // We sent this message — show waiting view
+                let weAreSender: Bool
+                if let senderID = gameState.senderIdentifier {
+                    weAreSender = (senderID == localID)
+                } else {
+                    weAreSender = (message.senderParticipantIdentifier == conversation.localParticipantIdentifier)
+                }
+                if weAreSender {
                     showWaitingView(word: gameState.targetWord)
                 } else {
-                    // We received this — play the game
                     showGameView(gameState: gameState, conversation: conversation)
                 }
             case .completed:
