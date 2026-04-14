@@ -97,7 +97,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				D90000002 /* HangmanMessages.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -353,7 +352,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				D80000002 /* PBXTargetDependency */,
 			);
 			name = Hangman;
 			productName = Hangman;
