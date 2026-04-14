@@ -43,6 +43,11 @@
       "size" : "74x55"
     },
     {
+      "idiom" : "ios-marketing",
+      "scale" : "1x",
+      "size" : "1024x1024"
+    },
+    {
       "filename" : "iMessage_54x40.png",
       "idiom" : "universal",
       "platform" : "ios",

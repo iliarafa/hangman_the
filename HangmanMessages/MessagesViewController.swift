@@ -10,16 +10,19 @@ class MessagesViewController: MSMessagesAppViewController {
 
     override func willBecomeActive(with conversation: MSConversation) {
         super.willBecomeActive(with: conversation)
+        print("[Hangman] willBecomeActive — selectedMessage: \(conversation.selectedMessage != nil)")
         presentContent(for: conversation)
     }
 
     override func didSelect(_ message: MSMessage, conversation: MSConversation) {
         super.didSelect(message, conversation: conversation)
+        print("[Hangman] didSelect — message.url: \(message.url?.absoluteString ?? "nil")")
         presentContent(for: conversation)
     }
 
     override func didTransition(to presentationStyle: MSMessagesAppPresentationStyle) {
         super.didTransition(to: presentationStyle)
+        print("[Hangman] didTransition — style: \(presentationStyle.rawValue)")
         guard let conversation = activeConversation else { return }
         presentContent(for: conversation)
     }
@@ -27,6 +30,11 @@ class MessagesViewController: MSMessagesAppViewController {
     // MARK: - Content Presentation
 
     private func presentContent(for conversation: MSConversation) {
+        // All our views need full extension height — always request expanded
+        if presentationStyle != .expanded {
+            requestPresentationStyle(.expanded)
+        }
+
         // Remove any existing child view controllers
         for child in children {
             child.willMove(toParent: nil)
@@ -34,35 +42,66 @@ class MessagesViewController: MSMessagesAppViewController {
             child.removeFromParent()
         }
 
+        // Build diagnostic text visible on-screen
+        var diag = "style=\(presentationStyle.rawValue)\n"
+        diag += "selMsg=\(conversation.selectedMessage != nil)\n"
+        diag += "url=\(conversation.selectedMessage?.url?.absoluteString.prefix(40) ?? "nil")\n"
+
         // Check if there's an active message with game state
         if let message = conversation.selectedMessage,
-           let url = message.url,
-           let gameState = MessageGameState.decode(from: url) {
-            switch gameState.phase {
-            case .wordSet:
-                // Check if we're the one who set this word.
-                // Prefer the sender ID encoded in the game state (reliable across devices);
-                // fall back to senderParticipantIdentifier for older messages that predate this field.
-                let localID = conversation.localParticipantIdentifier.uuidString
-                let weAreSender: Bool
-                if let senderID = gameState.senderIdentifier {
-                    weAreSender = (senderID == localID)
-                } else {
-                    weAreSender = (message.senderParticipantIdentifier == conversation.localParticipantIdentifier)
+           let url = message.url {
+            diag += "hasURL=yes\n"
+            if let gameState = MessageGameState.decode(from: url) {
+                diag += "decoded=yes phase=\(gameState.phase.rawValue)\n"
+                diag += "word=\(gameState.targetWord)\n"
+                diag += "senderID=\(gameState.senderIdentifier?.prefix(8) ?? "nil")\n"
+                diag += "localID=\(conversation.localParticipantIdentifier.uuidString.prefix(8))\n"
+
+                switch gameState.phase {
+                case .wordSet:
+                    let localID = conversation.localParticipantIdentifier.uuidString
+                    let weAreSender: Bool
+                    if let senderID = gameState.senderIdentifier {
+                        weAreSender = (senderID == localID)
+                    } else {
+                        weAreSender = (message.senderParticipantIdentifier == conversation.localParticipantIdentifier)
+                    }
+                    diag += "weAreSender=\(weAreSender)\n"
+                    diag += "-> would show: \(weAreSender ? "WAITING" : "GAME")"
+                case .completed:
+                    diag += "-> would show: RESULT"
                 }
-                if weAreSender {
-                    showWaitingView(word: gameState.targetWord)
-                } else {
-                    showGameView(gameState: gameState, conversation: conversation)
-                }
-            case .completed:
-                // Show the result and allow starting a new game
-                showResultView(gameState: gameState, conversation: conversation)
+            } else {
+                diag += "decoded=NO (decoding failed)"
             }
         } else {
-            // No active game — show set word view
-            showSetWordView(conversation: conversation)
+            diag += "-> would show: SET WORD"
         }
+
+        showDiagnosticView(text: diag, conversation: conversation)
+    }
+
+    private func showDiagnosticView(text: String, conversation: MSConversation) {
+        let view = VStack(alignment: .leading, spacing: 12) {
+            Text("DIAGNOSTIC")
+                .font(AppTheme.font(size: 18))
+                .headlineStyle()
+            Text(text)
+                .font(AppTheme.font(size: 14))
+                .bodyStyle()
+                .textSelection(.enabled)
+            Spacer()
+            Button {
+                self.showSetWordView(conversation: conversation)
+            } label: {
+                Text("SET WORD")
+                    .asciiBracket(.primary, fontSize: 20)
+            }
+        }
+        .padding()
+        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
+
+        embed(UIHostingController(rootView: view))
     }
 
     // MARK: - View Presentation
@@ -182,9 +221,14 @@ class MessagesViewController: MSMessagesAppViewController {
 
     private func embed(_ controller: UIViewController) {
         addChild(controller)
-        controller.view.frame = view.bounds
-        controller.view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        controller.view.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(controller.view)
+        NSLayoutConstraint.activate([
+            controller.view.topAnchor.constraint(equalTo: view.topAnchor),
+            controller.view.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            controller.view.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            controller.view.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+        ])
         controller.didMove(toParent: self)
     }
 }
