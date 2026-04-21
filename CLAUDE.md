@@ -10,11 +10,12 @@ This is a native iOS app (Swift/SwiftUI) with no external dependencies. Build ex
 # Open project
 open Hangman.xcodeproj
 
-# Build from command line
-xcodebuild -project Hangman.xcodeproj -scheme Hangman -sdk iphonesimulator -destination 'platform=iOS Simulator,id=D49B94E5-155D-43E7-9715-D2312EF31612' build
+# Build from command line (use a name-based destination so this works across machines;
+# pick any iPhone simulator installed locally — `xcrun simctl list devices available` to see options)
+xcodebuild -project Hangman.xcodeproj -scheme Hangman -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 17' build
 
 # Run tests (43 tests across 3 suites)
-xcodebuild test -project Hangman.xcodeproj -scheme Hangman -sdk iphonesimulator -destination 'platform=iOS Simulator,id=D49B94E5-155D-43E7-9715-D2312EF31612'
+xcodebuild test -project Hangman.xcodeproj -scheme Hangman -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 17'
 ```
 
 There is no SPM Package.swift, no CocoaPods, and no linter configuration.

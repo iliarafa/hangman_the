@@ -29,7 +29,7 @@ struct HomeScreen: View {
     }
 
     private var titleSection: some View {
-        ASCIITitleBox("HANGMAN (THE)")
+        ASCIITitleBox("GALLOWS & FRIENDS")
     }
 
     private var playButton: some View {

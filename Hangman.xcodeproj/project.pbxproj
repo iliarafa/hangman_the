@@ -70,7 +70,6 @@
 		D10000020 /* ConfettiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000018 /* ConfettiView.swift */; };
 		D10000021 /* VT323-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A20000031 /* VT323-Regular.ttf */; };
 		D10000022 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D20000007 /* Assets.xcassets */; };
-		D90000002 /* HangmanMessages.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = D30000001 /* HangmanMessages.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -80,13 +79,6 @@
 			proxyType = 1;
 			remoteGlobalIDString = A60000001;
 			remoteInfo = Hangman;
-		};
-		D80000001 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = A90000001 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = D60000001;
-			remoteInfo = HangmanMessages;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -544,11 +536,6 @@
 			target = A60000001 /* Hangman */;
 			targetProxy = B90000001 /* PBXContainerItemProxy */;
 		};
-		D80000002 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = D60000001 /* HangmanMessages */;
-			targetProxy = D80000001 /* PBXContainerItemProxy */;
-		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
@@ -675,11 +662,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = 3DLV25C9VK;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Hangman/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "HANGMAN (THE)";
+				INFOPLIST_KEY_CFBundleDisplayName = "GALLOWS & FRIENDS";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -703,11 +690,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = 3DLV25C9VK;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Hangman/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "HANGMAN (THE)";
+				INFOPLIST_KEY_CFBundleDisplayName = "GALLOWS & FRIENDS";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -768,11 +755,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "iMessage App Icon";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = 3DLV25C9VK;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = HangmanMessages/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = Hangman;
+				INFOPLIST_KEY_CFBundleDisplayName = "GALLOWS & FRIENDS";
 				INFOPLIST_KEY_NSExtension_NSExtensionPointIdentifier = "com.apple.message-payload-provider";
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -795,11 +782,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "iMessage App Icon";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = 3DLV25C9VK;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = HangmanMessages/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = Hangman;
+				INFOPLIST_KEY_CFBundleDisplayName = "GALLOWS & FRIENDS";
 				INFOPLIST_KEY_NSExtension_NSExtensionPointIdentifier = "com.apple.message-payload-provider";
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
