@@ -1,6 +1,6 @@
-# HANGMAN (THE)
+# GALLOWS & FRIENDS
 
-A retro-styled Hangman word game for iPhone and iPad. Guess letters to save the figure before it's too late. Features Arcade mode with difficulty levels and hints, VS Mode for local two-player challenges with configurable rounds, iMessage extension for turn-based play, animated ASCII hangman figure, sound effects, confetti celebrations, a built-in dictionary with word definitions, and detailed statistics. Built with SwiftUI using the VT323 pixel font.
+A retro-styled hangman word game for iPhone and iPad. Guess letters to save the figure before it's too late. Features Arcade mode with difficulty levels and hints, VS Mode for local two-player challenges with configurable rounds, iMessage extension for turn-based play, animated ASCII hangman figure, sound effects, confetti celebrations, a built-in dictionary with word definitions, and detailed statistics. Built with SwiftUI using the VT323 pixel font.
 
 ## Features
 
